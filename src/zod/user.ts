@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { User, Gender } from "prismaModel"
+import { User, Gender } from "src/prisma/client"
 
 const userNameRegex = /^[a-zA-Z0-9]+$/
 const passwordRegex = /^[a-zA-Z0-9-_]+$/
