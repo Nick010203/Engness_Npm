@@ -101,7 +101,6 @@
     "sourceMap": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "composite": true,
     "baseUrl": "./",
     "paths": {
       "prismaModel": [
