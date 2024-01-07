@@ -7,6 +7,7 @@
     "dist"
   ],
   "scripts": {
+    "copy:prisma": "cp -r ../Engness_Node/node_modules/.prisma/client .prisma/client",
     "build": "tsc",
     "prepare": "npm run build"
   },

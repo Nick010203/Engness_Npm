@@ -105,13 +105,8 @@
     "baseUrl": "./",
     "paths": {
       "prismaModel": [
-        "../Engness_Node/node_modules/.prisma/client"
+        ".prisma/client"
       ]
     },
   },
-  "references": [
-    {
-      "path": "../Engness_Node"
-    },
-  ],
 }
