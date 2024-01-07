@@ -7,7 +7,7 @@
     "dist"
   ],
   "scripts": {
-    "copy:prisma": "cp -r ../Engness_Node/node_modules/.prisma/client ./src/prisma/client",
+    "prisma:generate": "cp -r ../Engness_Node/prisma/schema.prisma ./src/prisma && npx prisma generate --schema ./src/prisma/schema.prisma",
     "build": "tsc",
     "prepare": "npm run build"
   },
@@ -15,9 +15,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "prisma": "^5.7.1",
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@prisma/client": "^5.7.1",
     "zod": "^3.22.4"
   }
 }

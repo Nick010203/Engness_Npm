@@ -102,10 +102,5 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "baseUrl": "./",
-    "paths": {
-      "prismaModel": [
-        "src/prisma/client"
-      ]
-    },
   },
 }
