@@ -1,0 +1,8200 @@
+
+/**
+ * Client
+**/
+
+import * as runtime from '@prisma/client/runtime/library';
+import $Types = runtime.Types // general types
+import $Public = runtime.Types.Public
+import $Utils = runtime.Types.Utils
+import $Extensions = runtime.Types.Extensions
+import $Result = runtime.Types.Result
+
+export type PrismaPromise<T> = $Public.PrismaPromise<T>
+
+
+/**
+ * Model Log
+ * 
+ */
+export type Log = $Result.DefaultSelection<Prisma.$LogPayload>
+/**
+ * Model User
+ * 
+ */
+export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model Grade
+ * 
+ */
+export type Grade = $Result.DefaultSelection<Prisma.$GradePayload>
+/**
+ * Model Grammar
+ * 
+ */
+export type Grammar = $Result.DefaultSelection<Prisma.$GrammarPayload>
+/**
+ * Model GrammarQuestion
+ * 
+ */
+export type GrammarQuestion = $Result.DefaultSelection<Prisma.$GrammarQuestionPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const Level: {
+  Info: 'Info',
+  Warn: 'Warn',
+  Error: 'Error'
+};
+
+export type Level = (typeof Level)[keyof typeof Level]
+
+
+export const Gender: {
+  male: 'male',
+  female: 'female',
+  middle: 'middle'
+};
+
+export type Gender = (typeof Gender)[keyof typeof Gender]
+
+}
+
+export type Level = $Enums.Level
+
+export const Level: typeof $Enums.Level
+
+export type Gender = $Enums.Gender
+
+export const Gender: typeof $Enums.Gender
+
+/**
+ * ##  Prisma Client ʲˢ
+ * 
+ * Type-safe database client for TypeScript & Node.js
+ * @example
+ * ```
+ * const prisma = new PrismaClient()
+ * // Fetch zero or more Logs
+ * const logs = await prisma.log.findMany()
+ * ```
+ *
+ * 
+ * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+ */
+export class PrismaClient<
+  T extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
+  U = 'log' extends keyof T ? T['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<T['log']> : never : never,
+  ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+> {
+  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
+
+    /**
+   * ##  Prisma Client ʲˢ
+   * 
+   * Type-safe database client for TypeScript & Node.js
+   * @example
+   * ```
+   * const prisma = new PrismaClient()
+   * // Fetch zero or more Logs
+   * const logs = await prisma.log.findMany()
+   * ```
+   *
+   * 
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+   */
+
+  constructor(optionsArg ?: Prisma.Subset<T, Prisma.PrismaClientOptions>);
+  $on<V extends U>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): void;
+
+  /**
+   * Connect with the database
+   */
+  $connect(): $Utils.JsPromise<void>;
+
+  /**
+   * Disconnect from the database
+   */
+  $disconnect(): $Utils.JsPromise<void>;
+
+  /**
+   * Add a middleware
+   * @deprecated since 4.16.0. For new code, prefer client extensions instead.
+   * @see https://pris.ly/d/extensions
+   */
+  $use(cb: Prisma.Middleware): void
+
+/**
+   * Executes a prepared raw query and returns the number of affected rows.
+   * @example
+   * ```
+   * const result = await prisma.$executeRaw`UPDATE User SET cool = ${true} WHERE email = ${'user@email.com'};`
+   * ```
+   * 
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   */
+  $executeRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<number>;
+
+  /**
+   * Executes a raw query and returns the number of affected rows.
+   * Susceptible to SQL injections, see documentation.
+   * @example
+   * ```
+   * const result = await prisma.$executeRawUnsafe('UPDATE User SET cool = $1 WHERE email = $2 ;', true, 'user@email.com')
+   * ```
+   * 
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   */
+  $executeRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<number>;
+
+  /**
+   * Performs a prepared raw query and returns the `SELECT` data.
+   * @example
+   * ```
+   * const result = await prisma.$queryRaw`SELECT * FROM User WHERE id = ${1} OR email = ${'user@email.com'};`
+   * ```
+   * 
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   */
+  $queryRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<T>;
+
+  /**
+   * Performs a raw query and returns the `SELECT` data.
+   * Susceptible to SQL injections, see documentation.
+   * @example
+   * ```
+   * const result = await prisma.$queryRawUnsafe('SELECT * FROM User WHERE id = $1 OR email = $2;', 1, 'user@email.com')
+   * ```
+   * 
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   */
+  $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
+
+  /**
+   * Allows the running of a sequence of read/write operations that are guaranteed to either succeed or fail as a whole.
+   * @example
+   * ```
+   * const [george, bob, alice] = await prisma.$transaction([
+   *   prisma.user.create({ data: { name: 'George' } }),
+   *   prisma.user.create({ data: { name: 'Bob' } }),
+   *   prisma.user.create({ data: { name: 'Alice' } }),
+   * ])
+   * ```
+   * 
+   * Read more in our [docs](https://www.prisma.io/docs/concepts/components/prisma-client/transactions).
+   */
+  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
+
+  $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
+
+
+  $extends: $Extensions.ExtendsHook<'extends', Prisma.TypeMapCb, ExtArgs>
+
+      /**
+   * `prisma.log`: Exposes CRUD operations for the **Log** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Logs
+    * const logs = await prisma.log.findMany()
+    * ```
+    */
+  get log(): Prisma.LogDelegate<ExtArgs>;
+
+  /**
+   * `prisma.user`: Exposes CRUD operations for the **User** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Users
+    * const users = await prisma.user.findMany()
+    * ```
+    */
+  get user(): Prisma.UserDelegate<ExtArgs>;
+
+  /**
+   * `prisma.grade`: Exposes CRUD operations for the **Grade** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Grades
+    * const grades = await prisma.grade.findMany()
+    * ```
+    */
+  get grade(): Prisma.GradeDelegate<ExtArgs>;
+
+  /**
+   * `prisma.grammar`: Exposes CRUD operations for the **Grammar** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Grammars
+    * const grammars = await prisma.grammar.findMany()
+    * ```
+    */
+  get grammar(): Prisma.GrammarDelegate<ExtArgs>;
+
+  /**
+   * `prisma.grammarQuestion`: Exposes CRUD operations for the **GrammarQuestion** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GrammarQuestions
+    * const grammarQuestions = await prisma.grammarQuestion.findMany()
+    * ```
+    */
+  get grammarQuestion(): Prisma.GrammarQuestionDelegate<ExtArgs>;
+}
+
+export namespace Prisma {
+  export import DMMF = runtime.DMMF
+
+  export type PrismaPromise<T> = $Public.PrismaPromise<T>
+
+  /**
+   * Validator
+   */
+  export import validator = runtime.Public.validator
+
+  /**
+   * Prisma Errors
+   */
+  export import PrismaClientKnownRequestError = runtime.PrismaClientKnownRequestError
+  export import PrismaClientUnknownRequestError = runtime.PrismaClientUnknownRequestError
+  export import PrismaClientRustPanicError = runtime.PrismaClientRustPanicError
+  export import PrismaClientInitializationError = runtime.PrismaClientInitializationError
+  export import PrismaClientValidationError = runtime.PrismaClientValidationError
+  export import NotFoundError = runtime.NotFoundError
+
+  /**
+   * Re-export of sql-template-tag
+   */
+  export import sql = runtime.sqltag
+  export import empty = runtime.empty
+  export import join = runtime.join
+  export import raw = runtime.raw
+  export import Sql = runtime.Sql
+
+  /**
+   * Decimal.js
+   */
+  export import Decimal = runtime.Decimal
+
+  export type DecimalJsLike = runtime.DecimalJsLike
+
+  /**
+   * Metrics 
+   */
+  export type Metrics = runtime.Metrics
+  export type Metric<T> = runtime.Metric<T>
+  export type MetricHistogram = runtime.MetricHistogram
+  export type MetricHistogramBucket = runtime.MetricHistogramBucket
+
+  /**
+  * Extensions
+  */
+  export import Extension = $Extensions.UserArgs
+  export import getExtensionContext = runtime.Extensions.getExtensionContext
+  export import Args = $Public.Args
+  export import Payload = $Public.Payload
+  export import Result = $Public.Result
+  export import Exact = $Public.Exact
+
+  /**
+   * Prisma Client JS version: 5.7.1
+   * Query Engine version: 0ca5ccbcfa6bdc81c003cf549abe4269f59c41e5
+   */
+  export type PrismaVersion = {
+    client: string
+  }
+
+  export const prismaVersion: PrismaVersion 
+
+  /**
+   * Utility Types
+   */
+
+  /**
+   * From https://github.com/sindresorhus/type-fest/
+   * Matches a JSON object.
+   * This type can be useful to enforce some input to be JSON-compatible or as a super-type to be extended from. 
+   */
+  export type JsonObject = {[Key in string]?: JsonValue}
+
+  /**
+   * From https://github.com/sindresorhus/type-fest/
+   * Matches a JSON array.
+   */
+  export interface JsonArray extends Array<JsonValue> {}
+
+  /**
+   * From https://github.com/sindresorhus/type-fest/
+   * Matches any valid JSON value.
+   */
+  export type JsonValue = string | number | boolean | JsonObject | JsonArray | null
+
+  /**
+   * Matches a JSON object.
+   * Unlike `JsonObject`, this type allows undefined and read-only properties.
+   */
+  export type InputJsonObject = {readonly [Key in string]?: InputJsonValue | null}
+
+  /**
+   * Matches a JSON array.
+   * Unlike `JsonArray`, readonly arrays are assignable to this type.
+   */
+  export interface InputJsonArray extends ReadonlyArray<InputJsonValue | null> {}
+
+  /**
+   * Matches any valid value that can be used as an input for operations like
+   * create and update as the value of a JSON field. Unlike `JsonValue`, this
+   * type allows read-only arrays and read-only object properties and disallows
+   * `null` at the top level.
+   *
+   * `null` cannot be used as the value of a JSON field because its meaning
+   * would be ambiguous. Use `Prisma.JsonNull` to store the JSON null value or
+   * `Prisma.DbNull` to clear the JSON value and set the field to the database
+   * NULL value instead.
+   *
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-by-null-values
+   */
+  export type InputJsonValue = string | number | boolean | InputJsonObject | InputJsonArray | { toJSON(): unknown }
+
+  /**
+   * Types of the values used to represent different kinds of `null` values when working with JSON fields.
+   * 
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  namespace NullTypes {
+    /**
+    * Type of `Prisma.DbNull`.
+    * 
+    * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
+    * 
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
+    class DbNull {
+      private DbNull: never
+      private constructor()
+    }
+
+    /**
+    * Type of `Prisma.JsonNull`.
+    * 
+    * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
+    * 
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
+    class JsonNull {
+      private JsonNull: never
+      private constructor()
+    }
+
+    /**
+    * Type of `Prisma.AnyNull`.
+    * 
+    * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
+    * 
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
+    class AnyNull {
+      private AnyNull: never
+      private constructor()
+    }
+  }
+
+  /**
+   * Helper for filtering JSON entries that have `null` on the database (empty on the db)
+   * 
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  export const DbNull: NullTypes.DbNull
+
+  /**
+   * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
+   * 
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  export const JsonNull: NullTypes.JsonNull
+
+  /**
+   * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
+   * 
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  export const AnyNull: NullTypes.AnyNull
+
+  type SelectAndInclude = {
+    select: any
+    include: any
+  }
+
+  /**
+   * Get the type of the value, that the Promise holds.
+   */
+  export type PromiseType<T extends PromiseLike<any>> = T extends PromiseLike<infer U> ? U : T;
+
+  /**
+   * Get the return type of a function which returns a Promise.
+   */
+  export type PromiseReturnType<T extends (...args: any) => $Utils.JsPromise<any>> = PromiseType<ReturnType<T>>
+
+  /**
+   * From T, pick a set of properties whose keys are in the union K
+   */
+  type Prisma__Pick<T, K extends keyof T> = {
+      [P in K]: T[P];
+  };
+
+
+  export type Enumerable<T> = T | Array<T>;
+
+  export type RequiredKeys<T> = {
+    [K in keyof T]-?: {} extends Prisma__Pick<T, K> ? never : K
+  }[keyof T]
+
+  export type TruthyKeys<T> = keyof {
+    [K in keyof T as T[K] extends false | undefined | null ? never : K]: K
+  }
+
+  export type TrueKeys<T> = TruthyKeys<Prisma__Pick<T, RequiredKeys<T>>>
+
+  /**
+   * Subset
+   * @desc From `T` pick properties that exist in `U`. Simple version of Intersection
+   */
+  export type Subset<T, U> = {
+    [key in keyof T]: key extends keyof U ? T[key] : never;
+  };
+
+  /**
+   * SelectSubset
+   * @desc From `T` pick properties that exist in `U`. Simple version of Intersection.
+   * Additionally, it validates, if both select and include are present. If the case, it errors.
+   */
+  export type SelectSubset<T, U> = {
+    [key in keyof T]: key extends keyof U ? T[key] : never
+  } &
+    (T extends SelectAndInclude
+      ? 'Please either choose `select` or `include`.'
+      : {})
+
+  /**
+   * Subset + Intersection
+   * @desc From `T` pick properties that exist in `U` and intersect `K`
+   */
+  export type SubsetIntersection<T, U, K> = {
+    [key in keyof T]: key extends keyof U ? T[key] : never
+  } &
+    K
+
+  type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
+
+  /**
+   * XOR is needed to have a real mutually exclusive union type
+   * https://stackoverflow.com/questions/42123407/does-typescript-support-mutually-exclusive-types
+   */
+  type XOR<T, U> =
+    T extends object ?
+    U extends object ?
+      (Without<T, U> & U) | (Without<U, T> & T)
+    : U : T
+
+
+  /**
+   * Is T a Record?
+   */
+  type IsObject<T extends any> = T extends Array<any>
+  ? False
+  : T extends Date
+  ? False
+  : T extends Uint8Array
+  ? False
+  : T extends BigInt
+  ? False
+  : T extends object
+  ? True
+  : False
+
+
+  /**
+   * If it's T[], return T
+   */
+  export type UnEnumerate<T extends unknown> = T extends Array<infer U> ? U : T
+
+  /**
+   * From ts-toolbelt
+   */
+
+  type __Either<O extends object, K extends Key> = Omit<O, K> &
+    {
+      // Merge all but K
+      [P in K]: Prisma__Pick<O, P & keyof O> // With K possibilities
+    }[K]
+
+  type EitherStrict<O extends object, K extends Key> = Strict<__Either<O, K>>
+
+  type EitherLoose<O extends object, K extends Key> = ComputeRaw<__Either<O, K>>
+
+  type _Either<
+    O extends object,
+    K extends Key,
+    strict extends Boolean
+  > = {
+    1: EitherStrict<O, K>
+    0: EitherLoose<O, K>
+  }[strict]
+
+  type Either<
+    O extends object,
+    K extends Key,
+    strict extends Boolean = 1
+  > = O extends unknown ? _Either<O, K, strict> : never
+
+  export type Union = any
+
+  type PatchUndefined<O extends object, O1 extends object> = {
+    [K in keyof O]: O[K] extends undefined ? At<O1, K> : O[K]
+  } & {}
+
+  /** Helper Types for "Merge" **/
+  export type IntersectOf<U extends Union> = (
+    U extends unknown ? (k: U) => void : never
+  ) extends (k: infer I) => void
+    ? I
+    : never
+
+  export type Overwrite<O extends object, O1 extends object> = {
+      [K in keyof O]: K extends keyof O1 ? O1[K] : O[K];
+  } & {};
+
+  type _Merge<U extends object> = IntersectOf<Overwrite<U, {
+      [K in keyof U]-?: At<U, K>;
+  }>>;
+
+  type Key = string | number | symbol;
+  type AtBasic<O extends object, K extends Key> = K extends keyof O ? O[K] : never;
+  type AtStrict<O extends object, K extends Key> = O[K & keyof O];
+  type AtLoose<O extends object, K extends Key> = O extends unknown ? AtStrict<O, K> : never;
+  export type At<O extends object, K extends Key, strict extends Boolean = 1> = {
+      1: AtStrict<O, K>;
+      0: AtLoose<O, K>;
+  }[strict];
+
+  export type ComputeRaw<A extends any> = A extends Function ? A : {
+    [K in keyof A]: A[K];
+  } & {};
+
+  export type OptionalFlat<O> = {
+    [K in keyof O]?: O[K];
+  } & {};
+
+  type _Record<K extends keyof any, T> = {
+    [P in K]: T;
+  };
+
+  // cause typescript not to expand types and preserve names
+  type NoExpand<T> = T extends unknown ? T : never;
+
+  // this type assumes the passed object is entirely optional
+  type AtLeast<O extends object, K extends string> = NoExpand<
+    O extends unknown
+    ? | (K extends keyof O ? { [P in K]: O[P] } & O : O)
+      | {[P in keyof O as P extends K ? K : never]-?: O[P]} & O
+    : never>;
+
+  type _Strict<U, _U = U> = U extends unknown ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>> : never;
+
+  export type Strict<U extends object> = ComputeRaw<_Strict<U>>;
+  /** End Helper Types for "Merge" **/
+
+  export type Merge<U extends object> = ComputeRaw<_Merge<Strict<U>>>;
+
+  /**
+  A [[Boolean]]
+  */
+  export type Boolean = True | False
+
+  // /**
+  // 1
+  // */
+  export type True = 1
+
+  /**
+  0
+  */
+  export type False = 0
+
+  export type Not<B extends Boolean> = {
+    0: 1
+    1: 0
+  }[B]
+
+  export type Extends<A1 extends any, A2 extends any> = [A1] extends [never]
+    ? 0 // anything `never` is false
+    : A1 extends A2
+    ? 1
+    : 0
+
+  export type Has<U extends Union, U1 extends Union> = Not<
+    Extends<Exclude<U1, U>, U1>
+  >
+
+  export type Or<B1 extends Boolean, B2 extends Boolean> = {
+    0: {
+      0: 0
+      1: 1
+    }
+    1: {
+      0: 1
+      1: 1
+    }
+  }[B1][B2]
+
+  export type Keys<U extends Union> = U extends unknown ? keyof U : never
+
+  type Cast<A, B> = A extends B ? A : B;
+
+  export const type: unique symbol;
+
+
+
+  /**
+   * Used by group by
+   */
+
+  export type GetScalarType<T, O> = O extends object ? {
+    [P in keyof T]: P extends keyof O
+      ? O[P]
+      : never
+  } : never
+
+  type FieldPaths<
+    T,
+    U = Omit<T, '_avg' | '_sum' | '_count' | '_min' | '_max'>
+  > = IsObject<T> extends True ? U : T
+
+  type GetHavingFields<T> = {
+    [K in keyof T]: Or<
+      Or<Extends<'OR', K>, Extends<'AND', K>>,
+      Extends<'NOT', K>
+    > extends True
+      ? // infer is only needed to not hit TS limit
+        // based on the brilliant idea of Pierre-Antoine Mills
+        // https://github.com/microsoft/TypeScript/issues/30188#issuecomment-478938437
+        T[K] extends infer TK
+        ? GetHavingFields<UnEnumerate<TK> extends object ? Merge<UnEnumerate<TK>> : never>
+        : never
+      : {} extends FieldPaths<T[K]>
+      ? never
+      : K
+  }[keyof T]
+
+  /**
+   * Convert tuple to union
+   */
+  type _TupleToUnion<T> = T extends (infer E)[] ? E : never
+  type TupleToUnion<K extends readonly any[]> = _TupleToUnion<K>
+  type MaybeTupleToUnion<T> = T extends any[] ? TupleToUnion<T> : T
+
+  /**
+   * Like `Pick`, but additionally can also accept an array of keys
+   */
+  type PickEnumerable<T, K extends Enumerable<keyof T> | keyof T> = Prisma__Pick<T, MaybeTupleToUnion<K>>
+
+  /**
+   * Exclude all keys with underscores
+   */
+  type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}` ? never : T
+
+
+  export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>
+
+  type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>
+
+
+  export const ModelName: {
+    Log: 'Log',
+    User: 'User',
+    Grade: 'Grade',
+    Grammar: 'Grammar',
+    GrammarQuestion: 'GrammarQuestion'
+  };
+
+  export type ModelName = (typeof ModelName)[keyof typeof ModelName]
+
+
+  export type Datasources = {
+    db?: Datasource
+  }
+
+
+  interface TypeMapCb extends $Utils.Fn<{extArgs: $Extensions.InternalArgs}, $Utils.Record<string, any>> {
+    returns: Prisma.TypeMap<this['params']['extArgs']>
+  }
+
+  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    meta: {
+      modelProps: 'log' | 'user' | 'grade' | 'grammar' | 'grammarQuestion'
+      txIsolationLevel: Prisma.TransactionIsolationLevel
+    },
+    model: {
+      Log: {
+        payload: Prisma.$LogPayload<ExtArgs>
+        fields: Prisma.LogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LogFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$LogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LogFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$LogPayload>
+          }
+          findFirst: {
+            args: Prisma.LogFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$LogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LogFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$LogPayload>
+          }
+          findMany: {
+            args: Prisma.LogFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$LogPayload>[]
+          }
+          create: {
+            args: Prisma.LogCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$LogPayload>
+          }
+          createMany: {
+            args: Prisma.LogCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.LogDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$LogPayload>
+          }
+          update: {
+            args: Prisma.LogUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$LogPayload>
+          }
+          deleteMany: {
+            args: Prisma.LogDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LogUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.LogUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$LogPayload>
+          }
+          aggregate: {
+            args: Prisma.LogAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateLog>
+          }
+          groupBy: {
+            args: Prisma.LogGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<LogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LogCountArgs<ExtArgs>,
+            result: $Utils.Optional<LogCountAggregateOutputType> | number
+          }
+        }
+      }
+      User: {
+        payload: Prisma.$UserPayload<ExtArgs>
+        fields: Prisma.UserFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          findFirst: {
+            args: Prisma.UserFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          findMany: {
+            args: Prisma.UserFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
+          }
+          create: {
+            args: Prisma.UserCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          createMany: {
+            args: Prisma.UserCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.UserDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          update: {
+            args: Prisma.UserUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.UserUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          aggregate: {
+            args: Prisma.UserAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateUser>
+          }
+          groupBy: {
+            args: Prisma.UserGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<UserGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserCountArgs<ExtArgs>,
+            result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      Grade: {
+        payload: Prisma.$GradePayload<ExtArgs>
+        fields: Prisma.GradeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GradeFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GradePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GradeFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GradePayload>
+          }
+          findFirst: {
+            args: Prisma.GradeFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GradePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GradeFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GradePayload>
+          }
+          findMany: {
+            args: Prisma.GradeFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GradePayload>[]
+          }
+          create: {
+            args: Prisma.GradeCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GradePayload>
+          }
+          createMany: {
+            args: Prisma.GradeCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.GradeDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GradePayload>
+          }
+          update: {
+            args: Prisma.GradeUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GradePayload>
+          }
+          deleteMany: {
+            args: Prisma.GradeDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GradeUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.GradeUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GradePayload>
+          }
+          aggregate: {
+            args: Prisma.GradeAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateGrade>
+          }
+          groupBy: {
+            args: Prisma.GradeGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<GradeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GradeCountArgs<ExtArgs>,
+            result: $Utils.Optional<GradeCountAggregateOutputType> | number
+          }
+        }
+      }
+      Grammar: {
+        payload: Prisma.$GrammarPayload<ExtArgs>
+        fields: Prisma.GrammarFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GrammarFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrammarPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GrammarFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrammarPayload>
+          }
+          findFirst: {
+            args: Prisma.GrammarFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrammarPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GrammarFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrammarPayload>
+          }
+          findMany: {
+            args: Prisma.GrammarFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrammarPayload>[]
+          }
+          create: {
+            args: Prisma.GrammarCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrammarPayload>
+          }
+          createMany: {
+            args: Prisma.GrammarCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.GrammarDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrammarPayload>
+          }
+          update: {
+            args: Prisma.GrammarUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrammarPayload>
+          }
+          deleteMany: {
+            args: Prisma.GrammarDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GrammarUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.GrammarUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrammarPayload>
+          }
+          aggregate: {
+            args: Prisma.GrammarAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateGrammar>
+          }
+          groupBy: {
+            args: Prisma.GrammarGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<GrammarGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GrammarCountArgs<ExtArgs>,
+            result: $Utils.Optional<GrammarCountAggregateOutputType> | number
+          }
+        }
+      }
+      GrammarQuestion: {
+        payload: Prisma.$GrammarQuestionPayload<ExtArgs>
+        fields: Prisma.GrammarQuestionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GrammarQuestionFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrammarQuestionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GrammarQuestionFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrammarQuestionPayload>
+          }
+          findFirst: {
+            args: Prisma.GrammarQuestionFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrammarQuestionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GrammarQuestionFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrammarQuestionPayload>
+          }
+          findMany: {
+            args: Prisma.GrammarQuestionFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrammarQuestionPayload>[]
+          }
+          create: {
+            args: Prisma.GrammarQuestionCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrammarQuestionPayload>
+          }
+          createMany: {
+            args: Prisma.GrammarQuestionCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.GrammarQuestionDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrammarQuestionPayload>
+          }
+          update: {
+            args: Prisma.GrammarQuestionUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrammarQuestionPayload>
+          }
+          deleteMany: {
+            args: Prisma.GrammarQuestionDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GrammarQuestionUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.GrammarQuestionUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GrammarQuestionPayload>
+          }
+          aggregate: {
+            args: Prisma.GrammarQuestionAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateGrammarQuestion>
+          }
+          groupBy: {
+            args: Prisma.GrammarQuestionGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<GrammarQuestionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GrammarQuestionCountArgs<ExtArgs>,
+            result: $Utils.Optional<GrammarQuestionCountAggregateOutputType> | number
+          }
+        }
+      }
+    }
+  } & {
+    other: {
+      payload: any
+      operations: {
+        $executeRawUnsafe: {
+          args: [query: string, ...values: any[]],
+          result: any
+        }
+        $executeRaw: {
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
+          result: any
+        }
+        $queryRawUnsafe: {
+          args: [query: string, ...values: any[]],
+          result: any
+        }
+        $queryRaw: {
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
+          result: any
+        }
+      }
+    }
+  }
+  export const defineExtension: $Extensions.ExtendsHook<'define', Prisma.TypeMapCb, $Extensions.DefaultArgs>
+  export type DefaultPrismaClient = PrismaClient
+  export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
+  export interface PrismaClientOptions {
+    /**
+     * Overwrites the datasource url from your schema.prisma file
+     */
+    datasources?: Datasources
+    /**
+     * Overwrites the datasource url from your schema.prisma file
+     */
+    datasourceUrl?: string
+    /**
+     * @default "colorless"
+     */
+    errorFormat?: ErrorFormat
+    /**
+     * @example
+     * ```
+     * // Defaults to stdout
+     * log: ['query', 'info', 'warn', 'error']
+     * 
+     * // Emit as events
+     * log: [
+     *   { emit: 'stdout', level: 'query' },
+     *   { emit: 'stdout', level: 'info' },
+     *   { emit: 'stdout', level: 'warn' }
+     *   { emit: 'stdout', level: 'error' }
+     * ]
+     * ```
+     * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
+     */
+    log?: (LogLevel | LogDefinition)[]
+    /**
+     * Instance of a Driver Adapter, e.g., like one provided by `@prisma/adapter-planetscale`
+     */
+    adapter?: runtime.DriverAdapter | null
+  }
+
+  /* Types for Logging */
+  export type LogLevel = 'info' | 'query' | 'warn' | 'error'
+  export type LogDefinition = {
+    level: LogLevel
+    emit: 'stdout' | 'event'
+  }
+
+  export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
+  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
+    GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
+    : never
+
+  export type QueryEvent = {
+    timestamp: Date
+    query: string
+    params: string
+    duration: number
+    target: string
+  }
+
+  export type LogEvent = {
+    timestamp: Date
+    message: string
+    target: string
+  }
+  /* End Types for Logging */
+
+
+  export type PrismaAction =
+    | 'findUnique'
+    | 'findUniqueOrThrow'
+    | 'findMany'
+    | 'findFirst'
+    | 'findFirstOrThrow'
+    | 'create'
+    | 'createMany'
+    | 'update'
+    | 'updateMany'
+    | 'upsert'
+    | 'delete'
+    | 'deleteMany'
+    | 'executeRaw'
+    | 'queryRaw'
+    | 'aggregate'
+    | 'count'
+    | 'runCommandRaw'
+    | 'findRaw'
+    | 'groupBy'
+
+  /**
+   * These options are being passed into the middleware as "params"
+   */
+  export type MiddlewareParams = {
+    model?: ModelName
+    action: PrismaAction
+    args: any
+    dataPath: string[]
+    runInTransaction: boolean
+  }
+
+  /**
+   * The `T` type makes sure, that the `return proceed` is not forgotten in the middleware implementation
+   */
+  export type Middleware<T = any> = (
+    params: MiddlewareParams,
+    next: (params: MiddlewareParams) => $Utils.JsPromise<T>,
+  ) => $Utils.JsPromise<T>
+
+  // tested in getLogLevel.test.ts
+  export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
+
+  /**
+   * `PrismaClient` proxy available in interactive transactions.
+   */
+  export type TransactionClient = Omit<Prisma.DefaultPrismaClient, runtime.ITXClientDenyList>
+
+  export type Datasource = {
+    url?: string
+  }
+
+  /**
+   * Count Types
+   */
+
+
+  /**
+   * Count Type GradeCountOutputType
+   */
+
+  export type GradeCountOutputType = {
+    Grammar: number
+  }
+
+  export type GradeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Grammar?: boolean | GradeCountOutputTypeCountGrammarArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * GradeCountOutputType without action
+   */
+  export type GradeCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GradeCountOutputType
+     */
+    select?: GradeCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * GradeCountOutputType without action
+   */
+  export type GradeCountOutputTypeCountGrammarArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GrammarWhereInput
+  }
+
+
+
+  /**
+   * Count Type GrammarCountOutputType
+   */
+
+  export type GrammarCountOutputType = {
+    GrammarQuestion: number
+  }
+
+  export type GrammarCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    GrammarQuestion?: boolean | GrammarCountOutputTypeCountGrammarQuestionArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * GrammarCountOutputType without action
+   */
+  export type GrammarCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrammarCountOutputType
+     */
+    select?: GrammarCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * GrammarCountOutputType without action
+   */
+  export type GrammarCountOutputTypeCountGrammarQuestionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GrammarQuestionWhereInput
+  }
+
+
+
+  /**
+   * Models
+   */
+
+  /**
+   * Model Log
+   */
+
+  export type AggregateLog = {
+    _count: LogCountAggregateOutputType | null
+    _avg: LogAvgAggregateOutputType | null
+    _sum: LogSumAggregateOutputType | null
+    _min: LogMinAggregateOutputType | null
+    _max: LogMaxAggregateOutputType | null
+  }
+
+  export type LogAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type LogSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type LogMinAggregateOutputType = {
+    id: number | null
+    level: $Enums.Level | null
+    message: string | null
+  }
+
+  export type LogMaxAggregateOutputType = {
+    id: number | null
+    level: $Enums.Level | null
+    message: string | null
+  }
+
+  export type LogCountAggregateOutputType = {
+    id: number
+    level: number
+    message: number
+    meta: number
+    _all: number
+  }
+
+
+  export type LogAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type LogSumAggregateInputType = {
+    id?: true
+  }
+
+  export type LogMinAggregateInputType = {
+    id?: true
+    level?: true
+    message?: true
+  }
+
+  export type LogMaxAggregateInputType = {
+    id?: true
+    level?: true
+    message?: true
+  }
+
+  export type LogCountAggregateInputType = {
+    id?: true
+    level?: true
+    message?: true
+    meta?: true
+    _all?: true
+  }
+
+  export type LogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Log to aggregate.
+     */
+    where?: LogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Logs to fetch.
+     */
+    orderBy?: LogOrderByWithRelationInput | LogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Logs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Logs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Logs
+    **/
+    _count?: true | LogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LogMaxAggregateInputType
+  }
+
+  export type GetLogAggregateType<T extends LogAggregateArgs> = {
+        [P in keyof T & keyof AggregateLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLog[P]>
+      : GetScalarType<T[P], AggregateLog[P]>
+  }
+
+
+
+
+  export type LogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LogWhereInput
+    orderBy?: LogOrderByWithAggregationInput | LogOrderByWithAggregationInput[]
+    by: LogScalarFieldEnum[] | LogScalarFieldEnum
+    having?: LogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LogCountAggregateInputType | true
+    _avg?: LogAvgAggregateInputType
+    _sum?: LogSumAggregateInputType
+    _min?: LogMinAggregateInputType
+    _max?: LogMaxAggregateInputType
+  }
+
+  export type LogGroupByOutputType = {
+    id: number
+    level: $Enums.Level
+    message: string
+    meta: JsonValue
+    _count: LogCountAggregateOutputType | null
+    _avg: LogAvgAggregateOutputType | null
+    _sum: LogSumAggregateOutputType | null
+    _min: LogMinAggregateOutputType | null
+    _max: LogMaxAggregateOutputType | null
+  }
+
+  type GetLogGroupByPayload<T extends LogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LogGroupByOutputType[P]>
+            : GetScalarType<T[P], LogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    level?: boolean
+    message?: boolean
+    meta?: boolean
+  }, ExtArgs["result"]["log"]>
+
+  export type LogSelectScalar = {
+    id?: boolean
+    level?: boolean
+    message?: boolean
+    meta?: boolean
+  }
+
+
+  export type $LogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Log"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      level: $Enums.Level
+      message: string
+      meta: Prisma.JsonValue
+    }, ExtArgs["result"]["log"]>
+    composites: {}
+  }
+
+
+  type LogGetPayload<S extends boolean | null | undefined | LogDefaultArgs> = $Result.GetResult<Prisma.$LogPayload, S>
+
+  type LogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<LogFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: LogCountAggregateInputType | true
+    }
+
+  export interface LogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Log'], meta: { name: 'Log' } }
+    /**
+     * Find zero or one Log that matches the filter.
+     * @param {LogFindUniqueArgs} args - Arguments to find a Log
+     * @example
+     * // Get one Log
+     * const log = await prisma.log.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends LogFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, LogFindUniqueArgs<ExtArgs>>
+    ): Prisma__LogClient<$Result.GetResult<Prisma.$LogPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Log that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {LogFindUniqueOrThrowArgs} args - Arguments to find a Log
+     * @example
+     * // Get one Log
+     * const log = await prisma.log.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends LogFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, LogFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__LogClient<$Result.GetResult<Prisma.$LogPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Log that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogFindFirstArgs} args - Arguments to find a Log
+     * @example
+     * // Get one Log
+     * const log = await prisma.log.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends LogFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, LogFindFirstArgs<ExtArgs>>
+    ): Prisma__LogClient<$Result.GetResult<Prisma.$LogPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Log that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogFindFirstOrThrowArgs} args - Arguments to find a Log
+     * @example
+     * // Get one Log
+     * const log = await prisma.log.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends LogFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, LogFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__LogClient<$Result.GetResult<Prisma.$LogPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Logs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Logs
+     * const logs = await prisma.log.findMany()
+     * 
+     * // Get first 10 Logs
+     * const logs = await prisma.log.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const logWithIdOnly = await prisma.log.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends LogFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, LogFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LogPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Log.
+     * @param {LogCreateArgs} args - Arguments to create a Log.
+     * @example
+     * // Create one Log
+     * const Log = await prisma.log.create({
+     *   data: {
+     *     // ... data to create a Log
+     *   }
+     * })
+     * 
+    **/
+    create<T extends LogCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, LogCreateArgs<ExtArgs>>
+    ): Prisma__LogClient<$Result.GetResult<Prisma.$LogPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Logs.
+     *     @param {LogCreateManyArgs} args - Arguments to create many Logs.
+     *     @example
+     *     // Create many Logs
+     *     const log = await prisma.log.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends LogCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, LogCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Log.
+     * @param {LogDeleteArgs} args - Arguments to delete one Log.
+     * @example
+     * // Delete one Log
+     * const Log = await prisma.log.delete({
+     *   where: {
+     *     // ... filter to delete one Log
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends LogDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, LogDeleteArgs<ExtArgs>>
+    ): Prisma__LogClient<$Result.GetResult<Prisma.$LogPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Log.
+     * @param {LogUpdateArgs} args - Arguments to update one Log.
+     * @example
+     * // Update one Log
+     * const log = await prisma.log.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends LogUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, LogUpdateArgs<ExtArgs>>
+    ): Prisma__LogClient<$Result.GetResult<Prisma.$LogPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Logs.
+     * @param {LogDeleteManyArgs} args - Arguments to filter Logs to delete.
+     * @example
+     * // Delete a few Logs
+     * const { count } = await prisma.log.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends LogDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, LogDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Logs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Logs
+     * const log = await prisma.log.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends LogUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, LogUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Log.
+     * @param {LogUpsertArgs} args - Arguments to update or create a Log.
+     * @example
+     * // Update or create a Log
+     * const log = await prisma.log.upsert({
+     *   create: {
+     *     // ... data to create a Log
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Log we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends LogUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, LogUpsertArgs<ExtArgs>>
+    ): Prisma__LogClient<$Result.GetResult<Prisma.$LogPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Logs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogCountArgs} args - Arguments to filter Logs to count.
+     * @example
+     * // Count the number of Logs
+     * const count = await prisma.log.count({
+     *   where: {
+     *     // ... the filter for the Logs we want to count
+     *   }
+     * })
+    **/
+    count<T extends LogCountArgs>(
+      args?: Subset<T, LogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Log.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LogAggregateArgs>(args: Subset<T, LogAggregateArgs>): Prisma.PrismaPromise<GetLogAggregateType<T>>
+
+    /**
+     * Group by Log.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LogGroupByArgs['orderBy'] }
+        : { orderBy?: LogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Log model
+   */
+  readonly fields: LogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Log.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Log model
+   */ 
+  interface LogFieldRefs {
+    readonly id: FieldRef<"Log", 'Int'>
+    readonly level: FieldRef<"Log", 'Level'>
+    readonly message: FieldRef<"Log", 'String'>
+    readonly meta: FieldRef<"Log", 'Json'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Log findUnique
+   */
+  export type LogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Log
+     */
+    select?: LogSelect<ExtArgs> | null
+    /**
+     * Filter, which Log to fetch.
+     */
+    where: LogWhereUniqueInput
+  }
+
+
+  /**
+   * Log findUniqueOrThrow
+   */
+  export type LogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Log
+     */
+    select?: LogSelect<ExtArgs> | null
+    /**
+     * Filter, which Log to fetch.
+     */
+    where: LogWhereUniqueInput
+  }
+
+
+  /**
+   * Log findFirst
+   */
+  export type LogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Log
+     */
+    select?: LogSelect<ExtArgs> | null
+    /**
+     * Filter, which Log to fetch.
+     */
+    where?: LogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Logs to fetch.
+     */
+    orderBy?: LogOrderByWithRelationInput | LogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Logs.
+     */
+    cursor?: LogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Logs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Logs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Logs.
+     */
+    distinct?: LogScalarFieldEnum | LogScalarFieldEnum[]
+  }
+
+
+  /**
+   * Log findFirstOrThrow
+   */
+  export type LogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Log
+     */
+    select?: LogSelect<ExtArgs> | null
+    /**
+     * Filter, which Log to fetch.
+     */
+    where?: LogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Logs to fetch.
+     */
+    orderBy?: LogOrderByWithRelationInput | LogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Logs.
+     */
+    cursor?: LogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Logs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Logs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Logs.
+     */
+    distinct?: LogScalarFieldEnum | LogScalarFieldEnum[]
+  }
+
+
+  /**
+   * Log findMany
+   */
+  export type LogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Log
+     */
+    select?: LogSelect<ExtArgs> | null
+    /**
+     * Filter, which Logs to fetch.
+     */
+    where?: LogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Logs to fetch.
+     */
+    orderBy?: LogOrderByWithRelationInput | LogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Logs.
+     */
+    cursor?: LogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Logs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Logs.
+     */
+    skip?: number
+    distinct?: LogScalarFieldEnum | LogScalarFieldEnum[]
+  }
+
+
+  /**
+   * Log create
+   */
+  export type LogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Log
+     */
+    select?: LogSelect<ExtArgs> | null
+    /**
+     * The data needed to create a Log.
+     */
+    data: XOR<LogCreateInput, LogUncheckedCreateInput>
+  }
+
+
+  /**
+   * Log createMany
+   */
+  export type LogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Logs.
+     */
+    data: LogCreateManyInput | LogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Log update
+   */
+  export type LogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Log
+     */
+    select?: LogSelect<ExtArgs> | null
+    /**
+     * The data needed to update a Log.
+     */
+    data: XOR<LogUpdateInput, LogUncheckedUpdateInput>
+    /**
+     * Choose, which Log to update.
+     */
+    where: LogWhereUniqueInput
+  }
+
+
+  /**
+   * Log updateMany
+   */
+  export type LogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Logs.
+     */
+    data: XOR<LogUpdateManyMutationInput, LogUncheckedUpdateManyInput>
+    /**
+     * Filter which Logs to update
+     */
+    where?: LogWhereInput
+  }
+
+
+  /**
+   * Log upsert
+   */
+  export type LogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Log
+     */
+    select?: LogSelect<ExtArgs> | null
+    /**
+     * The filter to search for the Log to update in case it exists.
+     */
+    where: LogWhereUniqueInput
+    /**
+     * In case the Log found by the `where` argument doesn't exist, create a new Log with this data.
+     */
+    create: XOR<LogCreateInput, LogUncheckedCreateInput>
+    /**
+     * In case the Log was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LogUpdateInput, LogUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Log delete
+   */
+  export type LogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Log
+     */
+    select?: LogSelect<ExtArgs> | null
+    /**
+     * Filter which Log to delete.
+     */
+    where: LogWhereUniqueInput
+  }
+
+
+  /**
+   * Log deleteMany
+   */
+  export type LogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Logs to delete
+     */
+    where?: LogWhereInput
+  }
+
+
+  /**
+   * Log without action
+   */
+  export type LogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Log
+     */
+    select?: LogSelect<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model User
+   */
+
+  export type AggregateUser = {
+    _count: UserCountAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
+  }
+
+  export type UserMinAggregateOutputType = {
+    id: string | null
+    userName: string | null
+    gender: $Enums.Gender | null
+    country: string | null
+    city: string | null
+    email: string | null
+    birthYear: string | null
+    activated: boolean | null
+    invited: boolean | null
+    invitedUntil: Date | null
+    password: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserMaxAggregateOutputType = {
+    id: string | null
+    userName: string | null
+    gender: $Enums.Gender | null
+    country: string | null
+    city: string | null
+    email: string | null
+    birthYear: string | null
+    activated: boolean | null
+    invited: boolean | null
+    invitedUntil: Date | null
+    password: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserCountAggregateOutputType = {
+    id: number
+    userName: number
+    gender: number
+    country: number
+    city: number
+    email: number
+    birthYear: number
+    activated: number
+    invited: number
+    invitedUntil: number
+    password: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type UserMinAggregateInputType = {
+    id?: true
+    userName?: true
+    gender?: true
+    country?: true
+    city?: true
+    email?: true
+    birthYear?: true
+    activated?: true
+    invited?: true
+    invitedUntil?: true
+    password?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserMaxAggregateInputType = {
+    id?: true
+    userName?: true
+    gender?: true
+    country?: true
+    city?: true
+    email?: true
+    birthYear?: true
+    activated?: true
+    invited?: true
+    invitedUntil?: true
+    password?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserCountAggregateInputType = {
+    id?: true
+    userName?: true
+    gender?: true
+    country?: true
+    city?: true
+    email?: true
+    birthYear?: true
+    activated?: true
+    invited?: true
+    invitedUntil?: true
+    password?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type UserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which User to aggregate.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Users
+    **/
+    _count?: true | UserCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserMaxAggregateInputType
+  }
+
+  export type GetUserAggregateType<T extends UserAggregateArgs> = {
+        [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUser[P]>
+      : GetScalarType<T[P], AggregateUser[P]>
+  }
+
+
+
+
+  export type UserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithAggregationInput | UserOrderByWithAggregationInput[]
+    by: UserScalarFieldEnum[] | UserScalarFieldEnum
+    having?: UserScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserCountAggregateInputType | true
+    _min?: UserMinAggregateInputType
+    _max?: UserMaxAggregateInputType
+  }
+
+  export type UserGroupByOutputType = {
+    id: string
+    userName: string
+    gender: $Enums.Gender
+    country: string | null
+    city: string
+    email: string
+    birthYear: string
+    activated: boolean
+    invited: boolean
+    invitedUntil: Date | null
+    password: string
+    createdAt: Date
+    updatedAt: Date
+    _count: UserCountAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
+  }
+
+  type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserGroupByOutputType[P]>
+            : GetScalarType<T[P], UserGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userName?: boolean
+    gender?: boolean
+    country?: boolean
+    city?: boolean
+    email?: boolean
+    birthYear?: boolean
+    activated?: boolean
+    invited?: boolean
+    invitedUntil?: boolean
+    password?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["user"]>
+
+  export type UserSelectScalar = {
+    id?: boolean
+    userName?: boolean
+    gender?: boolean
+    country?: boolean
+    city?: boolean
+    email?: boolean
+    birthYear?: boolean
+    activated?: boolean
+    invited?: boolean
+    invitedUntil?: boolean
+    password?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+
+  export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "User"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userName: string
+      gender: $Enums.Gender
+      country: string | null
+      city: string
+      email: string
+      birthYear: string
+      activated: boolean
+      invited: boolean
+      invitedUntil: Date | null
+      password: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["user"]>
+    composites: {}
+  }
+
+
+  type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
+
+  type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: UserCountAggregateInputType | true
+    }
+
+  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
+    /**
+     * Find zero or one User that matches the filter.
+     * @param {UserFindUniqueArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends UserFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one User that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first User that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindFirstArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends UserFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first User that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindFirstOrThrowArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends UserFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Users that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Users
+     * const users = await prisma.user.findMany()
+     * 
+     * // Get first 10 Users
+     * const users = await prisma.user.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends UserFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a User.
+     * @param {UserCreateArgs} args - Arguments to create a User.
+     * @example
+     * // Create one User
+     * const User = await prisma.user.create({
+     *   data: {
+     *     // ... data to create a User
+     *   }
+     * })
+     * 
+    **/
+    create<T extends UserCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, UserCreateArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Users.
+     *     @param {UserCreateManyArgs} args - Arguments to create many Users.
+     *     @example
+     *     // Create many Users
+     *     const user = await prisma.user.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends UserCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a User.
+     * @param {UserDeleteArgs} args - Arguments to delete one User.
+     * @example
+     * // Delete one User
+     * const User = await prisma.user.delete({
+     *   where: {
+     *     // ... filter to delete one User
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends UserDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, UserDeleteArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one User.
+     * @param {UserUpdateArgs} args - Arguments to update one User.
+     * @example
+     * // Update one User
+     * const user = await prisma.user.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends UserUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, UserUpdateArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Users.
+     * @param {UserDeleteManyArgs} args - Arguments to filter Users to delete.
+     * @example
+     * // Delete a few Users
+     * const { count } = await prisma.user.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends UserDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Users
+     * const user = await prisma.user.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends UserUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one User.
+     * @param {UserUpsertArgs} args - Arguments to update or create a User.
+     * @example
+     * // Update or create a User
+     * const user = await prisma.user.upsert({
+     *   create: {
+     *     // ... data to create a User
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the User we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends UserUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, UserUpsertArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserCountArgs} args - Arguments to filter Users to count.
+     * @example
+     * // Count the number of Users
+     * const count = await prisma.user.count({
+     *   where: {
+     *     // ... the filter for the Users we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserCountArgs>(
+      args?: Subset<T, UserCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a User.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserAggregateArgs>(args: Subset<T, UserAggregateArgs>): Prisma.PrismaPromise<GetUserAggregateType<T>>
+
+    /**
+     * Group by User.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserGroupByArgs['orderBy'] }
+        : { orderBy?: UserGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the User model
+   */
+  readonly fields: UserFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for User.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the User model
+   */ 
+  interface UserFieldRefs {
+    readonly id: FieldRef<"User", 'String'>
+    readonly userName: FieldRef<"User", 'String'>
+    readonly gender: FieldRef<"User", 'Gender'>
+    readonly country: FieldRef<"User", 'String'>
+    readonly city: FieldRef<"User", 'String'>
+    readonly email: FieldRef<"User", 'String'>
+    readonly birthYear: FieldRef<"User", 'String'>
+    readonly activated: FieldRef<"User", 'Boolean'>
+    readonly invited: FieldRef<"User", 'Boolean'>
+    readonly invitedUntil: FieldRef<"User", 'DateTime'>
+    readonly password: FieldRef<"User", 'String'>
+    readonly createdAt: FieldRef<"User", 'DateTime'>
+    readonly updatedAt: FieldRef<"User", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * User findUnique
+   */
+  export type UserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where: UserWhereUniqueInput
+  }
+
+
+  /**
+   * User findUniqueOrThrow
+   */
+  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where: UserWhereUniqueInput
+  }
+
+
+  /**
+   * User findFirst
+   */
+  export type UserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Users.
+     */
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+
+  /**
+   * User findFirstOrThrow
+   */
+  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Users.
+     */
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+
+  /**
+   * User findMany
+   */
+  export type UserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Filter, which Users to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+
+  /**
+   * User create
+   */
+  export type UserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * The data needed to create a User.
+     */
+    data: XOR<UserCreateInput, UserUncheckedCreateInput>
+  }
+
+
+  /**
+   * User createMany
+   */
+  export type UserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Users.
+     */
+    data: UserCreateManyInput | UserCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * User update
+   */
+  export type UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * The data needed to update a User.
+     */
+    data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+    /**
+     * Choose, which User to update.
+     */
+    where: UserWhereUniqueInput
+  }
+
+
+  /**
+   * User updateMany
+   */
+  export type UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Users.
+     */
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
+    /**
+     * Filter which Users to update
+     */
+    where?: UserWhereInput
+  }
+
+
+  /**
+   * User upsert
+   */
+  export type UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * The filter to search for the User to update in case it exists.
+     */
+    where: UserWhereUniqueInput
+    /**
+     * In case the User found by the `where` argument doesn't exist, create a new User with this data.
+     */
+    create: XOR<UserCreateInput, UserUncheckedCreateInput>
+    /**
+     * In case the User was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+  }
+
+
+  /**
+   * User delete
+   */
+  export type UserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Filter which User to delete.
+     */
+    where: UserWhereUniqueInput
+  }
+
+
+  /**
+   * User deleteMany
+   */
+  export type UserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Users to delete
+     */
+    where?: UserWhereInput
+  }
+
+
+  /**
+   * User without action
+   */
+  export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Grade
+   */
+
+  export type AggregateGrade = {
+    _count: GradeCountAggregateOutputType | null
+    _avg: GradeAvgAggregateOutputType | null
+    _sum: GradeSumAggregateOutputType | null
+    _min: GradeMinAggregateOutputType | null
+    _max: GradeMaxAggregateOutputType | null
+  }
+
+  export type GradeAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type GradeSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type GradeMinAggregateOutputType = {
+    id: number | null
+    grade: string | null
+    gradeJp: string | null
+  }
+
+  export type GradeMaxAggregateOutputType = {
+    id: number | null
+    grade: string | null
+    gradeJp: string | null
+  }
+
+  export type GradeCountAggregateOutputType = {
+    id: number
+    grade: number
+    gradeJp: number
+    _all: number
+  }
+
+
+  export type GradeAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type GradeSumAggregateInputType = {
+    id?: true
+  }
+
+  export type GradeMinAggregateInputType = {
+    id?: true
+    grade?: true
+    gradeJp?: true
+  }
+
+  export type GradeMaxAggregateInputType = {
+    id?: true
+    grade?: true
+    gradeJp?: true
+  }
+
+  export type GradeCountAggregateInputType = {
+    id?: true
+    grade?: true
+    gradeJp?: true
+    _all?: true
+  }
+
+  export type GradeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Grade to aggregate.
+     */
+    where?: GradeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Grades to fetch.
+     */
+    orderBy?: GradeOrderByWithRelationInput | GradeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GradeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Grades from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Grades.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Grades
+    **/
+    _count?: true | GradeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GradeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GradeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GradeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GradeMaxAggregateInputType
+  }
+
+  export type GetGradeAggregateType<T extends GradeAggregateArgs> = {
+        [P in keyof T & keyof AggregateGrade]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGrade[P]>
+      : GetScalarType<T[P], AggregateGrade[P]>
+  }
+
+
+
+
+  export type GradeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GradeWhereInput
+    orderBy?: GradeOrderByWithAggregationInput | GradeOrderByWithAggregationInput[]
+    by: GradeScalarFieldEnum[] | GradeScalarFieldEnum
+    having?: GradeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GradeCountAggregateInputType | true
+    _avg?: GradeAvgAggregateInputType
+    _sum?: GradeSumAggregateInputType
+    _min?: GradeMinAggregateInputType
+    _max?: GradeMaxAggregateInputType
+  }
+
+  export type GradeGroupByOutputType = {
+    id: number
+    grade: string
+    gradeJp: string
+    _count: GradeCountAggregateOutputType | null
+    _avg: GradeAvgAggregateOutputType | null
+    _sum: GradeSumAggregateOutputType | null
+    _min: GradeMinAggregateOutputType | null
+    _max: GradeMaxAggregateOutputType | null
+  }
+
+  type GetGradeGroupByPayload<T extends GradeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GradeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GradeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GradeGroupByOutputType[P]>
+            : GetScalarType<T[P], GradeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GradeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    grade?: boolean
+    gradeJp?: boolean
+    Grammar?: boolean | Grade$GrammarArgs<ExtArgs>
+    _count?: boolean | GradeCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["grade"]>
+
+  export type GradeSelectScalar = {
+    id?: boolean
+    grade?: boolean
+    gradeJp?: boolean
+  }
+
+  export type GradeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Grammar?: boolean | Grade$GrammarArgs<ExtArgs>
+    _count?: boolean | GradeCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+
+  export type $GradePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Grade"
+    objects: {
+      Grammar: Prisma.$GrammarPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      grade: string
+      gradeJp: string
+    }, ExtArgs["result"]["grade"]>
+    composites: {}
+  }
+
+
+  type GradeGetPayload<S extends boolean | null | undefined | GradeDefaultArgs> = $Result.GetResult<Prisma.$GradePayload, S>
+
+  type GradeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<GradeFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: GradeCountAggregateInputType | true
+    }
+
+  export interface GradeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Grade'], meta: { name: 'Grade' } }
+    /**
+     * Find zero or one Grade that matches the filter.
+     * @param {GradeFindUniqueArgs} args - Arguments to find a Grade
+     * @example
+     * // Get one Grade
+     * const grade = await prisma.grade.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends GradeFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, GradeFindUniqueArgs<ExtArgs>>
+    ): Prisma__GradeClient<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Grade that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {GradeFindUniqueOrThrowArgs} args - Arguments to find a Grade
+     * @example
+     * // Get one Grade
+     * const grade = await prisma.grade.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends GradeFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, GradeFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__GradeClient<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Grade that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GradeFindFirstArgs} args - Arguments to find a Grade
+     * @example
+     * // Get one Grade
+     * const grade = await prisma.grade.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends GradeFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, GradeFindFirstArgs<ExtArgs>>
+    ): Prisma__GradeClient<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Grade that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GradeFindFirstOrThrowArgs} args - Arguments to find a Grade
+     * @example
+     * // Get one Grade
+     * const grade = await prisma.grade.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends GradeFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, GradeFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__GradeClient<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Grades that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GradeFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Grades
+     * const grades = await prisma.grade.findMany()
+     * 
+     * // Get first 10 Grades
+     * const grades = await prisma.grade.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const gradeWithIdOnly = await prisma.grade.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends GradeFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GradeFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Grade.
+     * @param {GradeCreateArgs} args - Arguments to create a Grade.
+     * @example
+     * // Create one Grade
+     * const Grade = await prisma.grade.create({
+     *   data: {
+     *     // ... data to create a Grade
+     *   }
+     * })
+     * 
+    **/
+    create<T extends GradeCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, GradeCreateArgs<ExtArgs>>
+    ): Prisma__GradeClient<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Grades.
+     *     @param {GradeCreateManyArgs} args - Arguments to create many Grades.
+     *     @example
+     *     // Create many Grades
+     *     const grade = await prisma.grade.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends GradeCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GradeCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Grade.
+     * @param {GradeDeleteArgs} args - Arguments to delete one Grade.
+     * @example
+     * // Delete one Grade
+     * const Grade = await prisma.grade.delete({
+     *   where: {
+     *     // ... filter to delete one Grade
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends GradeDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, GradeDeleteArgs<ExtArgs>>
+    ): Prisma__GradeClient<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Grade.
+     * @param {GradeUpdateArgs} args - Arguments to update one Grade.
+     * @example
+     * // Update one Grade
+     * const grade = await prisma.grade.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends GradeUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, GradeUpdateArgs<ExtArgs>>
+    ): Prisma__GradeClient<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Grades.
+     * @param {GradeDeleteManyArgs} args - Arguments to filter Grades to delete.
+     * @example
+     * // Delete a few Grades
+     * const { count } = await prisma.grade.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends GradeDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GradeDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Grades.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GradeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Grades
+     * const grade = await prisma.grade.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends GradeUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, GradeUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Grade.
+     * @param {GradeUpsertArgs} args - Arguments to update or create a Grade.
+     * @example
+     * // Update or create a Grade
+     * const grade = await prisma.grade.upsert({
+     *   create: {
+     *     // ... data to create a Grade
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Grade we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends GradeUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, GradeUpsertArgs<ExtArgs>>
+    ): Prisma__GradeClient<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Grades.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GradeCountArgs} args - Arguments to filter Grades to count.
+     * @example
+     * // Count the number of Grades
+     * const count = await prisma.grade.count({
+     *   where: {
+     *     // ... the filter for the Grades we want to count
+     *   }
+     * })
+    **/
+    count<T extends GradeCountArgs>(
+      args?: Subset<T, GradeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GradeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Grade.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GradeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GradeAggregateArgs>(args: Subset<T, GradeAggregateArgs>): Prisma.PrismaPromise<GetGradeAggregateType<T>>
+
+    /**
+     * Group by Grade.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GradeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GradeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GradeGroupByArgs['orderBy'] }
+        : { orderBy?: GradeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GradeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGradeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Grade model
+   */
+  readonly fields: GradeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Grade.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GradeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    Grammar<T extends Grade$GrammarArgs<ExtArgs> = {}>(args?: Subset<T, Grade$GrammarArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GrammarPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Grade model
+   */ 
+  interface GradeFieldRefs {
+    readonly id: FieldRef<"Grade", 'Int'>
+    readonly grade: FieldRef<"Grade", 'String'>
+    readonly gradeJp: FieldRef<"Grade", 'String'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Grade findUnique
+   */
+  export type GradeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GradeInclude<ExtArgs> | null
+    /**
+     * Filter, which Grade to fetch.
+     */
+    where: GradeWhereUniqueInput
+  }
+
+
+  /**
+   * Grade findUniqueOrThrow
+   */
+  export type GradeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GradeInclude<ExtArgs> | null
+    /**
+     * Filter, which Grade to fetch.
+     */
+    where: GradeWhereUniqueInput
+  }
+
+
+  /**
+   * Grade findFirst
+   */
+  export type GradeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GradeInclude<ExtArgs> | null
+    /**
+     * Filter, which Grade to fetch.
+     */
+    where?: GradeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Grades to fetch.
+     */
+    orderBy?: GradeOrderByWithRelationInput | GradeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Grades.
+     */
+    cursor?: GradeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Grades from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Grades.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Grades.
+     */
+    distinct?: GradeScalarFieldEnum | GradeScalarFieldEnum[]
+  }
+
+
+  /**
+   * Grade findFirstOrThrow
+   */
+  export type GradeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GradeInclude<ExtArgs> | null
+    /**
+     * Filter, which Grade to fetch.
+     */
+    where?: GradeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Grades to fetch.
+     */
+    orderBy?: GradeOrderByWithRelationInput | GradeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Grades.
+     */
+    cursor?: GradeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Grades from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Grades.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Grades.
+     */
+    distinct?: GradeScalarFieldEnum | GradeScalarFieldEnum[]
+  }
+
+
+  /**
+   * Grade findMany
+   */
+  export type GradeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GradeInclude<ExtArgs> | null
+    /**
+     * Filter, which Grades to fetch.
+     */
+    where?: GradeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Grades to fetch.
+     */
+    orderBy?: GradeOrderByWithRelationInput | GradeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Grades.
+     */
+    cursor?: GradeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Grades from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Grades.
+     */
+    skip?: number
+    distinct?: GradeScalarFieldEnum | GradeScalarFieldEnum[]
+  }
+
+
+  /**
+   * Grade create
+   */
+  export type GradeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GradeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Grade.
+     */
+    data: XOR<GradeCreateInput, GradeUncheckedCreateInput>
+  }
+
+
+  /**
+   * Grade createMany
+   */
+  export type GradeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Grades.
+     */
+    data: GradeCreateManyInput | GradeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Grade update
+   */
+  export type GradeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GradeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Grade.
+     */
+    data: XOR<GradeUpdateInput, GradeUncheckedUpdateInput>
+    /**
+     * Choose, which Grade to update.
+     */
+    where: GradeWhereUniqueInput
+  }
+
+
+  /**
+   * Grade updateMany
+   */
+  export type GradeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Grades.
+     */
+    data: XOR<GradeUpdateManyMutationInput, GradeUncheckedUpdateManyInput>
+    /**
+     * Filter which Grades to update
+     */
+    where?: GradeWhereInput
+  }
+
+
+  /**
+   * Grade upsert
+   */
+  export type GradeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GradeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Grade to update in case it exists.
+     */
+    where: GradeWhereUniqueInput
+    /**
+     * In case the Grade found by the `where` argument doesn't exist, create a new Grade with this data.
+     */
+    create: XOR<GradeCreateInput, GradeUncheckedCreateInput>
+    /**
+     * In case the Grade was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GradeUpdateInput, GradeUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Grade delete
+   */
+  export type GradeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GradeInclude<ExtArgs> | null
+    /**
+     * Filter which Grade to delete.
+     */
+    where: GradeWhereUniqueInput
+  }
+
+
+  /**
+   * Grade deleteMany
+   */
+  export type GradeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Grades to delete
+     */
+    where?: GradeWhereInput
+  }
+
+
+  /**
+   * Grade.Grammar
+   */
+  export type Grade$GrammarArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grammar
+     */
+    select?: GrammarSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarInclude<ExtArgs> | null
+    where?: GrammarWhereInput
+    orderBy?: GrammarOrderByWithRelationInput | GrammarOrderByWithRelationInput[]
+    cursor?: GrammarWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GrammarScalarFieldEnum | GrammarScalarFieldEnum[]
+  }
+
+
+  /**
+   * Grade without action
+   */
+  export type GradeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GradeInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Grammar
+   */
+
+  export type AggregateGrammar = {
+    _count: GrammarCountAggregateOutputType | null
+    _avg: GrammarAvgAggregateOutputType | null
+    _sum: GrammarSumAggregateOutputType | null
+    _min: GrammarMinAggregateOutputType | null
+    _max: GrammarMaxAggregateOutputType | null
+  }
+
+  export type GrammarAvgAggregateOutputType = {
+    id: number | null
+    localId: number | null
+    gradeId: number | null
+  }
+
+  export type GrammarSumAggregateOutputType = {
+    id: number | null
+    localId: number | null
+    gradeId: number | null
+  }
+
+  export type GrammarMinAggregateOutputType = {
+    id: number | null
+    unit: string | null
+    tangen: string | null
+    localId: number | null
+    gradeId: number | null
+  }
+
+  export type GrammarMaxAggregateOutputType = {
+    id: number | null
+    unit: string | null
+    tangen: string | null
+    localId: number | null
+    gradeId: number | null
+  }
+
+  export type GrammarCountAggregateOutputType = {
+    id: number
+    unit: number
+    tangen: number
+    localId: number
+    gradeId: number
+    _all: number
+  }
+
+
+  export type GrammarAvgAggregateInputType = {
+    id?: true
+    localId?: true
+    gradeId?: true
+  }
+
+  export type GrammarSumAggregateInputType = {
+    id?: true
+    localId?: true
+    gradeId?: true
+  }
+
+  export type GrammarMinAggregateInputType = {
+    id?: true
+    unit?: true
+    tangen?: true
+    localId?: true
+    gradeId?: true
+  }
+
+  export type GrammarMaxAggregateInputType = {
+    id?: true
+    unit?: true
+    tangen?: true
+    localId?: true
+    gradeId?: true
+  }
+
+  export type GrammarCountAggregateInputType = {
+    id?: true
+    unit?: true
+    tangen?: true
+    localId?: true
+    gradeId?: true
+    _all?: true
+  }
+
+  export type GrammarAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Grammar to aggregate.
+     */
+    where?: GrammarWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Grammars to fetch.
+     */
+    orderBy?: GrammarOrderByWithRelationInput | GrammarOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GrammarWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Grammars from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Grammars.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Grammars
+    **/
+    _count?: true | GrammarCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GrammarAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GrammarSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GrammarMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GrammarMaxAggregateInputType
+  }
+
+  export type GetGrammarAggregateType<T extends GrammarAggregateArgs> = {
+        [P in keyof T & keyof AggregateGrammar]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGrammar[P]>
+      : GetScalarType<T[P], AggregateGrammar[P]>
+  }
+
+
+
+
+  export type GrammarGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GrammarWhereInput
+    orderBy?: GrammarOrderByWithAggregationInput | GrammarOrderByWithAggregationInput[]
+    by: GrammarScalarFieldEnum[] | GrammarScalarFieldEnum
+    having?: GrammarScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GrammarCountAggregateInputType | true
+    _avg?: GrammarAvgAggregateInputType
+    _sum?: GrammarSumAggregateInputType
+    _min?: GrammarMinAggregateInputType
+    _max?: GrammarMaxAggregateInputType
+  }
+
+  export type GrammarGroupByOutputType = {
+    id: number
+    unit: string
+    tangen: string
+    localId: number
+    gradeId: number
+    _count: GrammarCountAggregateOutputType | null
+    _avg: GrammarAvgAggregateOutputType | null
+    _sum: GrammarSumAggregateOutputType | null
+    _min: GrammarMinAggregateOutputType | null
+    _max: GrammarMaxAggregateOutputType | null
+  }
+
+  type GetGrammarGroupByPayload<T extends GrammarGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GrammarGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GrammarGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GrammarGroupByOutputType[P]>
+            : GetScalarType<T[P], GrammarGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GrammarSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    unit?: boolean
+    tangen?: boolean
+    localId?: boolean
+    gradeId?: boolean
+    grade?: boolean | GradeDefaultArgs<ExtArgs>
+    GrammarQuestion?: boolean | Grammar$GrammarQuestionArgs<ExtArgs>
+    _count?: boolean | GrammarCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["grammar"]>
+
+  export type GrammarSelectScalar = {
+    id?: boolean
+    unit?: boolean
+    tangen?: boolean
+    localId?: boolean
+    gradeId?: boolean
+  }
+
+  export type GrammarInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    grade?: boolean | GradeDefaultArgs<ExtArgs>
+    GrammarQuestion?: boolean | Grammar$GrammarQuestionArgs<ExtArgs>
+    _count?: boolean | GrammarCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+
+  export type $GrammarPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Grammar"
+    objects: {
+      grade: Prisma.$GradePayload<ExtArgs>
+      GrammarQuestion: Prisma.$GrammarQuestionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      unit: string
+      tangen: string
+      localId: number
+      gradeId: number
+    }, ExtArgs["result"]["grammar"]>
+    composites: {}
+  }
+
+
+  type GrammarGetPayload<S extends boolean | null | undefined | GrammarDefaultArgs> = $Result.GetResult<Prisma.$GrammarPayload, S>
+
+  type GrammarCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<GrammarFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: GrammarCountAggregateInputType | true
+    }
+
+  export interface GrammarDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Grammar'], meta: { name: 'Grammar' } }
+    /**
+     * Find zero or one Grammar that matches the filter.
+     * @param {GrammarFindUniqueArgs} args - Arguments to find a Grammar
+     * @example
+     * // Get one Grammar
+     * const grammar = await prisma.grammar.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends GrammarFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, GrammarFindUniqueArgs<ExtArgs>>
+    ): Prisma__GrammarClient<$Result.GetResult<Prisma.$GrammarPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Grammar that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {GrammarFindUniqueOrThrowArgs} args - Arguments to find a Grammar
+     * @example
+     * // Get one Grammar
+     * const grammar = await prisma.grammar.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends GrammarFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, GrammarFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__GrammarClient<$Result.GetResult<Prisma.$GrammarPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Grammar that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrammarFindFirstArgs} args - Arguments to find a Grammar
+     * @example
+     * // Get one Grammar
+     * const grammar = await prisma.grammar.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends GrammarFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, GrammarFindFirstArgs<ExtArgs>>
+    ): Prisma__GrammarClient<$Result.GetResult<Prisma.$GrammarPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Grammar that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrammarFindFirstOrThrowArgs} args - Arguments to find a Grammar
+     * @example
+     * // Get one Grammar
+     * const grammar = await prisma.grammar.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends GrammarFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, GrammarFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__GrammarClient<$Result.GetResult<Prisma.$GrammarPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Grammars that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrammarFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Grammars
+     * const grammars = await prisma.grammar.findMany()
+     * 
+     * // Get first 10 Grammars
+     * const grammars = await prisma.grammar.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const grammarWithIdOnly = await prisma.grammar.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends GrammarFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GrammarFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GrammarPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Grammar.
+     * @param {GrammarCreateArgs} args - Arguments to create a Grammar.
+     * @example
+     * // Create one Grammar
+     * const Grammar = await prisma.grammar.create({
+     *   data: {
+     *     // ... data to create a Grammar
+     *   }
+     * })
+     * 
+    **/
+    create<T extends GrammarCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, GrammarCreateArgs<ExtArgs>>
+    ): Prisma__GrammarClient<$Result.GetResult<Prisma.$GrammarPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Grammars.
+     *     @param {GrammarCreateManyArgs} args - Arguments to create many Grammars.
+     *     @example
+     *     // Create many Grammars
+     *     const grammar = await prisma.grammar.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends GrammarCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GrammarCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Grammar.
+     * @param {GrammarDeleteArgs} args - Arguments to delete one Grammar.
+     * @example
+     * // Delete one Grammar
+     * const Grammar = await prisma.grammar.delete({
+     *   where: {
+     *     // ... filter to delete one Grammar
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends GrammarDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, GrammarDeleteArgs<ExtArgs>>
+    ): Prisma__GrammarClient<$Result.GetResult<Prisma.$GrammarPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Grammar.
+     * @param {GrammarUpdateArgs} args - Arguments to update one Grammar.
+     * @example
+     * // Update one Grammar
+     * const grammar = await prisma.grammar.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends GrammarUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, GrammarUpdateArgs<ExtArgs>>
+    ): Prisma__GrammarClient<$Result.GetResult<Prisma.$GrammarPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Grammars.
+     * @param {GrammarDeleteManyArgs} args - Arguments to filter Grammars to delete.
+     * @example
+     * // Delete a few Grammars
+     * const { count } = await prisma.grammar.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends GrammarDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GrammarDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Grammars.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrammarUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Grammars
+     * const grammar = await prisma.grammar.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends GrammarUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, GrammarUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Grammar.
+     * @param {GrammarUpsertArgs} args - Arguments to update or create a Grammar.
+     * @example
+     * // Update or create a Grammar
+     * const grammar = await prisma.grammar.upsert({
+     *   create: {
+     *     // ... data to create a Grammar
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Grammar we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends GrammarUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, GrammarUpsertArgs<ExtArgs>>
+    ): Prisma__GrammarClient<$Result.GetResult<Prisma.$GrammarPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Grammars.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrammarCountArgs} args - Arguments to filter Grammars to count.
+     * @example
+     * // Count the number of Grammars
+     * const count = await prisma.grammar.count({
+     *   where: {
+     *     // ... the filter for the Grammars we want to count
+     *   }
+     * })
+    **/
+    count<T extends GrammarCountArgs>(
+      args?: Subset<T, GrammarCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GrammarCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Grammar.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrammarAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GrammarAggregateArgs>(args: Subset<T, GrammarAggregateArgs>): Prisma.PrismaPromise<GetGrammarAggregateType<T>>
+
+    /**
+     * Group by Grammar.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrammarGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GrammarGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GrammarGroupByArgs['orderBy'] }
+        : { orderBy?: GrammarGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GrammarGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGrammarGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Grammar model
+   */
+  readonly fields: GrammarFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Grammar.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GrammarClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    grade<T extends GradeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GradeDefaultArgs<ExtArgs>>): Prisma__GradeClient<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    GrammarQuestion<T extends Grammar$GrammarQuestionArgs<ExtArgs> = {}>(args?: Subset<T, Grammar$GrammarQuestionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GrammarQuestionPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Grammar model
+   */ 
+  interface GrammarFieldRefs {
+    readonly id: FieldRef<"Grammar", 'Int'>
+    readonly unit: FieldRef<"Grammar", 'String'>
+    readonly tangen: FieldRef<"Grammar", 'String'>
+    readonly localId: FieldRef<"Grammar", 'Int'>
+    readonly gradeId: FieldRef<"Grammar", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Grammar findUnique
+   */
+  export type GrammarFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grammar
+     */
+    select?: GrammarSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarInclude<ExtArgs> | null
+    /**
+     * Filter, which Grammar to fetch.
+     */
+    where: GrammarWhereUniqueInput
+  }
+
+
+  /**
+   * Grammar findUniqueOrThrow
+   */
+  export type GrammarFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grammar
+     */
+    select?: GrammarSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarInclude<ExtArgs> | null
+    /**
+     * Filter, which Grammar to fetch.
+     */
+    where: GrammarWhereUniqueInput
+  }
+
+
+  /**
+   * Grammar findFirst
+   */
+  export type GrammarFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grammar
+     */
+    select?: GrammarSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarInclude<ExtArgs> | null
+    /**
+     * Filter, which Grammar to fetch.
+     */
+    where?: GrammarWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Grammars to fetch.
+     */
+    orderBy?: GrammarOrderByWithRelationInput | GrammarOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Grammars.
+     */
+    cursor?: GrammarWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Grammars from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Grammars.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Grammars.
+     */
+    distinct?: GrammarScalarFieldEnum | GrammarScalarFieldEnum[]
+  }
+
+
+  /**
+   * Grammar findFirstOrThrow
+   */
+  export type GrammarFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grammar
+     */
+    select?: GrammarSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarInclude<ExtArgs> | null
+    /**
+     * Filter, which Grammar to fetch.
+     */
+    where?: GrammarWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Grammars to fetch.
+     */
+    orderBy?: GrammarOrderByWithRelationInput | GrammarOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Grammars.
+     */
+    cursor?: GrammarWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Grammars from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Grammars.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Grammars.
+     */
+    distinct?: GrammarScalarFieldEnum | GrammarScalarFieldEnum[]
+  }
+
+
+  /**
+   * Grammar findMany
+   */
+  export type GrammarFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grammar
+     */
+    select?: GrammarSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarInclude<ExtArgs> | null
+    /**
+     * Filter, which Grammars to fetch.
+     */
+    where?: GrammarWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Grammars to fetch.
+     */
+    orderBy?: GrammarOrderByWithRelationInput | GrammarOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Grammars.
+     */
+    cursor?: GrammarWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Grammars from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Grammars.
+     */
+    skip?: number
+    distinct?: GrammarScalarFieldEnum | GrammarScalarFieldEnum[]
+  }
+
+
+  /**
+   * Grammar create
+   */
+  export type GrammarCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grammar
+     */
+    select?: GrammarSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Grammar.
+     */
+    data: XOR<GrammarCreateInput, GrammarUncheckedCreateInput>
+  }
+
+
+  /**
+   * Grammar createMany
+   */
+  export type GrammarCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Grammars.
+     */
+    data: GrammarCreateManyInput | GrammarCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Grammar update
+   */
+  export type GrammarUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grammar
+     */
+    select?: GrammarSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Grammar.
+     */
+    data: XOR<GrammarUpdateInput, GrammarUncheckedUpdateInput>
+    /**
+     * Choose, which Grammar to update.
+     */
+    where: GrammarWhereUniqueInput
+  }
+
+
+  /**
+   * Grammar updateMany
+   */
+  export type GrammarUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Grammars.
+     */
+    data: XOR<GrammarUpdateManyMutationInput, GrammarUncheckedUpdateManyInput>
+    /**
+     * Filter which Grammars to update
+     */
+    where?: GrammarWhereInput
+  }
+
+
+  /**
+   * Grammar upsert
+   */
+  export type GrammarUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grammar
+     */
+    select?: GrammarSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Grammar to update in case it exists.
+     */
+    where: GrammarWhereUniqueInput
+    /**
+     * In case the Grammar found by the `where` argument doesn't exist, create a new Grammar with this data.
+     */
+    create: XOR<GrammarCreateInput, GrammarUncheckedCreateInput>
+    /**
+     * In case the Grammar was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GrammarUpdateInput, GrammarUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Grammar delete
+   */
+  export type GrammarDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grammar
+     */
+    select?: GrammarSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarInclude<ExtArgs> | null
+    /**
+     * Filter which Grammar to delete.
+     */
+    where: GrammarWhereUniqueInput
+  }
+
+
+  /**
+   * Grammar deleteMany
+   */
+  export type GrammarDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Grammars to delete
+     */
+    where?: GrammarWhereInput
+  }
+
+
+  /**
+   * Grammar.GrammarQuestion
+   */
+  export type Grammar$GrammarQuestionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrammarQuestion
+     */
+    select?: GrammarQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarQuestionInclude<ExtArgs> | null
+    where?: GrammarQuestionWhereInput
+    orderBy?: GrammarQuestionOrderByWithRelationInput | GrammarQuestionOrderByWithRelationInput[]
+    cursor?: GrammarQuestionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GrammarQuestionScalarFieldEnum | GrammarQuestionScalarFieldEnum[]
+  }
+
+
+  /**
+   * Grammar without action
+   */
+  export type GrammarDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grammar
+     */
+    select?: GrammarSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model GrammarQuestion
+   */
+
+  export type AggregateGrammarQuestion = {
+    _count: GrammarQuestionCountAggregateOutputType | null
+    _avg: GrammarQuestionAvgAggregateOutputType | null
+    _sum: GrammarQuestionSumAggregateOutputType | null
+    _min: GrammarQuestionMinAggregateOutputType | null
+    _max: GrammarQuestionMaxAggregateOutputType | null
+  }
+
+  export type GrammarQuestionAvgAggregateOutputType = {
+    id: number | null
+    localId: number | null
+    grammarId: number | null
+  }
+
+  export type GrammarQuestionSumAggregateOutputType = {
+    id: number | null
+    localId: number | null
+    grammarId: number | null
+  }
+
+  export type GrammarQuestionMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    sentence: string | null
+    q1: string | null
+    q2: string | null
+    q3: string | null
+    q4: string | null
+    q5: string | null
+    q6: string | null
+    answer: string | null
+    explanation: string | null
+    localId: number | null
+    grammarId: number | null
+  }
+
+  export type GrammarQuestionMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    sentence: string | null
+    q1: string | null
+    q2: string | null
+    q3: string | null
+    q4: string | null
+    q5: string | null
+    q6: string | null
+    answer: string | null
+    explanation: string | null
+    localId: number | null
+    grammarId: number | null
+  }
+
+  export type GrammarQuestionCountAggregateOutputType = {
+    id: number
+    title: number
+    sentence: number
+    q1: number
+    q2: number
+    q3: number
+    q4: number
+    q5: number
+    q6: number
+    answer: number
+    explanation: number
+    localId: number
+    grammarId: number
+    _all: number
+  }
+
+
+  export type GrammarQuestionAvgAggregateInputType = {
+    id?: true
+    localId?: true
+    grammarId?: true
+  }
+
+  export type GrammarQuestionSumAggregateInputType = {
+    id?: true
+    localId?: true
+    grammarId?: true
+  }
+
+  export type GrammarQuestionMinAggregateInputType = {
+    id?: true
+    title?: true
+    sentence?: true
+    q1?: true
+    q2?: true
+    q3?: true
+    q4?: true
+    q5?: true
+    q6?: true
+    answer?: true
+    explanation?: true
+    localId?: true
+    grammarId?: true
+  }
+
+  export type GrammarQuestionMaxAggregateInputType = {
+    id?: true
+    title?: true
+    sentence?: true
+    q1?: true
+    q2?: true
+    q3?: true
+    q4?: true
+    q5?: true
+    q6?: true
+    answer?: true
+    explanation?: true
+    localId?: true
+    grammarId?: true
+  }
+
+  export type GrammarQuestionCountAggregateInputType = {
+    id?: true
+    title?: true
+    sentence?: true
+    q1?: true
+    q2?: true
+    q3?: true
+    q4?: true
+    q5?: true
+    q6?: true
+    answer?: true
+    explanation?: true
+    localId?: true
+    grammarId?: true
+    _all?: true
+  }
+
+  export type GrammarQuestionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GrammarQuestion to aggregate.
+     */
+    where?: GrammarQuestionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GrammarQuestions to fetch.
+     */
+    orderBy?: GrammarQuestionOrderByWithRelationInput | GrammarQuestionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GrammarQuestionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GrammarQuestions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GrammarQuestions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GrammarQuestions
+    **/
+    _count?: true | GrammarQuestionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GrammarQuestionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GrammarQuestionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GrammarQuestionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GrammarQuestionMaxAggregateInputType
+  }
+
+  export type GetGrammarQuestionAggregateType<T extends GrammarQuestionAggregateArgs> = {
+        [P in keyof T & keyof AggregateGrammarQuestion]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGrammarQuestion[P]>
+      : GetScalarType<T[P], AggregateGrammarQuestion[P]>
+  }
+
+
+
+
+  export type GrammarQuestionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GrammarQuestionWhereInput
+    orderBy?: GrammarQuestionOrderByWithAggregationInput | GrammarQuestionOrderByWithAggregationInput[]
+    by: GrammarQuestionScalarFieldEnum[] | GrammarQuestionScalarFieldEnum
+    having?: GrammarQuestionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GrammarQuestionCountAggregateInputType | true
+    _avg?: GrammarQuestionAvgAggregateInputType
+    _sum?: GrammarQuestionSumAggregateInputType
+    _min?: GrammarQuestionMinAggregateInputType
+    _max?: GrammarQuestionMaxAggregateInputType
+  }
+
+  export type GrammarQuestionGroupByOutputType = {
+    id: number
+    title: string
+    sentence: string
+    q1: string | null
+    q2: string | null
+    q3: string | null
+    q4: string | null
+    q5: string | null
+    q6: string | null
+    answer: string
+    explanation: string
+    localId: number
+    grammarId: number
+    _count: GrammarQuestionCountAggregateOutputType | null
+    _avg: GrammarQuestionAvgAggregateOutputType | null
+    _sum: GrammarQuestionSumAggregateOutputType | null
+    _min: GrammarQuestionMinAggregateOutputType | null
+    _max: GrammarQuestionMaxAggregateOutputType | null
+  }
+
+  type GetGrammarQuestionGroupByPayload<T extends GrammarQuestionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GrammarQuestionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GrammarQuestionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GrammarQuestionGroupByOutputType[P]>
+            : GetScalarType<T[P], GrammarQuestionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GrammarQuestionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    sentence?: boolean
+    q1?: boolean
+    q2?: boolean
+    q3?: boolean
+    q4?: boolean
+    q5?: boolean
+    q6?: boolean
+    answer?: boolean
+    explanation?: boolean
+    localId?: boolean
+    grammarId?: boolean
+    grammar?: boolean | GrammarDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["grammarQuestion"]>
+
+  export type GrammarQuestionSelectScalar = {
+    id?: boolean
+    title?: boolean
+    sentence?: boolean
+    q1?: boolean
+    q2?: boolean
+    q3?: boolean
+    q4?: boolean
+    q5?: boolean
+    q6?: boolean
+    answer?: boolean
+    explanation?: boolean
+    localId?: boolean
+    grammarId?: boolean
+  }
+
+  export type GrammarQuestionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    grammar?: boolean | GrammarDefaultArgs<ExtArgs>
+  }
+
+
+  export type $GrammarQuestionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GrammarQuestion"
+    objects: {
+      grammar: Prisma.$GrammarPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      title: string
+      sentence: string
+      q1: string | null
+      q2: string | null
+      q3: string | null
+      q4: string | null
+      q5: string | null
+      q6: string | null
+      answer: string
+      explanation: string
+      localId: number
+      grammarId: number
+    }, ExtArgs["result"]["grammarQuestion"]>
+    composites: {}
+  }
+
+
+  type GrammarQuestionGetPayload<S extends boolean | null | undefined | GrammarQuestionDefaultArgs> = $Result.GetResult<Prisma.$GrammarQuestionPayload, S>
+
+  type GrammarQuestionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<GrammarQuestionFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: GrammarQuestionCountAggregateInputType | true
+    }
+
+  export interface GrammarQuestionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GrammarQuestion'], meta: { name: 'GrammarQuestion' } }
+    /**
+     * Find zero or one GrammarQuestion that matches the filter.
+     * @param {GrammarQuestionFindUniqueArgs} args - Arguments to find a GrammarQuestion
+     * @example
+     * // Get one GrammarQuestion
+     * const grammarQuestion = await prisma.grammarQuestion.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends GrammarQuestionFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, GrammarQuestionFindUniqueArgs<ExtArgs>>
+    ): Prisma__GrammarQuestionClient<$Result.GetResult<Prisma.$GrammarQuestionPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one GrammarQuestion that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {GrammarQuestionFindUniqueOrThrowArgs} args - Arguments to find a GrammarQuestion
+     * @example
+     * // Get one GrammarQuestion
+     * const grammarQuestion = await prisma.grammarQuestion.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends GrammarQuestionFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, GrammarQuestionFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__GrammarQuestionClient<$Result.GetResult<Prisma.$GrammarQuestionPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first GrammarQuestion that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrammarQuestionFindFirstArgs} args - Arguments to find a GrammarQuestion
+     * @example
+     * // Get one GrammarQuestion
+     * const grammarQuestion = await prisma.grammarQuestion.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends GrammarQuestionFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, GrammarQuestionFindFirstArgs<ExtArgs>>
+    ): Prisma__GrammarQuestionClient<$Result.GetResult<Prisma.$GrammarQuestionPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first GrammarQuestion that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrammarQuestionFindFirstOrThrowArgs} args - Arguments to find a GrammarQuestion
+     * @example
+     * // Get one GrammarQuestion
+     * const grammarQuestion = await prisma.grammarQuestion.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends GrammarQuestionFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, GrammarQuestionFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__GrammarQuestionClient<$Result.GetResult<Prisma.$GrammarQuestionPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more GrammarQuestions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrammarQuestionFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GrammarQuestions
+     * const grammarQuestions = await prisma.grammarQuestion.findMany()
+     * 
+     * // Get first 10 GrammarQuestions
+     * const grammarQuestions = await prisma.grammarQuestion.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const grammarQuestionWithIdOnly = await prisma.grammarQuestion.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends GrammarQuestionFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GrammarQuestionFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GrammarQuestionPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a GrammarQuestion.
+     * @param {GrammarQuestionCreateArgs} args - Arguments to create a GrammarQuestion.
+     * @example
+     * // Create one GrammarQuestion
+     * const GrammarQuestion = await prisma.grammarQuestion.create({
+     *   data: {
+     *     // ... data to create a GrammarQuestion
+     *   }
+     * })
+     * 
+    **/
+    create<T extends GrammarQuestionCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, GrammarQuestionCreateArgs<ExtArgs>>
+    ): Prisma__GrammarQuestionClient<$Result.GetResult<Prisma.$GrammarQuestionPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many GrammarQuestions.
+     *     @param {GrammarQuestionCreateManyArgs} args - Arguments to create many GrammarQuestions.
+     *     @example
+     *     // Create many GrammarQuestions
+     *     const grammarQuestion = await prisma.grammarQuestion.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends GrammarQuestionCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GrammarQuestionCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a GrammarQuestion.
+     * @param {GrammarQuestionDeleteArgs} args - Arguments to delete one GrammarQuestion.
+     * @example
+     * // Delete one GrammarQuestion
+     * const GrammarQuestion = await prisma.grammarQuestion.delete({
+     *   where: {
+     *     // ... filter to delete one GrammarQuestion
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends GrammarQuestionDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, GrammarQuestionDeleteArgs<ExtArgs>>
+    ): Prisma__GrammarQuestionClient<$Result.GetResult<Prisma.$GrammarQuestionPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one GrammarQuestion.
+     * @param {GrammarQuestionUpdateArgs} args - Arguments to update one GrammarQuestion.
+     * @example
+     * // Update one GrammarQuestion
+     * const grammarQuestion = await prisma.grammarQuestion.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends GrammarQuestionUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, GrammarQuestionUpdateArgs<ExtArgs>>
+    ): Prisma__GrammarQuestionClient<$Result.GetResult<Prisma.$GrammarQuestionPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more GrammarQuestions.
+     * @param {GrammarQuestionDeleteManyArgs} args - Arguments to filter GrammarQuestions to delete.
+     * @example
+     * // Delete a few GrammarQuestions
+     * const { count } = await prisma.grammarQuestion.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends GrammarQuestionDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GrammarQuestionDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GrammarQuestions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrammarQuestionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GrammarQuestions
+     * const grammarQuestion = await prisma.grammarQuestion.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends GrammarQuestionUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, GrammarQuestionUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one GrammarQuestion.
+     * @param {GrammarQuestionUpsertArgs} args - Arguments to update or create a GrammarQuestion.
+     * @example
+     * // Update or create a GrammarQuestion
+     * const grammarQuestion = await prisma.grammarQuestion.upsert({
+     *   create: {
+     *     // ... data to create a GrammarQuestion
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GrammarQuestion we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends GrammarQuestionUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, GrammarQuestionUpsertArgs<ExtArgs>>
+    ): Prisma__GrammarQuestionClient<$Result.GetResult<Prisma.$GrammarQuestionPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of GrammarQuestions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrammarQuestionCountArgs} args - Arguments to filter GrammarQuestions to count.
+     * @example
+     * // Count the number of GrammarQuestions
+     * const count = await prisma.grammarQuestion.count({
+     *   where: {
+     *     // ... the filter for the GrammarQuestions we want to count
+     *   }
+     * })
+    **/
+    count<T extends GrammarQuestionCountArgs>(
+      args?: Subset<T, GrammarQuestionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GrammarQuestionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GrammarQuestion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrammarQuestionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GrammarQuestionAggregateArgs>(args: Subset<T, GrammarQuestionAggregateArgs>): Prisma.PrismaPromise<GetGrammarQuestionAggregateType<T>>
+
+    /**
+     * Group by GrammarQuestion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrammarQuestionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GrammarQuestionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GrammarQuestionGroupByArgs['orderBy'] }
+        : { orderBy?: GrammarQuestionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GrammarQuestionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGrammarQuestionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GrammarQuestion model
+   */
+  readonly fields: GrammarQuestionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GrammarQuestion.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GrammarQuestionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    grammar<T extends GrammarDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GrammarDefaultArgs<ExtArgs>>): Prisma__GrammarClient<$Result.GetResult<Prisma.$GrammarPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the GrammarQuestion model
+   */ 
+  interface GrammarQuestionFieldRefs {
+    readonly id: FieldRef<"GrammarQuestion", 'Int'>
+    readonly title: FieldRef<"GrammarQuestion", 'String'>
+    readonly sentence: FieldRef<"GrammarQuestion", 'String'>
+    readonly q1: FieldRef<"GrammarQuestion", 'String'>
+    readonly q2: FieldRef<"GrammarQuestion", 'String'>
+    readonly q3: FieldRef<"GrammarQuestion", 'String'>
+    readonly q4: FieldRef<"GrammarQuestion", 'String'>
+    readonly q5: FieldRef<"GrammarQuestion", 'String'>
+    readonly q6: FieldRef<"GrammarQuestion", 'String'>
+    readonly answer: FieldRef<"GrammarQuestion", 'String'>
+    readonly explanation: FieldRef<"GrammarQuestion", 'String'>
+    readonly localId: FieldRef<"GrammarQuestion", 'Int'>
+    readonly grammarId: FieldRef<"GrammarQuestion", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * GrammarQuestion findUnique
+   */
+  export type GrammarQuestionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrammarQuestion
+     */
+    select?: GrammarQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarQuestionInclude<ExtArgs> | null
+    /**
+     * Filter, which GrammarQuestion to fetch.
+     */
+    where: GrammarQuestionWhereUniqueInput
+  }
+
+
+  /**
+   * GrammarQuestion findUniqueOrThrow
+   */
+  export type GrammarQuestionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrammarQuestion
+     */
+    select?: GrammarQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarQuestionInclude<ExtArgs> | null
+    /**
+     * Filter, which GrammarQuestion to fetch.
+     */
+    where: GrammarQuestionWhereUniqueInput
+  }
+
+
+  /**
+   * GrammarQuestion findFirst
+   */
+  export type GrammarQuestionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrammarQuestion
+     */
+    select?: GrammarQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarQuestionInclude<ExtArgs> | null
+    /**
+     * Filter, which GrammarQuestion to fetch.
+     */
+    where?: GrammarQuestionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GrammarQuestions to fetch.
+     */
+    orderBy?: GrammarQuestionOrderByWithRelationInput | GrammarQuestionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GrammarQuestions.
+     */
+    cursor?: GrammarQuestionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GrammarQuestions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GrammarQuestions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GrammarQuestions.
+     */
+    distinct?: GrammarQuestionScalarFieldEnum | GrammarQuestionScalarFieldEnum[]
+  }
+
+
+  /**
+   * GrammarQuestion findFirstOrThrow
+   */
+  export type GrammarQuestionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrammarQuestion
+     */
+    select?: GrammarQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarQuestionInclude<ExtArgs> | null
+    /**
+     * Filter, which GrammarQuestion to fetch.
+     */
+    where?: GrammarQuestionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GrammarQuestions to fetch.
+     */
+    orderBy?: GrammarQuestionOrderByWithRelationInput | GrammarQuestionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GrammarQuestions.
+     */
+    cursor?: GrammarQuestionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GrammarQuestions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GrammarQuestions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GrammarQuestions.
+     */
+    distinct?: GrammarQuestionScalarFieldEnum | GrammarQuestionScalarFieldEnum[]
+  }
+
+
+  /**
+   * GrammarQuestion findMany
+   */
+  export type GrammarQuestionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrammarQuestion
+     */
+    select?: GrammarQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarQuestionInclude<ExtArgs> | null
+    /**
+     * Filter, which GrammarQuestions to fetch.
+     */
+    where?: GrammarQuestionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GrammarQuestions to fetch.
+     */
+    orderBy?: GrammarQuestionOrderByWithRelationInput | GrammarQuestionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GrammarQuestions.
+     */
+    cursor?: GrammarQuestionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GrammarQuestions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GrammarQuestions.
+     */
+    skip?: number
+    distinct?: GrammarQuestionScalarFieldEnum | GrammarQuestionScalarFieldEnum[]
+  }
+
+
+  /**
+   * GrammarQuestion create
+   */
+  export type GrammarQuestionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrammarQuestion
+     */
+    select?: GrammarQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarQuestionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a GrammarQuestion.
+     */
+    data: XOR<GrammarQuestionCreateInput, GrammarQuestionUncheckedCreateInput>
+  }
+
+
+  /**
+   * GrammarQuestion createMany
+   */
+  export type GrammarQuestionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GrammarQuestions.
+     */
+    data: GrammarQuestionCreateManyInput | GrammarQuestionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * GrammarQuestion update
+   */
+  export type GrammarQuestionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrammarQuestion
+     */
+    select?: GrammarQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarQuestionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a GrammarQuestion.
+     */
+    data: XOR<GrammarQuestionUpdateInput, GrammarQuestionUncheckedUpdateInput>
+    /**
+     * Choose, which GrammarQuestion to update.
+     */
+    where: GrammarQuestionWhereUniqueInput
+  }
+
+
+  /**
+   * GrammarQuestion updateMany
+   */
+  export type GrammarQuestionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GrammarQuestions.
+     */
+    data: XOR<GrammarQuestionUpdateManyMutationInput, GrammarQuestionUncheckedUpdateManyInput>
+    /**
+     * Filter which GrammarQuestions to update
+     */
+    where?: GrammarQuestionWhereInput
+  }
+
+
+  /**
+   * GrammarQuestion upsert
+   */
+  export type GrammarQuestionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrammarQuestion
+     */
+    select?: GrammarQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarQuestionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the GrammarQuestion to update in case it exists.
+     */
+    where: GrammarQuestionWhereUniqueInput
+    /**
+     * In case the GrammarQuestion found by the `where` argument doesn't exist, create a new GrammarQuestion with this data.
+     */
+    create: XOR<GrammarQuestionCreateInput, GrammarQuestionUncheckedCreateInput>
+    /**
+     * In case the GrammarQuestion was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GrammarQuestionUpdateInput, GrammarQuestionUncheckedUpdateInput>
+  }
+
+
+  /**
+   * GrammarQuestion delete
+   */
+  export type GrammarQuestionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrammarQuestion
+     */
+    select?: GrammarQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarQuestionInclude<ExtArgs> | null
+    /**
+     * Filter which GrammarQuestion to delete.
+     */
+    where: GrammarQuestionWhereUniqueInput
+  }
+
+
+  /**
+   * GrammarQuestion deleteMany
+   */
+  export type GrammarQuestionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GrammarQuestions to delete
+     */
+    where?: GrammarQuestionWhereInput
+  }
+
+
+  /**
+   * GrammarQuestion without action
+   */
+  export type GrammarQuestionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrammarQuestion
+     */
+    select?: GrammarQuestionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GrammarQuestionInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Enums
+   */
+
+  export const TransactionIsolationLevel: {
+    ReadUncommitted: 'ReadUncommitted',
+    ReadCommitted: 'ReadCommitted',
+    RepeatableRead: 'RepeatableRead',
+    Serializable: 'Serializable'
+  };
+
+  export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+  export const LogScalarFieldEnum: {
+    id: 'id',
+    level: 'level',
+    message: 'message',
+    meta: 'meta'
+  };
+
+  export type LogScalarFieldEnum = (typeof LogScalarFieldEnum)[keyof typeof LogScalarFieldEnum]
+
+
+  export const UserScalarFieldEnum: {
+    id: 'id',
+    userName: 'userName',
+    gender: 'gender',
+    country: 'country',
+    city: 'city',
+    email: 'email',
+    birthYear: 'birthYear',
+    activated: 'activated',
+    invited: 'invited',
+    invitedUntil: 'invitedUntil',
+    password: 'password',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const GradeScalarFieldEnum: {
+    id: 'id',
+    grade: 'grade',
+    gradeJp: 'gradeJp'
+  };
+
+  export type GradeScalarFieldEnum = (typeof GradeScalarFieldEnum)[keyof typeof GradeScalarFieldEnum]
+
+
+  export const GrammarScalarFieldEnum: {
+    id: 'id',
+    unit: 'unit',
+    tangen: 'tangen',
+    localId: 'localId',
+    gradeId: 'gradeId'
+  };
+
+  export type GrammarScalarFieldEnum = (typeof GrammarScalarFieldEnum)[keyof typeof GrammarScalarFieldEnum]
+
+
+  export const GrammarQuestionScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    sentence: 'sentence',
+    q1: 'q1',
+    q2: 'q2',
+    q3: 'q3',
+    q4: 'q4',
+    q5: 'q5',
+    q6: 'q6',
+    answer: 'answer',
+    explanation: 'explanation',
+    localId: 'localId',
+    grammarId: 'grammarId'
+  };
+
+  export type GrammarQuestionScalarFieldEnum = (typeof GrammarQuestionScalarFieldEnum)[keyof typeof GrammarQuestionScalarFieldEnum]
+
+
+  export const SortOrder: {
+    asc: 'asc',
+    desc: 'desc'
+  };
+
+  export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  /**
+   * Field references 
+   */
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Level'
+   */
+  export type EnumLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Level'>
+    
+
+
+  /**
+   * Reference to a field of type 'String'
+   */
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'Gender'
+   */
+  export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+  /**
+   * Deep Input Types
+   */
+
+
+  export type LogWhereInput = {
+    AND?: LogWhereInput | LogWhereInput[]
+    OR?: LogWhereInput[]
+    NOT?: LogWhereInput | LogWhereInput[]
+    id?: IntFilter<"Log"> | number
+    level?: EnumLevelFilter<"Log"> | $Enums.Level
+    message?: StringFilter<"Log"> | string
+    meta?: JsonFilter<"Log">
+  }
+
+  export type LogOrderByWithRelationInput = {
+    id?: SortOrder
+    level?: SortOrder
+    message?: SortOrder
+    meta?: SortOrder
+  }
+
+  export type LogWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: LogWhereInput | LogWhereInput[]
+    OR?: LogWhereInput[]
+    NOT?: LogWhereInput | LogWhereInput[]
+    level?: EnumLevelFilter<"Log"> | $Enums.Level
+    message?: StringFilter<"Log"> | string
+    meta?: JsonFilter<"Log">
+  }, "id">
+
+  export type LogOrderByWithAggregationInput = {
+    id?: SortOrder
+    level?: SortOrder
+    message?: SortOrder
+    meta?: SortOrder
+    _count?: LogCountOrderByAggregateInput
+    _avg?: LogAvgOrderByAggregateInput
+    _max?: LogMaxOrderByAggregateInput
+    _min?: LogMinOrderByAggregateInput
+    _sum?: LogSumOrderByAggregateInput
+  }
+
+  export type LogScalarWhereWithAggregatesInput = {
+    AND?: LogScalarWhereWithAggregatesInput | LogScalarWhereWithAggregatesInput[]
+    OR?: LogScalarWhereWithAggregatesInput[]
+    NOT?: LogScalarWhereWithAggregatesInput | LogScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Log"> | number
+    level?: EnumLevelWithAggregatesFilter<"Log"> | $Enums.Level
+    message?: StringWithAggregatesFilter<"Log"> | string
+    meta?: JsonWithAggregatesFilter<"Log">
+  }
+
+  export type UserWhereInput = {
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    id?: StringFilter<"User"> | string
+    userName?: StringFilter<"User"> | string
+    gender?: EnumGenderFilter<"User"> | $Enums.Gender
+    country?: StringNullableFilter<"User"> | string | null
+    city?: StringFilter<"User"> | string
+    email?: StringFilter<"User"> | string
+    birthYear?: StringFilter<"User"> | string
+    activated?: BoolFilter<"User"> | boolean
+    invited?: BoolFilter<"User"> | boolean
+    invitedUntil?: DateTimeNullableFilter<"User"> | Date | string | null
+    password?: StringFilter<"User"> | string
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
+  }
+
+  export type UserOrderByWithRelationInput = {
+    id?: SortOrder
+    userName?: SortOrder
+    gender?: SortOrder
+    country?: SortOrderInput | SortOrder
+    city?: SortOrder
+    email?: SortOrder
+    birthYear?: SortOrder
+    activated?: SortOrder
+    invited?: SortOrder
+    invitedUntil?: SortOrderInput | SortOrder
+    password?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    email?: string
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    userName?: StringFilter<"User"> | string
+    gender?: EnumGenderFilter<"User"> | $Enums.Gender
+    country?: StringNullableFilter<"User"> | string | null
+    city?: StringFilter<"User"> | string
+    birthYear?: StringFilter<"User"> | string
+    activated?: BoolFilter<"User"> | boolean
+    invited?: BoolFilter<"User"> | boolean
+    invitedUntil?: DateTimeNullableFilter<"User"> | Date | string | null
+    password?: StringFilter<"User"> | string
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
+  }, "id" | "email">
+
+  export type UserOrderByWithAggregationInput = {
+    id?: SortOrder
+    userName?: SortOrder
+    gender?: SortOrder
+    country?: SortOrderInput | SortOrder
+    city?: SortOrder
+    email?: SortOrder
+    birthYear?: SortOrder
+    activated?: SortOrder
+    invited?: SortOrder
+    invitedUntil?: SortOrderInput | SortOrder
+    password?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: UserCountOrderByAggregateInput
+    _max?: UserMaxOrderByAggregateInput
+    _min?: UserMinOrderByAggregateInput
+  }
+
+  export type UserScalarWhereWithAggregatesInput = {
+    AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    OR?: UserScalarWhereWithAggregatesInput[]
+    NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"User"> | string
+    userName?: StringWithAggregatesFilter<"User"> | string
+    gender?: EnumGenderWithAggregatesFilter<"User"> | $Enums.Gender
+    country?: StringNullableWithAggregatesFilter<"User"> | string | null
+    city?: StringWithAggregatesFilter<"User"> | string
+    email?: StringWithAggregatesFilter<"User"> | string
+    birthYear?: StringWithAggregatesFilter<"User"> | string
+    activated?: BoolWithAggregatesFilter<"User"> | boolean
+    invited?: BoolWithAggregatesFilter<"User"> | boolean
+    invitedUntil?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    password?: StringWithAggregatesFilter<"User"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+  }
+
+  export type GradeWhereInput = {
+    AND?: GradeWhereInput | GradeWhereInput[]
+    OR?: GradeWhereInput[]
+    NOT?: GradeWhereInput | GradeWhereInput[]
+    id?: IntFilter<"Grade"> | number
+    grade?: StringFilter<"Grade"> | string
+    gradeJp?: StringFilter<"Grade"> | string
+    Grammar?: GrammarListRelationFilter
+  }
+
+  export type GradeOrderByWithRelationInput = {
+    id?: SortOrder
+    grade?: SortOrder
+    gradeJp?: SortOrder
+    Grammar?: GrammarOrderByRelationAggregateInput
+  }
+
+  export type GradeWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: GradeWhereInput | GradeWhereInput[]
+    OR?: GradeWhereInput[]
+    NOT?: GradeWhereInput | GradeWhereInput[]
+    grade?: StringFilter<"Grade"> | string
+    gradeJp?: StringFilter<"Grade"> | string
+    Grammar?: GrammarListRelationFilter
+  }, "id">
+
+  export type GradeOrderByWithAggregationInput = {
+    id?: SortOrder
+    grade?: SortOrder
+    gradeJp?: SortOrder
+    _count?: GradeCountOrderByAggregateInput
+    _avg?: GradeAvgOrderByAggregateInput
+    _max?: GradeMaxOrderByAggregateInput
+    _min?: GradeMinOrderByAggregateInput
+    _sum?: GradeSumOrderByAggregateInput
+  }
+
+  export type GradeScalarWhereWithAggregatesInput = {
+    AND?: GradeScalarWhereWithAggregatesInput | GradeScalarWhereWithAggregatesInput[]
+    OR?: GradeScalarWhereWithAggregatesInput[]
+    NOT?: GradeScalarWhereWithAggregatesInput | GradeScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Grade"> | number
+    grade?: StringWithAggregatesFilter<"Grade"> | string
+    gradeJp?: StringWithAggregatesFilter<"Grade"> | string
+  }
+
+  export type GrammarWhereInput = {
+    AND?: GrammarWhereInput | GrammarWhereInput[]
+    OR?: GrammarWhereInput[]
+    NOT?: GrammarWhereInput | GrammarWhereInput[]
+    id?: IntFilter<"Grammar"> | number
+    unit?: StringFilter<"Grammar"> | string
+    tangen?: StringFilter<"Grammar"> | string
+    localId?: IntFilter<"Grammar"> | number
+    gradeId?: IntFilter<"Grammar"> | number
+    grade?: XOR<GradeRelationFilter, GradeWhereInput>
+    GrammarQuestion?: GrammarQuestionListRelationFilter
+  }
+
+  export type GrammarOrderByWithRelationInput = {
+    id?: SortOrder
+    unit?: SortOrder
+    tangen?: SortOrder
+    localId?: SortOrder
+    gradeId?: SortOrder
+    grade?: GradeOrderByWithRelationInput
+    GrammarQuestion?: GrammarQuestionOrderByRelationAggregateInput
+  }
+
+  export type GrammarWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: GrammarWhereInput | GrammarWhereInput[]
+    OR?: GrammarWhereInput[]
+    NOT?: GrammarWhereInput | GrammarWhereInput[]
+    unit?: StringFilter<"Grammar"> | string
+    tangen?: StringFilter<"Grammar"> | string
+    localId?: IntFilter<"Grammar"> | number
+    gradeId?: IntFilter<"Grammar"> | number
+    grade?: XOR<GradeRelationFilter, GradeWhereInput>
+    GrammarQuestion?: GrammarQuestionListRelationFilter
+  }, "id">
+
+  export type GrammarOrderByWithAggregationInput = {
+    id?: SortOrder
+    unit?: SortOrder
+    tangen?: SortOrder
+    localId?: SortOrder
+    gradeId?: SortOrder
+    _count?: GrammarCountOrderByAggregateInput
+    _avg?: GrammarAvgOrderByAggregateInput
+    _max?: GrammarMaxOrderByAggregateInput
+    _min?: GrammarMinOrderByAggregateInput
+    _sum?: GrammarSumOrderByAggregateInput
+  }
+
+  export type GrammarScalarWhereWithAggregatesInput = {
+    AND?: GrammarScalarWhereWithAggregatesInput | GrammarScalarWhereWithAggregatesInput[]
+    OR?: GrammarScalarWhereWithAggregatesInput[]
+    NOT?: GrammarScalarWhereWithAggregatesInput | GrammarScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Grammar"> | number
+    unit?: StringWithAggregatesFilter<"Grammar"> | string
+    tangen?: StringWithAggregatesFilter<"Grammar"> | string
+    localId?: IntWithAggregatesFilter<"Grammar"> | number
+    gradeId?: IntWithAggregatesFilter<"Grammar"> | number
+  }
+
+  export type GrammarQuestionWhereInput = {
+    AND?: GrammarQuestionWhereInput | GrammarQuestionWhereInput[]
+    OR?: GrammarQuestionWhereInput[]
+    NOT?: GrammarQuestionWhereInput | GrammarQuestionWhereInput[]
+    id?: IntFilter<"GrammarQuestion"> | number
+    title?: StringFilter<"GrammarQuestion"> | string
+    sentence?: StringFilter<"GrammarQuestion"> | string
+    q1?: StringNullableFilter<"GrammarQuestion"> | string | null
+    q2?: StringNullableFilter<"GrammarQuestion"> | string | null
+    q3?: StringNullableFilter<"GrammarQuestion"> | string | null
+    q4?: StringNullableFilter<"GrammarQuestion"> | string | null
+    q5?: StringNullableFilter<"GrammarQuestion"> | string | null
+    q6?: StringNullableFilter<"GrammarQuestion"> | string | null
+    answer?: StringFilter<"GrammarQuestion"> | string
+    explanation?: StringFilter<"GrammarQuestion"> | string
+    localId?: IntFilter<"GrammarQuestion"> | number
+    grammarId?: IntFilter<"GrammarQuestion"> | number
+    grammar?: XOR<GrammarRelationFilter, GrammarWhereInput>
+  }
+
+  export type GrammarQuestionOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    sentence?: SortOrder
+    q1?: SortOrderInput | SortOrder
+    q2?: SortOrderInput | SortOrder
+    q3?: SortOrderInput | SortOrder
+    q4?: SortOrderInput | SortOrder
+    q5?: SortOrderInput | SortOrder
+    q6?: SortOrderInput | SortOrder
+    answer?: SortOrder
+    explanation?: SortOrder
+    localId?: SortOrder
+    grammarId?: SortOrder
+    grammar?: GrammarOrderByWithRelationInput
+  }
+
+  export type GrammarQuestionWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: GrammarQuestionWhereInput | GrammarQuestionWhereInput[]
+    OR?: GrammarQuestionWhereInput[]
+    NOT?: GrammarQuestionWhereInput | GrammarQuestionWhereInput[]
+    title?: StringFilter<"GrammarQuestion"> | string
+    sentence?: StringFilter<"GrammarQuestion"> | string
+    q1?: StringNullableFilter<"GrammarQuestion"> | string | null
+    q2?: StringNullableFilter<"GrammarQuestion"> | string | null
+    q3?: StringNullableFilter<"GrammarQuestion"> | string | null
+    q4?: StringNullableFilter<"GrammarQuestion"> | string | null
+    q5?: StringNullableFilter<"GrammarQuestion"> | string | null
+    q6?: StringNullableFilter<"GrammarQuestion"> | string | null
+    answer?: StringFilter<"GrammarQuestion"> | string
+    explanation?: StringFilter<"GrammarQuestion"> | string
+    localId?: IntFilter<"GrammarQuestion"> | number
+    grammarId?: IntFilter<"GrammarQuestion"> | number
+    grammar?: XOR<GrammarRelationFilter, GrammarWhereInput>
+  }, "id">
+
+  export type GrammarQuestionOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    sentence?: SortOrder
+    q1?: SortOrderInput | SortOrder
+    q2?: SortOrderInput | SortOrder
+    q3?: SortOrderInput | SortOrder
+    q4?: SortOrderInput | SortOrder
+    q5?: SortOrderInput | SortOrder
+    q6?: SortOrderInput | SortOrder
+    answer?: SortOrder
+    explanation?: SortOrder
+    localId?: SortOrder
+    grammarId?: SortOrder
+    _count?: GrammarQuestionCountOrderByAggregateInput
+    _avg?: GrammarQuestionAvgOrderByAggregateInput
+    _max?: GrammarQuestionMaxOrderByAggregateInput
+    _min?: GrammarQuestionMinOrderByAggregateInput
+    _sum?: GrammarQuestionSumOrderByAggregateInput
+  }
+
+  export type GrammarQuestionScalarWhereWithAggregatesInput = {
+    AND?: GrammarQuestionScalarWhereWithAggregatesInput | GrammarQuestionScalarWhereWithAggregatesInput[]
+    OR?: GrammarQuestionScalarWhereWithAggregatesInput[]
+    NOT?: GrammarQuestionScalarWhereWithAggregatesInput | GrammarQuestionScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"GrammarQuestion"> | number
+    title?: StringWithAggregatesFilter<"GrammarQuestion"> | string
+    sentence?: StringWithAggregatesFilter<"GrammarQuestion"> | string
+    q1?: StringNullableWithAggregatesFilter<"GrammarQuestion"> | string | null
+    q2?: StringNullableWithAggregatesFilter<"GrammarQuestion"> | string | null
+    q3?: StringNullableWithAggregatesFilter<"GrammarQuestion"> | string | null
+    q4?: StringNullableWithAggregatesFilter<"GrammarQuestion"> | string | null
+    q5?: StringNullableWithAggregatesFilter<"GrammarQuestion"> | string | null
+    q6?: StringNullableWithAggregatesFilter<"GrammarQuestion"> | string | null
+    answer?: StringWithAggregatesFilter<"GrammarQuestion"> | string
+    explanation?: StringWithAggregatesFilter<"GrammarQuestion"> | string
+    localId?: IntWithAggregatesFilter<"GrammarQuestion"> | number
+    grammarId?: IntWithAggregatesFilter<"GrammarQuestion"> | number
+  }
+
+  export type LogCreateInput = {
+    level: $Enums.Level
+    message: string
+    meta: JsonNullValueInput | InputJsonValue
+  }
+
+  export type LogUncheckedCreateInput = {
+    id?: number
+    level: $Enums.Level
+    message: string
+    meta: JsonNullValueInput | InputJsonValue
+  }
+
+  export type LogUpdateInput = {
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    message?: StringFieldUpdateOperationsInput | string
+    meta?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type LogUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    message?: StringFieldUpdateOperationsInput | string
+    meta?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type LogCreateManyInput = {
+    id?: number
+    level: $Enums.Level
+    message: string
+    meta: JsonNullValueInput | InputJsonValue
+  }
+
+  export type LogUpdateManyMutationInput = {
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    message?: StringFieldUpdateOperationsInput | string
+    meta?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type LogUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    level?: EnumLevelFieldUpdateOperationsInput | $Enums.Level
+    message?: StringFieldUpdateOperationsInput | string
+    meta?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type UserCreateInput = {
+    id?: string
+    userName: string
+    gender: $Enums.Gender
+    country?: string | null
+    city: string
+    email: string
+    birthYear: string
+    activated?: boolean
+    invited?: boolean
+    invitedUntil?: Date | string | null
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUncheckedCreateInput = {
+    id?: string
+    userName: string
+    gender: $Enums.Gender
+    country?: string | null
+    city: string
+    email: string
+    birthYear: string
+    activated?: boolean
+    invited?: boolean
+    invitedUntil?: Date | string | null
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userName?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    birthYear?: StringFieldUpdateOperationsInput | string
+    activated?: BoolFieldUpdateOperationsInput | boolean
+    invited?: BoolFieldUpdateOperationsInput | boolean
+    invitedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userName?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    birthYear?: StringFieldUpdateOperationsInput | string
+    activated?: BoolFieldUpdateOperationsInput | boolean
+    invited?: BoolFieldUpdateOperationsInput | boolean
+    invitedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserCreateManyInput = {
+    id?: string
+    userName: string
+    gender: $Enums.Gender
+    country?: string | null
+    city: string
+    email: string
+    birthYear: string
+    activated?: boolean
+    invited?: boolean
+    invitedUntil?: Date | string | null
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userName?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    birthYear?: StringFieldUpdateOperationsInput | string
+    activated?: BoolFieldUpdateOperationsInput | boolean
+    invited?: BoolFieldUpdateOperationsInput | boolean
+    invitedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userName?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    birthYear?: StringFieldUpdateOperationsInput | string
+    activated?: BoolFieldUpdateOperationsInput | boolean
+    invited?: BoolFieldUpdateOperationsInput | boolean
+    invitedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GradeCreateInput = {
+    grade: string
+    gradeJp: string
+    Grammar?: GrammarCreateNestedManyWithoutGradeInput
+  }
+
+  export type GradeUncheckedCreateInput = {
+    id?: number
+    grade: string
+    gradeJp: string
+    Grammar?: GrammarUncheckedCreateNestedManyWithoutGradeInput
+  }
+
+  export type GradeUpdateInput = {
+    grade?: StringFieldUpdateOperationsInput | string
+    gradeJp?: StringFieldUpdateOperationsInput | string
+    Grammar?: GrammarUpdateManyWithoutGradeNestedInput
+  }
+
+  export type GradeUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    grade?: StringFieldUpdateOperationsInput | string
+    gradeJp?: StringFieldUpdateOperationsInput | string
+    Grammar?: GrammarUncheckedUpdateManyWithoutGradeNestedInput
+  }
+
+  export type GradeCreateManyInput = {
+    id?: number
+    grade: string
+    gradeJp: string
+  }
+
+  export type GradeUpdateManyMutationInput = {
+    grade?: StringFieldUpdateOperationsInput | string
+    gradeJp?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GradeUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    grade?: StringFieldUpdateOperationsInput | string
+    gradeJp?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GrammarCreateInput = {
+    unit: string
+    tangen: string
+    localId: number
+    grade: GradeCreateNestedOneWithoutGrammarInput
+    GrammarQuestion?: GrammarQuestionCreateNestedManyWithoutGrammarInput
+  }
+
+  export type GrammarUncheckedCreateInput = {
+    id?: number
+    unit: string
+    tangen: string
+    localId: number
+    gradeId: number
+    GrammarQuestion?: GrammarQuestionUncheckedCreateNestedManyWithoutGrammarInput
+  }
+
+  export type GrammarUpdateInput = {
+    unit?: StringFieldUpdateOperationsInput | string
+    tangen?: StringFieldUpdateOperationsInput | string
+    localId?: IntFieldUpdateOperationsInput | number
+    grade?: GradeUpdateOneRequiredWithoutGrammarNestedInput
+    GrammarQuestion?: GrammarQuestionUpdateManyWithoutGrammarNestedInput
+  }
+
+  export type GrammarUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    tangen?: StringFieldUpdateOperationsInput | string
+    localId?: IntFieldUpdateOperationsInput | number
+    gradeId?: IntFieldUpdateOperationsInput | number
+    GrammarQuestion?: GrammarQuestionUncheckedUpdateManyWithoutGrammarNestedInput
+  }
+
+  export type GrammarCreateManyInput = {
+    id?: number
+    unit: string
+    tangen: string
+    localId: number
+    gradeId: number
+  }
+
+  export type GrammarUpdateManyMutationInput = {
+    unit?: StringFieldUpdateOperationsInput | string
+    tangen?: StringFieldUpdateOperationsInput | string
+    localId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GrammarUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    tangen?: StringFieldUpdateOperationsInput | string
+    localId?: IntFieldUpdateOperationsInput | number
+    gradeId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GrammarQuestionCreateInput = {
+    title: string
+    sentence: string
+    q1?: string | null
+    q2?: string | null
+    q3?: string | null
+    q4?: string | null
+    q5?: string | null
+    q6?: string | null
+    answer: string
+    explanation: string
+    localId: number
+    grammar: GrammarCreateNestedOneWithoutGrammarQuestionInput
+  }
+
+  export type GrammarQuestionUncheckedCreateInput = {
+    id?: number
+    title: string
+    sentence: string
+    q1?: string | null
+    q2?: string | null
+    q3?: string | null
+    q4?: string | null
+    q5?: string | null
+    q6?: string | null
+    answer: string
+    explanation: string
+    localId: number
+    grammarId: number
+  }
+
+  export type GrammarQuestionUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    sentence?: StringFieldUpdateOperationsInput | string
+    q1?: NullableStringFieldUpdateOperationsInput | string | null
+    q2?: NullableStringFieldUpdateOperationsInput | string | null
+    q3?: NullableStringFieldUpdateOperationsInput | string | null
+    q4?: NullableStringFieldUpdateOperationsInput | string | null
+    q5?: NullableStringFieldUpdateOperationsInput | string | null
+    q6?: NullableStringFieldUpdateOperationsInput | string | null
+    answer?: StringFieldUpdateOperationsInput | string
+    explanation?: StringFieldUpdateOperationsInput | string
+    localId?: IntFieldUpdateOperationsInput | number
+    grammar?: GrammarUpdateOneRequiredWithoutGrammarQuestionNestedInput
+  }
+
+  export type GrammarQuestionUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    sentence?: StringFieldUpdateOperationsInput | string
+    q1?: NullableStringFieldUpdateOperationsInput | string | null
+    q2?: NullableStringFieldUpdateOperationsInput | string | null
+    q3?: NullableStringFieldUpdateOperationsInput | string | null
+    q4?: NullableStringFieldUpdateOperationsInput | string | null
+    q5?: NullableStringFieldUpdateOperationsInput | string | null
+    q6?: NullableStringFieldUpdateOperationsInput | string | null
+    answer?: StringFieldUpdateOperationsInput | string
+    explanation?: StringFieldUpdateOperationsInput | string
+    localId?: IntFieldUpdateOperationsInput | number
+    grammarId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GrammarQuestionCreateManyInput = {
+    id?: number
+    title: string
+    sentence: string
+    q1?: string | null
+    q2?: string | null
+    q3?: string | null
+    q4?: string | null
+    q5?: string | null
+    q6?: string | null
+    answer: string
+    explanation: string
+    localId: number
+    grammarId: number
+  }
+
+  export type GrammarQuestionUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    sentence?: StringFieldUpdateOperationsInput | string
+    q1?: NullableStringFieldUpdateOperationsInput | string | null
+    q2?: NullableStringFieldUpdateOperationsInput | string | null
+    q3?: NullableStringFieldUpdateOperationsInput | string | null
+    q4?: NullableStringFieldUpdateOperationsInput | string | null
+    q5?: NullableStringFieldUpdateOperationsInput | string | null
+    q6?: NullableStringFieldUpdateOperationsInput | string | null
+    answer?: StringFieldUpdateOperationsInput | string
+    explanation?: StringFieldUpdateOperationsInput | string
+    localId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GrammarQuestionUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    sentence?: StringFieldUpdateOperationsInput | string
+    q1?: NullableStringFieldUpdateOperationsInput | string | null
+    q2?: NullableStringFieldUpdateOperationsInput | string | null
+    q3?: NullableStringFieldUpdateOperationsInput | string | null
+    q4?: NullableStringFieldUpdateOperationsInput | string | null
+    q5?: NullableStringFieldUpdateOperationsInput | string | null
+    q6?: NullableStringFieldUpdateOperationsInput | string | null
+    answer?: StringFieldUpdateOperationsInput | string
+    explanation?: StringFieldUpdateOperationsInput | string
+    localId?: IntFieldUpdateOperationsInput | number
+    grammarId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type EnumLevelFilter<$PrismaModel = never> = {
+    equals?: $Enums.Level | EnumLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.Level[]
+    notIn?: $Enums.Level[]
+    not?: NestedEnumLevelFilter<$PrismaModel> | $Enums.Level
+  }
+
+  export type StringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+  export type JsonFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type LogCountOrderByAggregateInput = {
+    id?: SortOrder
+    level?: SortOrder
+    message?: SortOrder
+    meta?: SortOrder
+  }
+
+  export type LogAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type LogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    level?: SortOrder
+    message?: SortOrder
+  }
+
+  export type LogMinOrderByAggregateInput = {
+    id?: SortOrder
+    level?: SortOrder
+    message?: SortOrder
+  }
+
+  export type LogSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type EnumLevelWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Level | EnumLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.Level[]
+    notIn?: $Enums.Level[]
+    not?: NestedEnumLevelWithAggregatesFilter<$PrismaModel> | $Enums.Level
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLevelFilter<$PrismaModel>
+    _max?: NestedEnumLevelFilter<$PrismaModel>
+  }
+
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type EnumGenderFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[]
+    notIn?: $Enums.Gender[]
+    not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type UserCountOrderByAggregateInput = {
+    id?: SortOrder
+    userName?: SortOrder
+    gender?: SortOrder
+    country?: SortOrder
+    city?: SortOrder
+    email?: SortOrder
+    birthYear?: SortOrder
+    activated?: SortOrder
+    invited?: SortOrder
+    invitedUntil?: SortOrder
+    password?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userName?: SortOrder
+    gender?: SortOrder
+    country?: SortOrder
+    city?: SortOrder
+    email?: SortOrder
+    birthYear?: SortOrder
+    activated?: SortOrder
+    invited?: SortOrder
+    invitedUntil?: SortOrder
+    password?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserMinOrderByAggregateInput = {
+    id?: SortOrder
+    userName?: SortOrder
+    gender?: SortOrder
+    country?: SortOrder
+    city?: SortOrder
+    email?: SortOrder
+    birthYear?: SortOrder
+    activated?: SortOrder
+    invited?: SortOrder
+    invitedUntil?: SortOrder
+    password?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumGenderWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[]
+    notIn?: $Enums.Gender[]
+    not?: NestedEnumGenderWithAggregatesFilter<$PrismaModel> | $Enums.Gender
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumGenderFilter<$PrismaModel>
+    _max?: NestedEnumGenderFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type GrammarListRelationFilter = {
+    every?: GrammarWhereInput
+    some?: GrammarWhereInput
+    none?: GrammarWhereInput
+  }
+
+  export type GrammarOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type GradeCountOrderByAggregateInput = {
+    id?: SortOrder
+    grade?: SortOrder
+    gradeJp?: SortOrder
+  }
+
+  export type GradeAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type GradeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    grade?: SortOrder
+    gradeJp?: SortOrder
+  }
+
+  export type GradeMinOrderByAggregateInput = {
+    id?: SortOrder
+    grade?: SortOrder
+    gradeJp?: SortOrder
+  }
+
+  export type GradeSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type GradeRelationFilter = {
+    is?: GradeWhereInput
+    isNot?: GradeWhereInput
+  }
+
+  export type GrammarQuestionListRelationFilter = {
+    every?: GrammarQuestionWhereInput
+    some?: GrammarQuestionWhereInput
+    none?: GrammarQuestionWhereInput
+  }
+
+  export type GrammarQuestionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type GrammarCountOrderByAggregateInput = {
+    id?: SortOrder
+    unit?: SortOrder
+    tangen?: SortOrder
+    localId?: SortOrder
+    gradeId?: SortOrder
+  }
+
+  export type GrammarAvgOrderByAggregateInput = {
+    id?: SortOrder
+    localId?: SortOrder
+    gradeId?: SortOrder
+  }
+
+  export type GrammarMaxOrderByAggregateInput = {
+    id?: SortOrder
+    unit?: SortOrder
+    tangen?: SortOrder
+    localId?: SortOrder
+    gradeId?: SortOrder
+  }
+
+  export type GrammarMinOrderByAggregateInput = {
+    id?: SortOrder
+    unit?: SortOrder
+    tangen?: SortOrder
+    localId?: SortOrder
+    gradeId?: SortOrder
+  }
+
+  export type GrammarSumOrderByAggregateInput = {
+    id?: SortOrder
+    localId?: SortOrder
+    gradeId?: SortOrder
+  }
+
+  export type GrammarRelationFilter = {
+    is?: GrammarWhereInput
+    isNot?: GrammarWhereInput
+  }
+
+  export type GrammarQuestionCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    sentence?: SortOrder
+    q1?: SortOrder
+    q2?: SortOrder
+    q3?: SortOrder
+    q4?: SortOrder
+    q5?: SortOrder
+    q6?: SortOrder
+    answer?: SortOrder
+    explanation?: SortOrder
+    localId?: SortOrder
+    grammarId?: SortOrder
+  }
+
+  export type GrammarQuestionAvgOrderByAggregateInput = {
+    id?: SortOrder
+    localId?: SortOrder
+    grammarId?: SortOrder
+  }
+
+  export type GrammarQuestionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    sentence?: SortOrder
+    q1?: SortOrder
+    q2?: SortOrder
+    q3?: SortOrder
+    q4?: SortOrder
+    q5?: SortOrder
+    q6?: SortOrder
+    answer?: SortOrder
+    explanation?: SortOrder
+    localId?: SortOrder
+    grammarId?: SortOrder
+  }
+
+  export type GrammarQuestionMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    sentence?: SortOrder
+    q1?: SortOrder
+    q2?: SortOrder
+    q3?: SortOrder
+    q4?: SortOrder
+    q5?: SortOrder
+    q6?: SortOrder
+    answer?: SortOrder
+    explanation?: SortOrder
+    localId?: SortOrder
+    grammarId?: SortOrder
+  }
+
+  export type GrammarQuestionSumOrderByAggregateInput = {
+    id?: SortOrder
+    localId?: SortOrder
+    grammarId?: SortOrder
+  }
+
+  export type EnumLevelFieldUpdateOperationsInput = {
+    set?: $Enums.Level
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type EnumGenderFieldUpdateOperationsInput = {
+    set?: $Enums.Gender
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type GrammarCreateNestedManyWithoutGradeInput = {
+    create?: XOR<GrammarCreateWithoutGradeInput, GrammarUncheckedCreateWithoutGradeInput> | GrammarCreateWithoutGradeInput[] | GrammarUncheckedCreateWithoutGradeInput[]
+    connectOrCreate?: GrammarCreateOrConnectWithoutGradeInput | GrammarCreateOrConnectWithoutGradeInput[]
+    createMany?: GrammarCreateManyGradeInputEnvelope
+    connect?: GrammarWhereUniqueInput | GrammarWhereUniqueInput[]
+  }
+
+  export type GrammarUncheckedCreateNestedManyWithoutGradeInput = {
+    create?: XOR<GrammarCreateWithoutGradeInput, GrammarUncheckedCreateWithoutGradeInput> | GrammarCreateWithoutGradeInput[] | GrammarUncheckedCreateWithoutGradeInput[]
+    connectOrCreate?: GrammarCreateOrConnectWithoutGradeInput | GrammarCreateOrConnectWithoutGradeInput[]
+    createMany?: GrammarCreateManyGradeInputEnvelope
+    connect?: GrammarWhereUniqueInput | GrammarWhereUniqueInput[]
+  }
+
+  export type GrammarUpdateManyWithoutGradeNestedInput = {
+    create?: XOR<GrammarCreateWithoutGradeInput, GrammarUncheckedCreateWithoutGradeInput> | GrammarCreateWithoutGradeInput[] | GrammarUncheckedCreateWithoutGradeInput[]
+    connectOrCreate?: GrammarCreateOrConnectWithoutGradeInput | GrammarCreateOrConnectWithoutGradeInput[]
+    upsert?: GrammarUpsertWithWhereUniqueWithoutGradeInput | GrammarUpsertWithWhereUniqueWithoutGradeInput[]
+    createMany?: GrammarCreateManyGradeInputEnvelope
+    set?: GrammarWhereUniqueInput | GrammarWhereUniqueInput[]
+    disconnect?: GrammarWhereUniqueInput | GrammarWhereUniqueInput[]
+    delete?: GrammarWhereUniqueInput | GrammarWhereUniqueInput[]
+    connect?: GrammarWhereUniqueInput | GrammarWhereUniqueInput[]
+    update?: GrammarUpdateWithWhereUniqueWithoutGradeInput | GrammarUpdateWithWhereUniqueWithoutGradeInput[]
+    updateMany?: GrammarUpdateManyWithWhereWithoutGradeInput | GrammarUpdateManyWithWhereWithoutGradeInput[]
+    deleteMany?: GrammarScalarWhereInput | GrammarScalarWhereInput[]
+  }
+
+  export type GrammarUncheckedUpdateManyWithoutGradeNestedInput = {
+    create?: XOR<GrammarCreateWithoutGradeInput, GrammarUncheckedCreateWithoutGradeInput> | GrammarCreateWithoutGradeInput[] | GrammarUncheckedCreateWithoutGradeInput[]
+    connectOrCreate?: GrammarCreateOrConnectWithoutGradeInput | GrammarCreateOrConnectWithoutGradeInput[]
+    upsert?: GrammarUpsertWithWhereUniqueWithoutGradeInput | GrammarUpsertWithWhereUniqueWithoutGradeInput[]
+    createMany?: GrammarCreateManyGradeInputEnvelope
+    set?: GrammarWhereUniqueInput | GrammarWhereUniqueInput[]
+    disconnect?: GrammarWhereUniqueInput | GrammarWhereUniqueInput[]
+    delete?: GrammarWhereUniqueInput | GrammarWhereUniqueInput[]
+    connect?: GrammarWhereUniqueInput | GrammarWhereUniqueInput[]
+    update?: GrammarUpdateWithWhereUniqueWithoutGradeInput | GrammarUpdateWithWhereUniqueWithoutGradeInput[]
+    updateMany?: GrammarUpdateManyWithWhereWithoutGradeInput | GrammarUpdateManyWithWhereWithoutGradeInput[]
+    deleteMany?: GrammarScalarWhereInput | GrammarScalarWhereInput[]
+  }
+
+  export type GradeCreateNestedOneWithoutGrammarInput = {
+    create?: XOR<GradeCreateWithoutGrammarInput, GradeUncheckedCreateWithoutGrammarInput>
+    connectOrCreate?: GradeCreateOrConnectWithoutGrammarInput
+    connect?: GradeWhereUniqueInput
+  }
+
+  export type GrammarQuestionCreateNestedManyWithoutGrammarInput = {
+    create?: XOR<GrammarQuestionCreateWithoutGrammarInput, GrammarQuestionUncheckedCreateWithoutGrammarInput> | GrammarQuestionCreateWithoutGrammarInput[] | GrammarQuestionUncheckedCreateWithoutGrammarInput[]
+    connectOrCreate?: GrammarQuestionCreateOrConnectWithoutGrammarInput | GrammarQuestionCreateOrConnectWithoutGrammarInput[]
+    createMany?: GrammarQuestionCreateManyGrammarInputEnvelope
+    connect?: GrammarQuestionWhereUniqueInput | GrammarQuestionWhereUniqueInput[]
+  }
+
+  export type GrammarQuestionUncheckedCreateNestedManyWithoutGrammarInput = {
+    create?: XOR<GrammarQuestionCreateWithoutGrammarInput, GrammarQuestionUncheckedCreateWithoutGrammarInput> | GrammarQuestionCreateWithoutGrammarInput[] | GrammarQuestionUncheckedCreateWithoutGrammarInput[]
+    connectOrCreate?: GrammarQuestionCreateOrConnectWithoutGrammarInput | GrammarQuestionCreateOrConnectWithoutGrammarInput[]
+    createMany?: GrammarQuestionCreateManyGrammarInputEnvelope
+    connect?: GrammarQuestionWhereUniqueInput | GrammarQuestionWhereUniqueInput[]
+  }
+
+  export type GradeUpdateOneRequiredWithoutGrammarNestedInput = {
+    create?: XOR<GradeCreateWithoutGrammarInput, GradeUncheckedCreateWithoutGrammarInput>
+    connectOrCreate?: GradeCreateOrConnectWithoutGrammarInput
+    upsert?: GradeUpsertWithoutGrammarInput
+    connect?: GradeWhereUniqueInput
+    update?: XOR<XOR<GradeUpdateToOneWithWhereWithoutGrammarInput, GradeUpdateWithoutGrammarInput>, GradeUncheckedUpdateWithoutGrammarInput>
+  }
+
+  export type GrammarQuestionUpdateManyWithoutGrammarNestedInput = {
+    create?: XOR<GrammarQuestionCreateWithoutGrammarInput, GrammarQuestionUncheckedCreateWithoutGrammarInput> | GrammarQuestionCreateWithoutGrammarInput[] | GrammarQuestionUncheckedCreateWithoutGrammarInput[]
+    connectOrCreate?: GrammarQuestionCreateOrConnectWithoutGrammarInput | GrammarQuestionCreateOrConnectWithoutGrammarInput[]
+    upsert?: GrammarQuestionUpsertWithWhereUniqueWithoutGrammarInput | GrammarQuestionUpsertWithWhereUniqueWithoutGrammarInput[]
+    createMany?: GrammarQuestionCreateManyGrammarInputEnvelope
+    set?: GrammarQuestionWhereUniqueInput | GrammarQuestionWhereUniqueInput[]
+    disconnect?: GrammarQuestionWhereUniqueInput | GrammarQuestionWhereUniqueInput[]
+    delete?: GrammarQuestionWhereUniqueInput | GrammarQuestionWhereUniqueInput[]
+    connect?: GrammarQuestionWhereUniqueInput | GrammarQuestionWhereUniqueInput[]
+    update?: GrammarQuestionUpdateWithWhereUniqueWithoutGrammarInput | GrammarQuestionUpdateWithWhereUniqueWithoutGrammarInput[]
+    updateMany?: GrammarQuestionUpdateManyWithWhereWithoutGrammarInput | GrammarQuestionUpdateManyWithWhereWithoutGrammarInput[]
+    deleteMany?: GrammarQuestionScalarWhereInput | GrammarQuestionScalarWhereInput[]
+  }
+
+  export type GrammarQuestionUncheckedUpdateManyWithoutGrammarNestedInput = {
+    create?: XOR<GrammarQuestionCreateWithoutGrammarInput, GrammarQuestionUncheckedCreateWithoutGrammarInput> | GrammarQuestionCreateWithoutGrammarInput[] | GrammarQuestionUncheckedCreateWithoutGrammarInput[]
+    connectOrCreate?: GrammarQuestionCreateOrConnectWithoutGrammarInput | GrammarQuestionCreateOrConnectWithoutGrammarInput[]
+    upsert?: GrammarQuestionUpsertWithWhereUniqueWithoutGrammarInput | GrammarQuestionUpsertWithWhereUniqueWithoutGrammarInput[]
+    createMany?: GrammarQuestionCreateManyGrammarInputEnvelope
+    set?: GrammarQuestionWhereUniqueInput | GrammarQuestionWhereUniqueInput[]
+    disconnect?: GrammarQuestionWhereUniqueInput | GrammarQuestionWhereUniqueInput[]
+    delete?: GrammarQuestionWhereUniqueInput | GrammarQuestionWhereUniqueInput[]
+    connect?: GrammarQuestionWhereUniqueInput | GrammarQuestionWhereUniqueInput[]
+    update?: GrammarQuestionUpdateWithWhereUniqueWithoutGrammarInput | GrammarQuestionUpdateWithWhereUniqueWithoutGrammarInput[]
+    updateMany?: GrammarQuestionUpdateManyWithWhereWithoutGrammarInput | GrammarQuestionUpdateManyWithWhereWithoutGrammarInput[]
+    deleteMany?: GrammarQuestionScalarWhereInput | GrammarQuestionScalarWhereInput[]
+  }
+
+  export type GrammarCreateNestedOneWithoutGrammarQuestionInput = {
+    create?: XOR<GrammarCreateWithoutGrammarQuestionInput, GrammarUncheckedCreateWithoutGrammarQuestionInput>
+    connectOrCreate?: GrammarCreateOrConnectWithoutGrammarQuestionInput
+    connect?: GrammarWhereUniqueInput
+  }
+
+  export type GrammarUpdateOneRequiredWithoutGrammarQuestionNestedInput = {
+    create?: XOR<GrammarCreateWithoutGrammarQuestionInput, GrammarUncheckedCreateWithoutGrammarQuestionInput>
+    connectOrCreate?: GrammarCreateOrConnectWithoutGrammarQuestionInput
+    upsert?: GrammarUpsertWithoutGrammarQuestionInput
+    connect?: GrammarWhereUniqueInput
+    update?: XOR<XOR<GrammarUpdateToOneWithWhereWithoutGrammarQuestionInput, GrammarUpdateWithoutGrammarQuestionInput>, GrammarUncheckedUpdateWithoutGrammarQuestionInput>
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumLevelFilter<$PrismaModel = never> = {
+    equals?: $Enums.Level | EnumLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.Level[]
+    notIn?: $Enums.Level[]
+    not?: NestedEnumLevelFilter<$PrismaModel> | $Enums.Level
+  }
+
+  export type NestedStringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumLevelWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Level | EnumLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.Level[]
+    notIn?: $Enums.Level[]
+    not?: NestedEnumLevelWithAggregatesFilter<$PrismaModel> | $Enums.Level
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLevelFilter<$PrismaModel>
+    _max?: NestedEnumLevelFilter<$PrismaModel>
+  }
+
+  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+  export type NestedJsonFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedEnumGenderFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[]
+    notIn?: $Enums.Gender[]
+    not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedEnumGenderWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[]
+    notIn?: $Enums.Gender[]
+    not?: NestedEnumGenderWithAggregatesFilter<$PrismaModel> | $Enums.Gender
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumGenderFilter<$PrismaModel>
+    _max?: NestedEnumGenderFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type GrammarCreateWithoutGradeInput = {
+    unit: string
+    tangen: string
+    localId: number
+    GrammarQuestion?: GrammarQuestionCreateNestedManyWithoutGrammarInput
+  }
+
+  export type GrammarUncheckedCreateWithoutGradeInput = {
+    id?: number
+    unit: string
+    tangen: string
+    localId: number
+    GrammarQuestion?: GrammarQuestionUncheckedCreateNestedManyWithoutGrammarInput
+  }
+
+  export type GrammarCreateOrConnectWithoutGradeInput = {
+    where: GrammarWhereUniqueInput
+    create: XOR<GrammarCreateWithoutGradeInput, GrammarUncheckedCreateWithoutGradeInput>
+  }
+
+  export type GrammarCreateManyGradeInputEnvelope = {
+    data: GrammarCreateManyGradeInput | GrammarCreateManyGradeInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type GrammarUpsertWithWhereUniqueWithoutGradeInput = {
+    where: GrammarWhereUniqueInput
+    update: XOR<GrammarUpdateWithoutGradeInput, GrammarUncheckedUpdateWithoutGradeInput>
+    create: XOR<GrammarCreateWithoutGradeInput, GrammarUncheckedCreateWithoutGradeInput>
+  }
+
+  export type GrammarUpdateWithWhereUniqueWithoutGradeInput = {
+    where: GrammarWhereUniqueInput
+    data: XOR<GrammarUpdateWithoutGradeInput, GrammarUncheckedUpdateWithoutGradeInput>
+  }
+
+  export type GrammarUpdateManyWithWhereWithoutGradeInput = {
+    where: GrammarScalarWhereInput
+    data: XOR<GrammarUpdateManyMutationInput, GrammarUncheckedUpdateManyWithoutGradeInput>
+  }
+
+  export type GrammarScalarWhereInput = {
+    AND?: GrammarScalarWhereInput | GrammarScalarWhereInput[]
+    OR?: GrammarScalarWhereInput[]
+    NOT?: GrammarScalarWhereInput | GrammarScalarWhereInput[]
+    id?: IntFilter<"Grammar"> | number
+    unit?: StringFilter<"Grammar"> | string
+    tangen?: StringFilter<"Grammar"> | string
+    localId?: IntFilter<"Grammar"> | number
+    gradeId?: IntFilter<"Grammar"> | number
+  }
+
+  export type GradeCreateWithoutGrammarInput = {
+    grade: string
+    gradeJp: string
+  }
+
+  export type GradeUncheckedCreateWithoutGrammarInput = {
+    id?: number
+    grade: string
+    gradeJp: string
+  }
+
+  export type GradeCreateOrConnectWithoutGrammarInput = {
+    where: GradeWhereUniqueInput
+    create: XOR<GradeCreateWithoutGrammarInput, GradeUncheckedCreateWithoutGrammarInput>
+  }
+
+  export type GrammarQuestionCreateWithoutGrammarInput = {
+    title: string
+    sentence: string
+    q1?: string | null
+    q2?: string | null
+    q3?: string | null
+    q4?: string | null
+    q5?: string | null
+    q6?: string | null
+    answer: string
+    explanation: string
+    localId: number
+  }
+
+  export type GrammarQuestionUncheckedCreateWithoutGrammarInput = {
+    id?: number
+    title: string
+    sentence: string
+    q1?: string | null
+    q2?: string | null
+    q3?: string | null
+    q4?: string | null
+    q5?: string | null
+    q6?: string | null
+    answer: string
+    explanation: string
+    localId: number
+  }
+
+  export type GrammarQuestionCreateOrConnectWithoutGrammarInput = {
+    where: GrammarQuestionWhereUniqueInput
+    create: XOR<GrammarQuestionCreateWithoutGrammarInput, GrammarQuestionUncheckedCreateWithoutGrammarInput>
+  }
+
+  export type GrammarQuestionCreateManyGrammarInputEnvelope = {
+    data: GrammarQuestionCreateManyGrammarInput | GrammarQuestionCreateManyGrammarInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type GradeUpsertWithoutGrammarInput = {
+    update: XOR<GradeUpdateWithoutGrammarInput, GradeUncheckedUpdateWithoutGrammarInput>
+    create: XOR<GradeCreateWithoutGrammarInput, GradeUncheckedCreateWithoutGrammarInput>
+    where?: GradeWhereInput
+  }
+
+  export type GradeUpdateToOneWithWhereWithoutGrammarInput = {
+    where?: GradeWhereInput
+    data: XOR<GradeUpdateWithoutGrammarInput, GradeUncheckedUpdateWithoutGrammarInput>
+  }
+
+  export type GradeUpdateWithoutGrammarInput = {
+    grade?: StringFieldUpdateOperationsInput | string
+    gradeJp?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GradeUncheckedUpdateWithoutGrammarInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    grade?: StringFieldUpdateOperationsInput | string
+    gradeJp?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GrammarQuestionUpsertWithWhereUniqueWithoutGrammarInput = {
+    where: GrammarQuestionWhereUniqueInput
+    update: XOR<GrammarQuestionUpdateWithoutGrammarInput, GrammarQuestionUncheckedUpdateWithoutGrammarInput>
+    create: XOR<GrammarQuestionCreateWithoutGrammarInput, GrammarQuestionUncheckedCreateWithoutGrammarInput>
+  }
+
+  export type GrammarQuestionUpdateWithWhereUniqueWithoutGrammarInput = {
+    where: GrammarQuestionWhereUniqueInput
+    data: XOR<GrammarQuestionUpdateWithoutGrammarInput, GrammarQuestionUncheckedUpdateWithoutGrammarInput>
+  }
+
+  export type GrammarQuestionUpdateManyWithWhereWithoutGrammarInput = {
+    where: GrammarQuestionScalarWhereInput
+    data: XOR<GrammarQuestionUpdateManyMutationInput, GrammarQuestionUncheckedUpdateManyWithoutGrammarInput>
+  }
+
+  export type GrammarQuestionScalarWhereInput = {
+    AND?: GrammarQuestionScalarWhereInput | GrammarQuestionScalarWhereInput[]
+    OR?: GrammarQuestionScalarWhereInput[]
+    NOT?: GrammarQuestionScalarWhereInput | GrammarQuestionScalarWhereInput[]
+    id?: IntFilter<"GrammarQuestion"> | number
+    title?: StringFilter<"GrammarQuestion"> | string
+    sentence?: StringFilter<"GrammarQuestion"> | string
+    q1?: StringNullableFilter<"GrammarQuestion"> | string | null
+    q2?: StringNullableFilter<"GrammarQuestion"> | string | null
+    q3?: StringNullableFilter<"GrammarQuestion"> | string | null
+    q4?: StringNullableFilter<"GrammarQuestion"> | string | null
+    q5?: StringNullableFilter<"GrammarQuestion"> | string | null
+    q6?: StringNullableFilter<"GrammarQuestion"> | string | null
+    answer?: StringFilter<"GrammarQuestion"> | string
+    explanation?: StringFilter<"GrammarQuestion"> | string
+    localId?: IntFilter<"GrammarQuestion"> | number
+    grammarId?: IntFilter<"GrammarQuestion"> | number
+  }
+
+  export type GrammarCreateWithoutGrammarQuestionInput = {
+    unit: string
+    tangen: string
+    localId: number
+    grade: GradeCreateNestedOneWithoutGrammarInput
+  }
+
+  export type GrammarUncheckedCreateWithoutGrammarQuestionInput = {
+    id?: number
+    unit: string
+    tangen: string
+    localId: number
+    gradeId: number
+  }
+
+  export type GrammarCreateOrConnectWithoutGrammarQuestionInput = {
+    where: GrammarWhereUniqueInput
+    create: XOR<GrammarCreateWithoutGrammarQuestionInput, GrammarUncheckedCreateWithoutGrammarQuestionInput>
+  }
+
+  export type GrammarUpsertWithoutGrammarQuestionInput = {
+    update: XOR<GrammarUpdateWithoutGrammarQuestionInput, GrammarUncheckedUpdateWithoutGrammarQuestionInput>
+    create: XOR<GrammarCreateWithoutGrammarQuestionInput, GrammarUncheckedCreateWithoutGrammarQuestionInput>
+    where?: GrammarWhereInput
+  }
+
+  export type GrammarUpdateToOneWithWhereWithoutGrammarQuestionInput = {
+    where?: GrammarWhereInput
+    data: XOR<GrammarUpdateWithoutGrammarQuestionInput, GrammarUncheckedUpdateWithoutGrammarQuestionInput>
+  }
+
+  export type GrammarUpdateWithoutGrammarQuestionInput = {
+    unit?: StringFieldUpdateOperationsInput | string
+    tangen?: StringFieldUpdateOperationsInput | string
+    localId?: IntFieldUpdateOperationsInput | number
+    grade?: GradeUpdateOneRequiredWithoutGrammarNestedInput
+  }
+
+  export type GrammarUncheckedUpdateWithoutGrammarQuestionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    tangen?: StringFieldUpdateOperationsInput | string
+    localId?: IntFieldUpdateOperationsInput | number
+    gradeId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GrammarCreateManyGradeInput = {
+    id?: number
+    unit: string
+    tangen: string
+    localId: number
+  }
+
+  export type GrammarUpdateWithoutGradeInput = {
+    unit?: StringFieldUpdateOperationsInput | string
+    tangen?: StringFieldUpdateOperationsInput | string
+    localId?: IntFieldUpdateOperationsInput | number
+    GrammarQuestion?: GrammarQuestionUpdateManyWithoutGrammarNestedInput
+  }
+
+  export type GrammarUncheckedUpdateWithoutGradeInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    tangen?: StringFieldUpdateOperationsInput | string
+    localId?: IntFieldUpdateOperationsInput | number
+    GrammarQuestion?: GrammarQuestionUncheckedUpdateManyWithoutGrammarNestedInput
+  }
+
+  export type GrammarUncheckedUpdateManyWithoutGradeInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    tangen?: StringFieldUpdateOperationsInput | string
+    localId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GrammarQuestionCreateManyGrammarInput = {
+    id?: number
+    title: string
+    sentence: string
+    q1?: string | null
+    q2?: string | null
+    q3?: string | null
+    q4?: string | null
+    q5?: string | null
+    q6?: string | null
+    answer: string
+    explanation: string
+    localId: number
+  }
+
+  export type GrammarQuestionUpdateWithoutGrammarInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    sentence?: StringFieldUpdateOperationsInput | string
+    q1?: NullableStringFieldUpdateOperationsInput | string | null
+    q2?: NullableStringFieldUpdateOperationsInput | string | null
+    q3?: NullableStringFieldUpdateOperationsInput | string | null
+    q4?: NullableStringFieldUpdateOperationsInput | string | null
+    q5?: NullableStringFieldUpdateOperationsInput | string | null
+    q6?: NullableStringFieldUpdateOperationsInput | string | null
+    answer?: StringFieldUpdateOperationsInput | string
+    explanation?: StringFieldUpdateOperationsInput | string
+    localId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GrammarQuestionUncheckedUpdateWithoutGrammarInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    sentence?: StringFieldUpdateOperationsInput | string
+    q1?: NullableStringFieldUpdateOperationsInput | string | null
+    q2?: NullableStringFieldUpdateOperationsInput | string | null
+    q3?: NullableStringFieldUpdateOperationsInput | string | null
+    q4?: NullableStringFieldUpdateOperationsInput | string | null
+    q5?: NullableStringFieldUpdateOperationsInput | string | null
+    q6?: NullableStringFieldUpdateOperationsInput | string | null
+    answer?: StringFieldUpdateOperationsInput | string
+    explanation?: StringFieldUpdateOperationsInput | string
+    localId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GrammarQuestionUncheckedUpdateManyWithoutGrammarInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    sentence?: StringFieldUpdateOperationsInput | string
+    q1?: NullableStringFieldUpdateOperationsInput | string | null
+    q2?: NullableStringFieldUpdateOperationsInput | string | null
+    q3?: NullableStringFieldUpdateOperationsInput | string | null
+    q4?: NullableStringFieldUpdateOperationsInput | string | null
+    q5?: NullableStringFieldUpdateOperationsInput | string | null
+    q6?: NullableStringFieldUpdateOperationsInput | string | null
+    answer?: StringFieldUpdateOperationsInput | string
+    explanation?: StringFieldUpdateOperationsInput | string
+    localId?: IntFieldUpdateOperationsInput | number
+  }
+
+
+
+  /**
+   * Aliases for legacy arg types
+   */
+    /**
+     * @deprecated Use GradeCountOutputTypeDefaultArgs instead
+     */
+    export type GradeCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GradeCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use GrammarCountOutputTypeDefaultArgs instead
+     */
+    export type GrammarCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GrammarCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use LogDefaultArgs instead
+     */
+    export type LogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = LogDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use UserDefaultArgs instead
+     */
+    export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use GradeDefaultArgs instead
+     */
+    export type GradeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GradeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use GrammarDefaultArgs instead
+     */
+    export type GrammarArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GrammarDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use GrammarQuestionDefaultArgs instead
+     */
+    export type GrammarQuestionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GrammarQuestionDefaultArgs<ExtArgs>
+
+  /**
+   * Batch Payload for updateMany & deleteMany & createMany
+   */
+
+  export type BatchPayload = {
+    count: number
+  }
+
+  /**
+   * DMMF
+   */
+  export const dmmf: runtime.BaseDMMF
+}
