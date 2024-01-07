@@ -105,7 +105,7 @@
     "baseUrl": "./",
     "paths": {
       "prismaModel": [
-        ".prisma/client"
+        "./src/.prisma/client"
       ]
     },
   },
