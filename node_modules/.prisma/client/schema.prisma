@@ -36,7 +36,7 @@ model User {
   id           String    @id @default(uuid())
   userName     String
   gender       Gender
-  country      String?
+  country      String
   city         String
   email        String    @unique
   birthYear    String
@@ -71,8 +71,8 @@ model GrammarQuestion {
   id          Int     @id @default(autoincrement())
   title       String
   sentence    String
-  q1          String?
-  q2          String?
+  q1          String
+  q2          String
   q3          String?
   q4          String?
   q5          String?
