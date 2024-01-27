@@ -6,6 +6,7 @@ const passwordRegex = /^[a-zA-Z0-9-_]+$/
 
 type UserCreationNecessaryField = "userName" | "email" | "gender" | "birthYear" | "city" | "password"
 type UserLoginNecessaryField = "email" | "password"
+type UserBasicInfoUpdateNecessaryField = Exclude<UserCreationNecessaryField, "password">
 
 type UserCreationParams = Pick<User, UserCreationNecessaryField>
 type UserLoginParams = Pick<User, UserLoginNecessaryField>
@@ -36,4 +37,8 @@ export const zodUserLoginSchema = z.object<toZod<UserLoginParams>>({
   email: zodEmail,
   password: zodPassword
 })
+
+
+export const zodUserBasicInfoUpdateSchema = zodUserCreationSchema.omit({ password: true })
+
 
