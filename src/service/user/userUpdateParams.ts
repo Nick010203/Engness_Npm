@@ -8,5 +8,5 @@ type userPasswordUpdateParams = { oldPassword: string, newPassword: string }
 
 export type userUpdateParams = {
   updateType: "BASIC" | "EMAIL" | ""
-  data: userBasicInfoUpdateParams | userEmailUpdateParams | userPasswordUpdateParams
+  updateData: userBasicInfoUpdateParams | userEmailUpdateParams | userPasswordUpdateParams
 }
