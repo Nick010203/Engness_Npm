@@ -38,6 +38,6 @@ export const zodUserLoginSchema = z.object<toZod<UserLoginParams>>({
 })
 
 
-export const zodUserBasicInfoUpdateSchema = zodUserCreationSchema.omit({ password: true })
+export const zodUserBasicInfoUpdateSchema = zodUserCreationSchema.omit({ email: true, password: true })
 
 
