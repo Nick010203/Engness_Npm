@@ -100,7 +100,7 @@ model Product {
   name        String
   price       Int
   image       Json
-  priceId     String?
+  priceId     String
   description String   @db.Text
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
