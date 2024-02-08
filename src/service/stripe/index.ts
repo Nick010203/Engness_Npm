@@ -1,2 +1,1 @@
-export * from "./getCheckoutSessionUrlBody"
-export * from "./getCheckoutSessionUrlResponse"
+export * from "./getCheckoutSessionUrl"
