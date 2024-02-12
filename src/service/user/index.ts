@@ -1,4 +1,4 @@
 export * from "./userCreationParams"
-export * from "./userLoginParams"
+export * from "./login/userLoginParams"
 export * from "./userUpdateParams"
 export * from "./userDataForFront"
