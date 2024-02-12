@@ -1,2 +1,2 @@
 export * from "./emailLoginParams"
-export * from "./emailLoginValidation"
+export * from "./emailLoginValidationParams"
