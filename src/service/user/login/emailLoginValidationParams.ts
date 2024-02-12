@@ -1,4 +1,4 @@
-export type emailLoginValidationBody = {
+export type emailLoginValidationParams = {
   userEmail: string
   oneTimePassword: string
 }
