@@ -1,4 +1,4 @@
 import { z } from "zod"
-import { zodUserLoginSchema } from "../../../zod/user"
+import { zodEmailLoginSchema } from "../../../zod/user"
 
-export type userLoginParams = z.infer<typeof zodUserLoginSchema>
+export type emailLoginParams = z.infer<typeof zodEmailLoginSchema>

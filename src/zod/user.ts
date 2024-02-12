@@ -28,7 +28,7 @@ export const zodUserCreationSchema = z.object<toZodSchema<UserCreationParams>>({
   password: zodPassword
 })
 
-export const zodUserLoginSchema = z.object<toZodSchema<UserLoginParams>>({
+export const zodEmailLoginSchema = z.object<toZodSchema<UserLoginParams>>({
   email: zodEmail,
   password: zodPassword
 })
