@@ -9,7 +9,7 @@ type UserCreationNecessaryField = "userName" | "email" | "gender" | "birthYear" 
 type UserLoginNecessaryField = "email" | "password"
 
 type UserCreationParams = Pick<User, UserCreationNecessaryField>
-type UserLoginParams = Pick<User, UserLoginNecessaryField>
+type EmailLoginParams = Pick<User, UserLoginNecessaryField>
 
 export const zodUserName = z.string().max(7).regex(userNameRegex)
 // Genderで出来ないかな...
@@ -28,7 +28,7 @@ export const zodUserCreationSchema = z.object<toZodSchema<UserCreationParams>>({
   password: zodPassword
 })
 
-export const zodEmailLoginSchema = z.object<toZodSchema<UserLoginParams>>({
+export const zodEmailLoginSchema = z.object<toZodSchema<EmailLoginParams>>({
   email: zodEmail,
   password: zodPassword
 })

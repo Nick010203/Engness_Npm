@@ -1,4 +1,4 @@
-export * from "./service/user"
+export * from "./service"
 export * from "./zod"
 
 export * from "zod"
