@@ -67,28 +67,43 @@ model User {
 }
 
 model StripeCustomer {
-  id         String @id @default(uuid())
+  id String @id @default(uuid())
+
+  // Userが複数のCustomerを持つ場合も想定
   customerId String @unique
 
-  User   User   @relation(fields: [userId], references: [id])
-  userId String
+  User           User             @relation(fields: [userId], references: [id])
+  userId         String
+  StripeCheckout StripeCheckout[]
 
   @@index([userId])
 }
 
 model StripeCheckout {
-  id        Int    @id @default(autoincrement())
-  paymentId String
-  name      String
-  email     String
-  postCode  String
-  address   String
+  id Int @id @default(autoincrement())
+
+  // customerIdがある = EngnessのUserと結びついたStripeCustomerのデータがStripe側にある
+  StripeCustomer StripeCustomer? @relation(fields: [customerId], references: [customerId])
+  customerId     String?
+
+  Product   Product @relation(fields: [productId], references: [id])
+  productId Int
+
+  paymentId    String
+  name         String
+  email        String
+  postCode     String
+  address      String
+  serialNumber String
 
   status  checkoutStatus
   manager String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([customerId])
+  @@index([productId])
 }
 
 model Grade {
@@ -148,7 +163,8 @@ model Product {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  Review Review[]
+  Review         Review[]
+  StripeCheckout StripeCheckout[]
 }
 
 model Review {
@@ -172,7 +188,6 @@ model OneTimePassword {
   usage OneTimeNumberUsage
 
   oneTimePassword String
-  oneTimeQuery    String
 
   updatedAt DateTime @default(now()) @updatedAt
 
