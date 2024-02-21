@@ -40,73 +40,6 @@ enum OneTimeNumberUsage {
   signIn
 }
 
-model Log {
-  id      Int      @id @default(autoincrement())
-  about   LogAbout
-  level   Level
-  message String
-  meta    Json?
-}
-
-model User {
-  id              String            @id @default(uuid())
-  userName        String
-  gender          Gender
-  country         String
-  city            String
-  email           String            @unique
-  birthYear       String
-  activated       Boolean           @default(false)
-  invited         Boolean           @default(false)
-  invitedUntil    DateTime?
-  password        String
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-  StripeCustomer  StripeCustomer[]
-  OneTimePassword OneTimePassword[]
-}
-
-model StripeCustomer {
-  id String @id @default(uuid())
-
-  // Userが複数のCustomerを持つ場合も想定
-  customerId String @unique
-
-  User           User             @relation(fields: [userId], references: [id])
-  userId         String
-  StripeCheckout StripeCheckout[]
-
-  @@index([userId])
-}
-
-model StripeCheckout {
-  id Int @id @default(autoincrement())
-
-  // customerIdがある = EngnessのUserと結びついたStripeCustomerのデータがStripe側にある
-  StripeCustomer StripeCustomer? @relation(fields: [customerId], references: [customerId])
-  customerId     String?
-
-  Product   Product @relation(fields: [productId], references: [id])
-  productId Int
-
-  paymentId    String
-  name         String
-  email        String
-  postCode     String
-  address      String
-  serialNumber String
-
-  status  checkoutStatus
-  manager String?
-
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  ProductReview ProductReview[]
-
-  @@index([customerId])
-  @@index([productId])
-}
-
 model Grade {
   id        Int      @id @default(autoincrement())
   grade     String
@@ -154,6 +87,14 @@ model GrammarQuestion {
   @@index([grammarId])
 }
 
+model Log {
+  id      Int      @id @default(autoincrement())
+  about   LogAbout
+  level   Level
+  message String
+  meta    Json?
+}
+
 model Product {
   id          Int      @id @default(autoincrement())
   name        String
@@ -199,4 +140,63 @@ model OneTimePassword {
   userId String
 
   @@index([userId])
+}
+
+model StripeCheckout {
+  id Int @id @default(autoincrement())
+
+  // customerIdがある = EngnessのUserと結びついたStripeCustomerのデータがStripe側にある
+  StripeCustomer StripeCustomer? @relation(fields: [customerId], references: [customerId])
+  customerId     String?
+
+  Product   Product @relation(fields: [productId], references: [id])
+  productId Int
+
+  paymentId    String
+  name         String
+  email        String
+  postCode     String
+  address      String
+  serialNumber String
+
+  status  checkoutStatus
+  manager String?
+
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  ProductReview ProductReview[]
+
+  @@index([customerId])
+  @@index([productId])
+}
+
+model StripeCustomer {
+  id String @id @default(uuid())
+
+  // Userが複数のCustomerを持つ場合も想定
+  customerId String @unique
+
+  User           User             @relation(fields: [userId], references: [id])
+  userId         String
+  StripeCheckout StripeCheckout[]
+
+  @@index([userId])
+}
+
+model User {
+  id              String            @id @default(uuid())
+  userName        String
+  gender          Gender
+  country         String
+  city            String
+  email           String            @unique
+  birthYear       String
+  activated       Boolean           @default(false)
+  invited         Boolean           @default(false)
+  invitedUntil    DateTime?
+  password        String
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  StripeCustomer  StripeCustomer[]
+  OneTimePassword OneTimePassword[]
 }
