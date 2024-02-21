@@ -5,7 +5,6 @@ import { ProductReview, StripeCheckout } from "@prisma/client"
 export const zodProductRate = z.number().min(1).max(5)
 export const zodReview = z.string().min(1).max(500)
 export const zodReviewer = z.string().min(1).max(10)
-export const zodEmail = z.string().email()
 
 type ProductReviewNecessaryField = "productId" | "reviewer" | "text" | "rating"
 type StripeCheckoutNecessaryField = "email" | "serialNumber"
@@ -17,5 +16,5 @@ export const zodProductReviewCreationSchema = z.object<toZodSchema<ProductReview
   text: zodReview,
   rating: zodProductRate,
   serialNumber: z.string(),
-  email: zodEmail
+  email: z.string().email()
 }) 
