@@ -1,6 +1,4 @@
-export type createReviewParams = {
-  productId: number
-  email: string
-  serialNumber: string
-  reviewText: string
-}
+import z from "zod"
+import { zodProductReviewCreationSchema } from "../../zod/product"
+
+export type createReviewParams = z.infer<typeof zodProductReviewCreationSchema>
