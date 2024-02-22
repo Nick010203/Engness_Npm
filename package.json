@@ -15,11 +15,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/sanitize-html": "^2.11.0",
     "prisma": "^5.7.1",
     "typescript": "^5.3.3"
   },
   "dependencies": {
     "@prisma/client": "^5.7.1",
+    "sanitize-html": "^2.12.0",
     "zod": "^3.22.4"
   }
 }
