@@ -194,7 +194,6 @@ model User {
   activated       Boolean           @default(false)
   invited         Boolean           @default(false)
   invitedUntil    DateTime?
-  password        String
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
   StripeCustomer  StripeCustomer[]
