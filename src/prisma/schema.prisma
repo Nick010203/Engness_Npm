@@ -13,7 +13,7 @@ datasource db {
   relationMode = "prisma"
 }
 
-enum Level {
+enum LogLevel {
   Info
   Warn
   Error
@@ -38,6 +38,19 @@ enum checkoutStatus {
 
 enum OneTimeNumberUsage {
   signIn
+}
+
+enum AdminRole {
+  super
+  write
+  read
+}
+
+model AdminUser {
+  id       String    @id @default(uuid())
+  role     AdminRole
+  userName String
+  password String
 }
 
 model Grade {
@@ -90,7 +103,7 @@ model GrammarQuestion {
 model Log {
   id      Int      @id @default(autoincrement())
   about   LogAbout
-  level   Level
+  level   LogLevel
   message String
   meta    Json?
 }
