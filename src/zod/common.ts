@@ -5,7 +5,9 @@ export type toZodSchema<T extends Record<string, any>> = {
   [K in keyof T]-?: z.ZodType<T[K]>;
 }
 
+const userNameRegex = /^[a-zA-Z0-9-]+$/
 const passwordRegex = /^[a-zA-Z0-9-_]+$/
 
+export const zodUserName = z.string().max(7).regex(userNameRegex)
 export const zodEmail = z.string().email()
 export const zodPassword = z.string().min(8, { message: "More than 8 words" }).max(32, { message: "Less than 32 words" }).regex(passwordRegex, { message: "0-9 or a-z or A-Z" })
