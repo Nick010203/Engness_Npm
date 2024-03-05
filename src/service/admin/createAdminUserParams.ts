@@ -1,7 +1,4 @@
-import { AdminRole } from "@prisma/client"
+import { z } from "zod"
+import { zodAdminUserCreateSchema } from "../../zod/admin"
 
-export type createAdminUserParams = {
-  email: string
-  userName: string
-  role: AdminRole
-}
+export type createAdminUserParams = z.infer<typeof zodAdminUserCreateSchema>
