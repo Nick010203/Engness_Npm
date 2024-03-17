@@ -47,11 +47,58 @@ enum AdminRole {
 }
 
 model AdminUser {
-  id       String    @id @default(uuid())
-  role     AdminRole
-  userName String
-  email    String    @unique
-  password String
+  id         String    @id @default(uuid())
+  role       AdminRole
+  adminName  String
+  adminEmail String    @unique
+  password   String
+}
+
+model Blog {
+  id          Int          @id @default(autoincrement())
+  Category    BlogCategory @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  published   Boolean      @default(false)
+  name        String
+  title       String
+  // key1, key2 みたなののベタ書きになるからたぶん大丈夫
+  keywordList String
+  description String
+
+  BlogUniversityDepartment BlogUniversityDepartment[]
+
+  @@index([categoryId])
+}
+
+model BlogCategory {
+  id       Int    @id @default(autoincrement())
+  category String
+  Blog     Blog[]
+}
+
+model BlogUniversity {
+  id                       Int                        @id @default(autoincrement())
+  schoolName               String
+  publicSchool             Boolean                    @default(false)
+  region                   Int
+  eikenUsable              Boolean                    @default(false)
+  schoolUrl                String?
+  BlogUniversityDepartment BlogUniversityDepartment[]
+}
+
+model BlogUniversityDepartment {
+  id           Int            @id @default(autoincrement())
+  Blog         Blog?          @relation(fields: [blogId], references: [id])
+  blogId       Int?
+  University   BlogUniversity @relation(fields: [universityId], references: [id])
+  universityId Int
+  name         String
+  rikei        Boolean        @default(false)
+  examType     Int?
+  articleYear  String?
+
+  @@index([blogId])
+  @@index([universityId])
 }
 
 model Grade {

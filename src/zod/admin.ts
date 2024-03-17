@@ -2,21 +2,21 @@ import z from "zod"
 import { AdminUser, AdminRole } from "@prisma/client"
 import { toZodSchema, zodEmail, zodPassword, zodUserName } from "./common"
 
-type AdminUserCreateNecessaryField = "userName" | "role" | "email"
+type AdminUserCreateNecessaryField = "adminName" | "role" | "adminEmail"
 type AdminUserCreateParams = Pick<AdminUser, AdminUserCreateNecessaryField>
 
 const adminRoleSchema = z.nativeEnum(AdminRole)
 
-type AdminUserLoginNecessaryField = "email" | "password"
+type AdminUserLoginNecessaryField = "adminEmail" | "password"
 type AdminUserLoginParams = Pick<AdminUser, AdminUserLoginNecessaryField>
 
 export const zodAdminUserCreateSchema = z.object<toZodSchema<AdminUserCreateParams>>({
   role: adminRoleSchema,
-  userName: zodUserName,
-  email: zodEmail
+  adminName: zodUserName,
+  adminEmail: zodEmail
 })
 
 export const zodAdminUserLoginSchema = z.object<toZodSchema<AdminUserLoginParams>>({
-  email: zodEmail,
+  adminEmail: zodEmail,
   password: zodPassword
 })
