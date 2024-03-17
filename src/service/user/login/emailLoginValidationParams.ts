@@ -1,9 +1,7 @@
+import { userDataForFront } from "../userDataForFront"
 export type emailLoginValidationParams = {
-  userEmail: string
+  email: string
   oneTimePassword: string
 }
 
-export type emailLoginValidationResponse = {
-  jwt: string
-  isExpiredOneTimePassword: boolean
-}
+export type emailLoginValidationResponse = userDataForFront
