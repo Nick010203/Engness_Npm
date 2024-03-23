@@ -4,4 +4,4 @@ import { userDataForFront } from "./userDataForFront"
 
 export type userCreationParams = z.infer<typeof zodUserCreationSchema>
 
-export type userActivationParams = userDataForFront
+export type userActivationResponse = userDataForFront
