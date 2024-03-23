@@ -4,4 +4,4 @@ export type emailLoginValidationParams = {
   oneTimePassword: string
 }
 
-export type emailLoginValidationResponse = userDataForFront
+export type emailLoginValidationResponse = { userData: userDataForFront & { jwt: string }, isExpiredOneTimePassword: boolean }
