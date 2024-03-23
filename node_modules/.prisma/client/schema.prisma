@@ -194,6 +194,7 @@ model OneTimePassword {
   usage OneTimeNumberUsage
 
   oneTimePassword String
+  validated       Boolean @default(false)
 
   updatedAt DateTime @default(now()) @updatedAt
 
