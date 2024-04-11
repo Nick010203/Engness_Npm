@@ -126,7 +126,7 @@ model GrammarQuestion {
   id          Int    @id @default(autoincrement())
   title       String
   sentence    String
-  question    Json?
+  question    Json
   answer      String
   explanation String
   localId     Int
