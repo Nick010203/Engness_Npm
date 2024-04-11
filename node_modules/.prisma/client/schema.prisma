@@ -2,9 +2,9 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
-  // typeSafeにするためoutputを設定してはいけない
+  provider = "prisma-client-js"
+  //   previewFeatures = ["driverAdapters"]
+  //   // typeSafeにするためoutputを設定してはいけない
 }
 
 datasource db {
@@ -102,22 +102,18 @@ model BlogUniversityDepartment {
 }
 
 model Grade {
-  id        Int      @id @default(autoincrement())
-  grade     String
-  gradeJp   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  id      Int    @id @default(autoincrement())
+  grade   String
+  gradeJp String
 
   Grammar Grammar[]
 }
 
 model Grammar {
-  id        Int      @id @default(autoincrement())
-  unit      String
-  tangen    String
-  localId   Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  id      Int    @id @default(autoincrement())
+  unit    String
+  tangen  String
+  localId Int
 
   Grade           Grade             @relation(fields: [gradeId], references: [id])
   gradeId         Int
@@ -127,20 +123,13 @@ model Grammar {
 }
 
 model GrammarQuestion {
-  id          Int      @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   title       String
   sentence    String
-  q1          String
-  q2          String
-  q3          String?
-  q4          String?
-  q5          String?
-  q6          String?
+  question    Json?
   answer      String
   explanation String
   localId     Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now()) @updatedAt
 
   Grammar   Grammar @relation(fields: [grammarId], references: [id])
   grammarId Int

@@ -7,7 +7,7 @@
     "dist"
   ],
   "scripts": {
-    "prisma:generate": "cp -r ../Engness_Node/prisma/schema.prisma ./src/prisma && npx prisma generate --schema ./src/prisma/schema.prisma",
+    "prisma:generate": "cp -r ../Engness_Node/src/prisma/schema.prisma ./src/prisma && npx prisma generate --schema ./src/prisma/schema.prisma",
     "build": "tsc",
     "prepare": "npm run build"
   },
