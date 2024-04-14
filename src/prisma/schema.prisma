@@ -131,10 +131,49 @@ model GrammarQuestion {
   explanation String
   localId     Int
 
-  Grammar   Grammar @relation(fields: [grammarId], references: [id])
-  grammarId Int
+  Grammar             Grammar               @relation(fields: [grammarId], references: [id])
+  grammarId           Int
+  LikeGrammarQuestion LikeGrammarQuestion[]
 
   @@index([grammarId])
+}
+
+model LikeGrammarQuestion {
+  id Int @id @default(autoincrement())
+
+  User   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  GrammarQuestion   GrammarQuestion @relation(fields: [grammarQuestionId], references: [id])
+  grammarQuestionId Int
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([grammarQuestionId])
+}
+
+model LikeListening {
+  id Int @id @default(autoincrement())
+
+  User   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  Listening   Listening @relation(fields: [listeningId], references: [id])
+  listeningId Int
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([listeningId])
+}
+
+model Listening {
+  id    Int    @id @default(autoincrement())
+  title String
+  url   String
+
+  LikeListening LikeListening[]
 }
 
 model Log {
@@ -235,18 +274,20 @@ model StripeCustomer {
 }
 
 model User {
-  id              String            @id @default(uuid())
-  userName        String
-  gender          Gender
-  country         String
-  city            String
-  email           String            @unique
-  birthYear       String
-  activated       Boolean           @default(false)
-  invited         Boolean           @default(false)
-  invitedUntil    DateTime?
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-  StripeCustomer  StripeCustomer[]
-  OneTimePassword OneTimePassword[]
+  id                  String                @id @default(uuid())
+  userName            String
+  gender              Gender
+  country             String
+  city                String
+  email               String                @unique
+  birthYear           String
+  activated           Boolean               @default(false)
+  invited             Boolean               @default(false)
+  invitedUntil        DateTime?
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+  StripeCustomer      StripeCustomer[]
+  OneTimePassword     OneTimePassword[]
+  LikeGrammarQuestion LikeGrammarQuestion[]
+  LikeListening       LikeListening[]
 }
