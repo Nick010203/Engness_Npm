@@ -1,10 +1,9 @@
-import { sortOption } from "./listeningType"
+import { sortOption, ListeningWithLike } from "./listeningType"
+import { Listening } from "@prisma/client"
 
-export type fetchInitialListeningListParams = {
+export type fetchListeningListParams = {
   sortOption: sortOption
   lap: number
 }
 
-export type fetchInitialListeningListResponse = {
-
-}
+export type fetchListeningListResponse = Listening[] | ListeningWithLike[]
