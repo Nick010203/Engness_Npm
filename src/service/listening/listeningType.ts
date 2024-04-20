@@ -1,2 +1,2 @@
 
-export type sortOption = "all" | "sortByLap" | "uncheckedOnly" | "checkedOnly" 
+export type sortOption = "all" | "sortByLap" | "unLikedOnly" | "LikedOnly" 
