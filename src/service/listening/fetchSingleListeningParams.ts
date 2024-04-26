@@ -1,6 +1,6 @@
+import { ListeningWithLike } from "./listeningType"
 export type fetchSingleListeningParams = {}
 
 export type fetchSingleListeningResponse = {
-  ytUrl: string
-  liked: boolean
+  listeningWithLike: ListeningWithLike
 }
