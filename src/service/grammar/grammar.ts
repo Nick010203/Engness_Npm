@@ -8,10 +8,12 @@ export type gradeWithGrammarList = Grade & {
 
 export type grammarWithGradeAndGrammarQuestion = Grammar & {
   Grade: Grade,
-  GrammarQuestion: Partial<TypeAssertedGrammarQuestion>[]
+  GrammarQuestion: Partial<TypeAssertedGrammarQuestion>[] & {
+    LikeGrammarQuestion?: LikeGrammarQuestion[]
+  }
 }
 
-export type grammarQuestionWithGradeAndGrammarAndLike = Partial<TypeAssertedGrammarQuestion> & {
+export type grammarQuestionWithGradeAndGrammar = Partial<TypeAssertedGrammarQuestion> & {
   Grammar: Partial<Grammar> & {
     Grade: Grade,
   } & {
