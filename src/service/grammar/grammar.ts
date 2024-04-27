@@ -11,8 +11,11 @@ export type grammarWithGradeAndGrammarQuestion = Grammar & {
   GrammarQuestion: Partial<TypeAssertedGrammarQuestion>[]
 }
 
-export type grammarQuestionWithGradeAndGrammar = Partial<TypeAssertedGrammarQuestion> & {
+export type grammarQuestionWithGradeAndGrammarAndLike = Partial<TypeAssertedGrammarQuestion> & {
   Grammar: Partial<Grammar> & {
     Grade: Grade,
+  } & {
+    LikeGrammarQuestion?: LikeGrammarQuestion[]
   }
+
 }
