@@ -8,7 +8,7 @@ export type gradeWithGrammarList = Grade & {
 
 export type grammarWithGradeAndGrammarQuestion = Grammar & {
   Grade: Grade,
-  GrammarQuestion: Partial<TypeAssertedGrammarQuestion>[] & {
+  GrammarQuestion: Pick<TypeAssertedGrammarQuestion, "id" | "localId">[] & {
     LikeGrammarQuestion?: LikeGrammarQuestion[]
   }
 }
