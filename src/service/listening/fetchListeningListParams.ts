@@ -5,4 +5,4 @@ export type fetchListeningListParams = {
   lap: number
 }
 
-export type fetchListeningListResponse = ListeningWithLike[]
+export type fetchListeningListResponse = Pick<ListeningWithLike, "id" | "lap" | "localId" | "LikeListening">[] 

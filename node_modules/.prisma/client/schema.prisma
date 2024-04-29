@@ -169,10 +169,11 @@ model LikeListening {
 }
 
 model Listening {
-  id    Int    @id @default(autoincrement())
-  title String
-  url   String
-  lap   Int
+  id      Int    @id @default(autoincrement())
+  title   String
+  url     String
+  lap     Int
+  localId Int
 
   LikeListening LikeListening[]
 }
