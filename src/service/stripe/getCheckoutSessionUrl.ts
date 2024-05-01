@@ -1,7 +1,7 @@
 
 export type getCheckoutSessionUrlBody = {
   productId: number
-  jwt: string
+  jwt?: string
 }
 
 export type getCheckoutSessionUrlResponse = {
