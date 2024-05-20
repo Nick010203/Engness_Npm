@@ -1,6 +1,6 @@
-import { User } from "@prisma/client"
+import type { User, subscriptionPlan } from "@prisma/client"
 
 const userColumnForFront = ['id', 'userName', 'email', 'gender', 'city', 'birthYear'] as const
 type userColumnForFront = (typeof userColumnForFront)[number]
 
-export type userDataForFront = Pick<User, userColumnForFront> & { accessToken: string }
+export type userDataForFront = Pick<User, userColumnForFront> & { subscribingPlan: subscriptionPlan }
