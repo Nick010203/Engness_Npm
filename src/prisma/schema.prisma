@@ -42,11 +42,6 @@ enum checkoutType {
   subscription
 }
 
-enum subscriptionPlan {
-  planE
-  planN
-}
-
 enum subscriptionStatus {
   trialing
   active
@@ -281,7 +276,7 @@ model StripeCheckout {
 }
 
 model StripeCustomer {
-  id String @id @default(uuid())
+  id Int @id @default(autoincrement())
 
   // Userが複数のCustomerを持つ場合も想定
   customerId String @unique
@@ -299,22 +294,22 @@ model StripeSubscription {
 
   subscriptionId String
 
-  plan   subscriptionPlan
+  plan   String
   status subscriptionStatus
 
-  periodStart DateTime
-  periodEnd   DateTime
+  periodStart String
+  periodEnd   String
 
-  cancelAt          DateTime?
-  cancelAtPeriodEnd Boolean   @default(false)
+  cancelAt          String?
+  cancelAtPeriodEnd Boolean @default(false)
 
-  StripeCustomer StripeCustomer @relation(fields: [customerId], references: [id])
-  customerId     String
+  StripeCustomer   StripeCustomer @relation(fields: [stripeCustomerId], references: [id])
+  stripeCustomerId Int
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([customerId])
+  @@index([stripeCustomerId])
 }
 
 model User {
