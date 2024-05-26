@@ -1,8 +1,8 @@
 
-export type authorizeSuperAdminParams = {
+export type initAppParams = {
   superPassword: string
 }
 
-export type authorizeSuperAdminResponse = {
+export type initAppResponse = {
   authorized: boolean
 }
