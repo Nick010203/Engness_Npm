@@ -1,5 +1,5 @@
 type environment = "development" | "production"
-type availablePlanList = "planE" | "planN"
+export type availablePlanList = "planE" | "planN"
 
 type map = {
   [key in environment]: { [key: string]: availablePlanList }
