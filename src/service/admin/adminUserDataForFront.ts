@@ -4,6 +4,6 @@ const adminUserColumnForFront: Array<keyof AdminUser> = ["id", "role", "adminNam
 type adminUserColumnForFront = (typeof adminUserColumnForFront)[number]
 export type adminUserDataForFront = Pick<AdminUser, adminUserColumnForFront>
 
-export const sessionColumnForFront: Array<keyof AdminUser> = ["id", 'adminName', "role"] as const
-type adminSessionColumnForFront = (typeof sessionColumnForFront)[number]
-export type sessionDataForFront = Pick<AdminUser, adminSessionColumnForFront> & { accessToken: string, isAdmin: true }
+export const adminSessionColumnForFront: Array<keyof AdminUser> = ["id", 'adminName', "role"] as const
+type adminSessionColumnForFront = (typeof adminSessionColumnForFront)[number]
+export type adminSessionDataForFront = Pick<AdminUser, adminSessionColumnForFront> & { accessToken: string, isAdmin: true }
