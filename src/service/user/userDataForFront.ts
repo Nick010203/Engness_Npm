@@ -5,6 +5,6 @@ export const userColumnForFront = ['id', 'userName', 'email', 'gender', 'city', 
 type userColumnForFront = (typeof userColumnForFront)[number]
 export type userDataForFront = Pick<User, userColumnForFront> & { subscribingPlan: availablePlanList }
 
-export const sessionColumnForFront = ["id", 'userName'] as const
+export const sessionColumnForFront: Array<keyof User> = ["id", 'userName'] as const
 type sessionColumnForFront = (typeof sessionColumnForFront)[number]
 export type sessionDataForFront = Pick<User, sessionColumnForFront> & { accessToken: string }
