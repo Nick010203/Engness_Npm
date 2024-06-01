@@ -59,11 +59,12 @@ enum AdminRole {
 }
 
 model AdminUser {
-  id         String    @id @default(uuid())
-  role       AdminRole
-  adminName  String
-  adminEmail String    @unique
-  password   String
+  id              String            @id @default(uuid())
+  role            AdminRole
+  adminName       String
+  adminEmail      String            @unique
+  password        String
+  OneTimePassword OneTimePassword[]
 }
 
 model Blog {
@@ -241,10 +242,14 @@ model OneTimePassword {
 
   updatedAt DateTime @default(now()) @updatedAt
 
-  User   User   @relation(fields: [userId], references: [id])
-  userId String
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  AdminUser   AdminUser? @relation(fields: [adminUserId], references: [id])
+  adminUserId String?
 
   @@index([userId])
+  @@index([adminUserId])
 }
 
 model StripeCheckout {
