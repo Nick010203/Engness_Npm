@@ -6,7 +6,7 @@ import { adminSessionDataForFront } from "../adminUserDataForFront"
 export type adminUserLoginPrepareParams = z.infer<typeof zodAdminUserLoginSchema>
 
 export type adminUseLoginValidationParams = Pick<AdminUser, 'adminEmail'> & { oneTimePassword: string }
-export type adminUserLoginValidationResponse = { isExpiredOneTimePassword: boolean }
+export type adminUserLoginValidationResponse = { isOneTimePasswordValidated: boolean }
 
 export type loginAdminUserParams = Pick<AdminUser, 'adminEmail'>;
 export type loginAdminUserResponse = adminSessionDataForFront
