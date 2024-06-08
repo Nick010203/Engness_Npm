@@ -356,30 +356,16 @@ model Passage {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  PassageQuestion PassageQuestion[]
-  PassageSentence PassageSentence[]
+  PassageQuestion PassageQuestion?
+  PassageSentence PassageSentence?
 }
 
 model PassageQuestion {
-  id         Int   @id @default(autoincrement())
-  question1  Json?
-  question2  Json?
-  question3  Json?
-  question4  Json?
-  question5  Json?
-  question6  Json?
-  question7  Json?
-  question8  Json?
-  question9  Json?
-  question10 Json?
-  question11 Json?
-  question12 Json?
-  question13 Json?
-  question14 Json?
-  question15 Json?
+  id           Int  @id @default(autoincrement())
+  questionList Json
 
   Passage   Passage @relation(fields: [passageId], references: [id])
-  passageId Int
+  passageId Int     @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -388,25 +374,11 @@ model PassageQuestion {
 }
 
 model PassageSentence {
-  id         Int   @id @default(autoincrement())
-  sentence1  Json?
-  sentence2  Json?
-  sentence3  Json?
-  sentence4  Json?
-  sentence5  Json?
-  sentence6  Json?
-  sentence7  Json?
-  sentence8  Json?
-  sentence9  Json?
-  sentence10 Json?
-  sentence11 Json?
-  sentence12 Json?
-  sentence13 Json?
-  sentence14 Json?
-  sentence15 Json?
+  id           Int  @id @default(autoincrement())
+  sentenceList Json
 
   Passage   Passage @relation(fields: [passageId], references: [id])
-  passageId Int
+  passageId Int     @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

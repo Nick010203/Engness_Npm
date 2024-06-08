@@ -5,15 +5,21 @@ export type PassageWithRelatedData = Passage & {
   PassageSentence: PassageSentence | null
 }
 
-export type SinglePassageSentence = {
-  jp: Array<string>
-  en: Array<string>
+export type SinglePassageSentence = Omit<PassageSentence, "sentenceList"> &
+{
+  sentenceList: {
+    jp: Array<string>
+    en: Array<string>
+  }[]
 }
 
-export type SinglePassageQuestion = {
-  question: string
-  choice: Array<string | number>
-  answer: Array<string | number> // 複数回答もありえるので
+
+export type SinglePassageQuestion = Omit<PassageQuestion, "questionList"> & {
+  questionList: {
+    question: string
+    choice: Array<string | number>
+    answer: Array<string | number> // 複数回答もありえるので
+  }[]
 }
 
 export const passageLevelMap: { level: PassageLevel, examLevel: string }[] = [
