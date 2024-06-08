@@ -1,11 +1,16 @@
-import { PassageLevel } from "@prisma/client"
+import { PassageLevel, Passage, PassageQuestion, PassageSentence } from "@prisma/client"
 
-export type overWrittenSinglePassageSentence = {
+export type PassageWithRelatedData = Passage & {
+  PassageQuestion: PassageQuestion,
+  PassageSentence: PassageSentence
+}
+
+export type SinglePassageSentence = {
   jp: Array<string>
   en: Array<string>
 }
 
-export type overWrittenSinglePassageQuestion = {
+export type SinglePassageQuestion = {
   question: string
   choice: Array<string | number>
   answer: Array<string | number> // 複数回答もありえるので
