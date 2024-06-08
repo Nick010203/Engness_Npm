@@ -10,5 +10,5 @@ type PartialPassage = Pick<Passage, "level" | "title">
 
 export const zodPassageCreationSchema = z.object<toZodSchema<PartialPassage>>({
   level: passageLevelEnum,
-  title: z.string()
+  title: z.string().min(5)
 }) 
