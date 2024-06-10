@@ -1,10 +1,10 @@
 
-type checkSamePassageQuestionOrSentenceIdExistParams = {
+export type checkSamePassageQuestionOrSentenceIdExistParams = {
   passageId: number | string
   passageQuestionOrAnswerId: number | string
   checkType: "passageQuestion" | "passageSentence"
 }
 
-type checkSamePassageQuestionOrSentenceIdExistResponse = {
+export type checkSamePassageQuestionOrSentenceIdExistResponse = {
   isSameOneExist: boolean
 }
