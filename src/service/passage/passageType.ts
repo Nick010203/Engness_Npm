@@ -5,6 +5,10 @@ export type PassageWithRelatedData = Passage & {
   PassageSentence: PassageSentence | null
 }
 
+
+// データサンプル 
+// [{ index: 0, answer: ['Paris'], choice: ['Paris', 'London', 'Berlin', 'Madrid'], question: 'What is the capital of France?' }]
+
 export type SinglePassageSentence = Omit<PassageSentence, "sentenceList"> &
 {
   sentenceList: {
