@@ -6,7 +6,7 @@ export type PassageWithRelatedData = Passage & {
 }
 
 type SingleSentence = {
-  index?: number
+  index: number
   jp?: Array<string>
   en?: Array<string>
 }
@@ -17,7 +17,7 @@ export type SinglePassageSentence = Omit<PassageSentence, "sentenceList"> &
 }
 
 export type SingleQuestion = {
-  index?: number
+  index: number
   qTitle?: string
   choice?: Array<string | number>
   answer?: Array<string | number> // 複数回答もありえるので

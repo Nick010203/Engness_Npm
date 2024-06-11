@@ -1,7 +1,4 @@
+import { z } from "zod"
+import { zodPassageQuestionCreateAndUpdateSchema } from "../../../../zod/passage"
 
-type createPassageQuestionParams = {
-  passageQuestionId: number | string
-  qTitle: string
-  choice?: string
-  answer?: string
-}
+export type createAndUpdatePassageQuestionParams = z.infer<typeof zodPassageQuestionCreateAndUpdateSchema>
