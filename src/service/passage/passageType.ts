@@ -5,27 +5,28 @@ export type PassageWithRelatedData = Passage & {
   PassageSentence: PassageSentence | null
 }
 
-
-// データサンプル 
-// [{ index: 0, answer: ['Paris'], choice: ['Paris', 'London', 'Berlin', 'Madrid'], question: 'What is the capital of France?' }]
+type SingleSentence = {
+  index?: number
+  jp?: Array<string>
+  en?: Array<string>
+}
 
 export type SinglePassageSentence = Omit<PassageSentence, "sentenceList"> &
 {
-  sentenceList: {
-    index: number
-    jp: Array<string>
-    en: Array<string>
-  }[]
+  sentenceList: SingleSentence[]
 }
 
+export type SingleQuestion = {
+  index?: number
+  qTitle?: string
+  choice?: Array<string | number>
+  answer?: Array<string | number> // 複数回答もありえるので
+}
 
+// PassageQuestion データサンプル 
+// [{ index: 0, title: 'What is the capital of France?', choice: ['Paris', 'London', 'Berlin', 'Madrid'], answer: ['Paris'] }]
 export type SinglePassageQuestion = Omit<PassageQuestion, "questionList"> & {
-  questionList: {
-    index: number
-    question: string
-    choice: Array<string | number>
-    answer: Array<string | number> // 複数回答もありえるので
-  }[]
+  questionList: SingleQuestion[]
 }
 
 export const passageLevelMap: { level: PassageLevel, examLevel: string }[] = [
