@@ -1,4 +1,4 @@
 import { z } from "zod"
-import { zodPassageQuestionCreateAndUpdateSchema } from "../../../../zod/passage"
+import { zodPassageQuestionUpsertSchema } from "../../../../zod/passage"
 
-export type createAndUpdatePassageQuestionParams = z.infer<typeof zodPassageQuestionCreateAndUpdateSchema>
+export type upsertPassageQuestionParams = z.infer<typeof zodPassageQuestionUpsertSchema>
