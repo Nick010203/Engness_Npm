@@ -1,8 +1,8 @@
-type grammar = "grammarList" | "singleGrammar"
-type listening = "singleListening"
+type grammarSeo = "grammarList" | "singleGrammar"
+type listeningSeo = "singleListening"
 
 
-export type getMetaTagParams = grammar & listening
+export type getMetaTagParams = grammarSeo | listeningSeo
 
 export type getMetaTagResponse = {
   title: string
