@@ -1,13 +1,13 @@
-type grammarSeo = "grammarList" | "singleGrammar"
+type grammarSeo = "grammarList" | "singleGrammar" | "singleGrammarQuestion"
 type listeningSeo = "singleListening"
 
 
 export type getMetaTagPurpose = grammarSeo | listeningSeo
 
-// 条件型を使用して `T` に基づいて `P` の型を決定
 export type Params<T> =
   T extends "grammarList" ? { gradeId: number } :
   T extends "singleGrammar" ? { grammarId: number } :
+  T extends "singleGrammarQuestion" ? { qId: number } :
   T extends "singleListening" ? { listeningId: number } :
   never;
 
