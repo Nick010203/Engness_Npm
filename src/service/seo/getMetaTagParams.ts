@@ -1,14 +1,15 @@
 type grammarSeo = "grammarList" | "singleGrammar" | "singleGrammarQuestion"
 type listeningSeo = "singleListening"
+type shopSeo = "singleProduct"
 
-
-export type getMetaTagPurpose = grammarSeo | listeningSeo
+export type getMetaTagPurpose = grammarSeo | listeningSeo | shopSeo
 
 export type Params<T> =
   T extends "grammarList" ? { gradeId: number } :
   T extends "singleGrammar" ? { grammarId: number } :
   T extends "singleGrammarQuestion" ? { qId: number } :
   T extends "singleListening" ? { listeningId: number } :
+  T extends "singleProduct" ? { productId: number } :
   never;
 
 export type getMetaTagParams<T extends getMetaTagPurpose> = {
