@@ -77,50 +77,50 @@ model AdminUser {
   OneTimePassword OneTimePassword[]
 }
 
-model Blog {
-  id          Int          @id @default(autoincrement())
-  Category    BlogCategory @relation(fields: [categoryId], references: [id])
+model Article {
+  id          Int             @id @default(autoincrement())
+  Category    ArticleCategory @relation(fields: [categoryId], references: [id])
   categoryId  Int
-  published   Boolean      @default(false)
+  published   Boolean         @default(false)
   name        String
   title       String
   // key1, key2 みたなののベタ書きになるからたぶん大丈夫
   keywordList String
   description String
 
-  BlogUniversityDepartment BlogUniversityDepartment[]
+  ArticleUniversityDepartment ArticleUniversityDepartment[]
 
   @@index([categoryId])
 }
 
-model BlogCategory {
-  id       Int    @id @default(autoincrement())
+model ArticleCategory {
+  id       Int       @id @default(autoincrement())
   category String
-  Blog     Blog[]
+  Article  Article[]
 }
 
-model BlogUniversity {
-  id                       Int                        @id @default(autoincrement())
-  schoolName               String
-  publicSchool             Boolean                    @default(false)
-  region                   Int
-  eikenUsable              Boolean                    @default(false)
-  schoolUrl                String?
-  BlogUniversityDepartment BlogUniversityDepartment[]
+model ArticleUniversity {
+  id                          Int                           @id @default(autoincrement())
+  schoolName                  String
+  publicSchool                Boolean                       @default(false)
+  region                      Int
+  eikenUsable                 Boolean                       @default(false)
+  schoolUrl                   String?
+  ArticleUniversityDepartment ArticleUniversityDepartment[]
 }
 
-model BlogUniversityDepartment {
-  id           Int            @id @default(autoincrement())
-  Blog         Blog?          @relation(fields: [blogId], references: [id])
-  blogId       Int?
-  University   BlogUniversity @relation(fields: [universityId], references: [id])
+model ArticleUniversityDepartment {
+  id           Int               @id @default(autoincrement())
+  Article      Article?          @relation(fields: [articleId], references: [id])
+  articleId    Int?
+  University   ArticleUniversity @relation(fields: [universityId], references: [id])
   universityId Int
   name         String
-  rikei        Boolean        @default(false)
+  rikei        Boolean           @default(false)
   examType     Int?
   articleYear  String?
 
-  @@index([blogId])
+  @@index([articleId])
   @@index([universityId])
 }
 
