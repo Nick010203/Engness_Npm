@@ -16,6 +16,5 @@ export const sanitizeArticleBody = (html: string) => {
       "*": [...commonAttributes],
     },
   }
-
   )
 }
