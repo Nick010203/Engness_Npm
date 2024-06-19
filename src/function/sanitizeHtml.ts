@@ -10,11 +10,12 @@ export const sanitizeHtmlString = (html: string) => {
 
 export const sanitizeArticleBody = (html: string) => {
   return sanitizeHtml(html, {
-    allowedTags: ['p', 'a', "h1", "h2", "h3", "span"],
+    allowedTags: ['p', 'a', "h1", "h2", "h3", "span", "i", "ul", "li", "br", "img"],
     allowedAttributes: {
       a: ['href', 'rel', 'target'],
       "*": [...commonAttributes],
     },
+    allowedIframeHostnames: ['www.youtube.com', 'youtube.com']
   }
   )
 }
