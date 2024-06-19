@@ -1,4 +1,4 @@
-import { typeAssertedArticle } from "src/service/article/articleType"
+import { typeAssertedArticle } from "../../../../service/article/articleType"
 
 export type fetchSingleArticleDataParams = {
   articleId: number
