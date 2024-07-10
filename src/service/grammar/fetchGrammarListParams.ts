@@ -1,3 +1,3 @@
-import { gradeWithGrammarList } from "./grammar"
+import type { gradeWithGrammarList } from "./grammar"
 
 export type fetchGrammarListResponse = gradeWithGrammarList

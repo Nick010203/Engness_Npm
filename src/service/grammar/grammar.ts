@@ -17,5 +17,4 @@ export type grammarQuestionWithGradeAndGrammar = Partial<TypeAssertedGrammarQues
   } & {
     LikeGrammarQuestion?: LikeGrammarQuestion[]
   }
-
 }
