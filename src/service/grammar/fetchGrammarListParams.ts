@@ -1,3 +1,3 @@
 import { gradeWithGrammarList } from "./grammar"
 
-export type fetchGrammarListParams = gradeWithGrammarList
+export type fetchGrammarListResponse = gradeWithGrammarList
