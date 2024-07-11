@@ -22,6 +22,7 @@ enum LogLevel {
 enum LogAbout {
   Checkout
   Subscription
+  ArticleUpdate
 }
 
 enum Gender {
@@ -31,7 +32,7 @@ enum Gender {
 }
 
 // 文化省の英語レベル表より
-enum PassageLevel {
+enum EnglishLevelRange {
   C2
   C1
   B2
@@ -77,6 +78,19 @@ model AdminUser {
   OneTimePassword OneTimePassword[]
 }
 
+model AmazonProduct {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  imgHtmlTag   String @db.VarChar(300)
+  affiliateUrl String @db.VarChar(300)
+
+  EnglishLevel   EnglishLevel @relation(fields: [englishLevelId], references: [id])
+  englishLevelId Int
+
+  @@index([englishLevelId])
+}
+
 model Article {
   id          Int             @id @default(autoincrement())
   Category    ArticleCategory @relation(fields: [categoryId], references: [id])
@@ -84,9 +98,11 @@ model Article {
   published   Boolean         @default(false)
   name        String
   title       String
-  // key1, key2 みたなののベタ書きになるからたぶん大丈夫
-  keywordList String
-  description String
+  // key1, key2 みたなののベタ書きになるからStringでたぶん大丈夫
+  keywordList String?
+  description String?
+
+  body Json?
 
   ArticleUniversityDepartment ArticleUniversityDepartment[]
 
@@ -122,6 +138,15 @@ model ArticleUniversityDepartment {
 
   @@index([articleId])
   @@index([universityId])
+}
+
+model EnglishLevel {
+  id         Int               @id @default(autoincrement())
+  level      EnglishLevelRange
+  levelRange String
+
+  Passage       Passage[]
+  AmazonProduct AmazonProduct[]
 }
 
 model Grade {
@@ -348,8 +373,10 @@ model User {
 }
 
 model Passage {
-  id    Int          @id @default(autoincrement())
-  level PassageLevel
+  id Int @id @default(autoincrement())
+
+  EnglishLevel   EnglishLevel? @relation(fields: [englishLevelId], references: [id])
+  englishLevelId Int?          @unique
 
   title String
 
@@ -358,6 +385,8 @@ model Passage {
 
   PassageQuestion PassageQuestion?
   PassageSentence PassageSentence?
+
+  @@index([englishLevelId])
 }
 
 model PassageQuestion {
