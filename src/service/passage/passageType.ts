@@ -1,4 +1,4 @@
-import { PassageLevel, Passage, PassageQuestion, PassageSentence } from "@prisma/client"
+import { Passage, PassageQuestion, PassageSentence } from "@prisma/client"
 
 export type PassageWithRelatedData = Passage & {
   PassageQuestion: PassageQuestion | null,
@@ -29,7 +29,7 @@ export type SinglePassageQuestion = Omit<PassageQuestion, "questionList"> & {
   questionList: SingleQuestion[]
 }
 
-export const passageLevelMap: { level: PassageLevel, examLevel: string }[] = [
+export const passageLevelMap: { level: string, examLevel: string }[] = [
   {
     level: "C2",
     examLevel: "IELTS 9.0 ~ 8.5"
