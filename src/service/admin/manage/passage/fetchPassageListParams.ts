@@ -1,4 +1,4 @@
 
-import { Passage } from "@prisma/client"
+import { Passage, EnglishLevel } from "@prisma/client"
 
-export type fetchPassageListResponse = Passage[]
+export type fetchPassageListResponse = Omit<Passage, "englishLevelId"> & { "englishLevelId": EnglishLevel }[]
