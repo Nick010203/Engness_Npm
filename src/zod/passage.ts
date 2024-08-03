@@ -11,6 +11,7 @@ export const zodPassageCreationSchema = z.object<toZodSchema<PartialPassage>>({
 })
 
 export const zodPassageQuestionUpsertSchema = z.object<toZodSchema<SingleQuestion>>({
+  recordId: z.number().optional(),
   index: z.number(),
   qTitle: z.string().optional(),
   // @ts-expect-error: とりあえず
