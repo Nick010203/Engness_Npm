@@ -6,10 +6,9 @@ export type PassageWithRelatedData = Passage & {
 }
 
 type SingleSentence = {
-  id: number
   index: number
-  jp?: Array<string>
-  en?: Array<string>
+  jp?: Array<string> //editorjsのツリー
+  en?: Array<string> //editorjsのツリー
 }
 
 export type SinglePassageSentence = Omit<PassageSentence, "sentenceList"> &
@@ -18,7 +17,6 @@ export type SinglePassageSentence = Omit<PassageSentence, "sentenceList"> &
 }
 
 export type SingleQuestion = {
-  id: number
   index: number
   qTitle?: string
   choice?: Array<string | number>
