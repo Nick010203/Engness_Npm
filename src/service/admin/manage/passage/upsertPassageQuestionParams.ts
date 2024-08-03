@@ -1,4 +1,4 @@
 import { z } from "zod"
 import { zodPassageQuestionUpsertSchema } from "../../../../zod/passage"
 
-export type upsertPassageQuestionParams = z.infer<typeof zodPassageQuestionUpsertSchema> & { recordId?: number }
+export type upsertPassageQuestionParams = z.infer<typeof zodPassageQuestionUpsertSchema> & { recordId?: number, passageId: number }
