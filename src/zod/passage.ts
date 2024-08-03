@@ -10,7 +10,7 @@ export const zodPassageCreationSchema = z.object<toZodSchema<PartialPassage>>({
   title: z.string().min(5)
 })
 
-export const zodPassageQuestionUpsertSchema = z.object<toZodSchema<SingleQuestion>>({
+export const zodPassageQuestionUpsertSchema = z.object<toZodSchema<Omit<SingleQuestion, "id">>>({
   index: z.number(),
   qTitle: z.string().optional(),
   // @ts-expect-error: とりあえず
