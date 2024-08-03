@@ -1,8 +1,8 @@
 import { Passage, PassageQuestion, PassageSentence, EnglishLevel } from "@prisma/client"
 
 export type PassageWithRelatedData = Passage & {
-  PassageQuestion: PassageQuestion | null,
-  PassageSentence: PassageSentence | null
+  PassageQuestion: SinglePassageQuestion | null,
+  PassageSentence: SinglePassageSentence | null
 }
 
 type SingleSentence = {
