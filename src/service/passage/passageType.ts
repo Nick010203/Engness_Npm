@@ -5,7 +5,7 @@ export type PassageWithRelatedData = Passage & {
   PassageSentence: SinglePassageSentence | null
 }
 
-type SingleSentence = {
+export type SingleSentence = {
   index: number
   jp?: Array<string> //editorjsのツリー
   en?: Array<string> //editorjsのツリー
