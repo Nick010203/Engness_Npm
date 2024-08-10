@@ -1,4 +1,5 @@
 import { Passage, PassageQuestion, PassageSentence, EnglishLevel } from "@prisma/client"
+import type { OutputData, OutputBlockData } from '@editorjs/editorjs'
 
 export type PassageWithRelatedData = Passage & {
   PassageQuestion: SinglePassageQuestion | null,
@@ -7,8 +8,8 @@ export type PassageWithRelatedData = Passage & {
 
 export type SingleSentence = {
   index: number
-  jp?: Array<string> //editorjsのツリー
-  en?: Array<string> //editorjsのツリー
+  jp?: OutputData //editorjsのデータ
+  en?: OutputData //editorjsのデータ
 }
 
 export type SinglePassageSentence = Omit<PassageSentence, "sentenceList"> &
