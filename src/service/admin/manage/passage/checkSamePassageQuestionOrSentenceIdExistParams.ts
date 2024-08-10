@@ -1,7 +1,7 @@
 
 export type checkSamePassageQuestionOrSentenceIdExistParams = {
   passageId: number | string
-  passageQuestionOrAnswerId: number | string
+  passageQuestionOrSentenceIndex: number | string
   checkType: "passageQuestion" | "passageSentence"
 }
 
