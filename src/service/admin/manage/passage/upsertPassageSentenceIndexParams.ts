@@ -1,5 +1,5 @@
 
 export type upsertPassageSentenceIndexParams = {
-  oldIndex?: number
+  oldIndex: number | null
   newIndex: number
 }
