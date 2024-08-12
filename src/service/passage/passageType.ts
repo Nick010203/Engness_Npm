@@ -8,8 +8,8 @@ export type PassageWithRelatedData = Passage & {
 
 export type SingleSentence = {
   index: number
-  jp?: OutputData //editorjsのデータ
-  en?: OutputData //editorjsのデータ
+  jp?: OutputData | null //editorjsのデータ
+  en?: OutputData | null//editorjsのデータ
 }
 
 export type SinglePassageSentence = Omit<PassageSentence, "sentenceList"> &
