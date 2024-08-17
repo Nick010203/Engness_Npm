@@ -7,4 +7,5 @@ export type fetchPassageListParams = {
 // passage.freeのカラムをサブスク有無によってpassage.challengeableに上書く
 export type PassageWithChallengeAbility = Passage & { challengeable: boolean }
 
+// EnglishLevelがkeyになっている
 export type fetchPassageListResponse = { [key: string]: PassageWithChallengeAbility[] }[]
