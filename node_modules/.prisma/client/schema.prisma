@@ -232,6 +232,9 @@ model Log {
   level   LogLevel
   message String
   meta    Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 }
 
 model Product {
@@ -379,6 +382,9 @@ model Passage {
   englishLevelId Int?          @unique
 
   title String
+
+  free   Boolean @default(false)
+  public Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
