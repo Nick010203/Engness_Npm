@@ -1,6 +1,6 @@
 import type { Passage, EnglishLevel } from "@prisma/client"
 
 export type fetchPassageListParams = {
-  englishLevelId: number | "all"
+  englishLevelId: string | "all"
 }
-export type fetchPassageListResponse = { englishLevel: EnglishLevel, passageList: Passage & { free: boolean }[] }
+export type fetchPassageListResponse = { englishLevel: EnglishLevel, passageList: Passage & { challengeable: boolean }[] }
