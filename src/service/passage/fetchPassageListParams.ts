@@ -8,4 +8,6 @@ export type fetchPassageListParams = {
 export type PassageWithChallengeAbility = Passage & { challengeable: boolean }
 
 // EnglishLevelがkeyになっている
-export type fetchPassageListResponse = { [key: string]: PassageWithChallengeAbility[] }[]
+export type PassageListGroupedByEnglishLevel = { [key: string]: PassageWithChallengeAbility[] }[]
+
+export type fetchPassageListResponse = PassageListGroupedByEnglishLevel
