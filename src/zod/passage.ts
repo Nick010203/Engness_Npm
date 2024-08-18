@@ -4,10 +4,10 @@ import { Passage, EnglishLevel, EnglishLevelRange } from "@prisma/client";
 import { SingleQuestion } from "../service/passage/passageType"
 
 // createもするのでidはoptional
-type PartialPassage = Pick<Passage, "englishLevelId" | "title" | "free" | "public"> & { id?: number }
+type PartialPassage = Pick<Passage, "englishLevelId" | "title" | "free" | "public"> & { id: number | null }
 
 export const zodPassageCreationSchema = z.object<toZodSchema<PartialPassage>>({
-  id: z.number().optional(),
+  id: z.number(),
   englishLevelId: z.number(),
   title: z.string().min(5),
   free: z.boolean(),
