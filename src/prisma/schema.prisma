@@ -383,8 +383,8 @@ model Passage {
 
   title String
 
-  free   Boolean @default(false)
-  public Boolean @default(false)
+  free       Boolean @default(false)
+  accessible Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
