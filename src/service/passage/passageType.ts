@@ -22,6 +22,7 @@ export type SingleQuestion = {
   qTitle?: string
   choice?: Array<string | number>
   answer?: Array<string | number> // 複数回答もありえるので
+  explanation?: string
 }
 
 // PassageQuestion データサンプル 
