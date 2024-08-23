@@ -19,6 +19,6 @@ export const zodPassageQuestionUpsertSchema = z.object<toZodSchema<SingleQuestio
   qTitle: z.string().optional(),
   // @ts-expect-error: とりあえず
   choice: z.string().optional(),
-  // @ts-expect-error: とりあえず
-  answer: z.string().optional()
+  answer: z.string().optional(),
+  explanation: z.string().optional(),
 })
