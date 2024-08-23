@@ -20,8 +20,8 @@ export type SinglePassageSentence = Omit<PassageSentence, "sentenceList"> &
 export type SingleQuestion = {
   index: number
   qTitle?: string
-  choice?: Array<string | number>
-  answer?: Array<string | number> // 複数回答もありえるので
+  choice?: Array<string | number> // lengthが0のとき自由入力の問題
+  answer?: Array<string | number> | string // Array:複数回答の問題、string:文で解答例を出したりする問題
   explanation?: string
 }
 
