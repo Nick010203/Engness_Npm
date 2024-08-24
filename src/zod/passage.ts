@@ -7,8 +7,7 @@ import { SingleQuestion } from "../service/passage/passageType"
 type PartialPassage = Pick<Passage, "englishLevelId" | "title" | "free" | "accessible"> & { id: number | null }
 
 export const zodPassageUpsertSchema = z.object<toZodSchema<PartialPassage>>({
-  // @ts-expect-error: createではidが抜けるので
-  id: z.number().optional(),
+  id: z.number().nullable(),
   englishLevelId: z.number(),
   title: z.string().min(5),
   free: z.boolean(),
