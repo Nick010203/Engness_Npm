@@ -1,6 +1,6 @@
 import { PassageWithRelatedData } from "../passage/passageType"
 
-export type fetchSinglePassageParams = {
+export type fetchSinglePassageDataParams = {
   passageId: number
 }
 
