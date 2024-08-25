@@ -22,7 +22,9 @@ enum LogLevel {
 enum LogAbout {
   Checkout
   Subscription
-  ArticleUpdate
+  Passage
+  PassageSentence
+  PassageQuestion
 }
 
 enum Gender {
@@ -381,7 +383,8 @@ model Passage {
   EnglishLevel   EnglishLevel? @relation(fields: [englishLevelId], references: [id])
   englishLevelId Int?          @unique
 
-  title String
+  englishTitle  String?
+  japaneseTitle String?
 
   free       Boolean @default(false)
   accessible Boolean @default(false)
