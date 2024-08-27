@@ -23,6 +23,7 @@ export type SingleQuestion = {
   choice?: Array<string | number> // lengthが0のとき自由入力の問題
   answer?: Array<string | number> | string // Array:複数回答の問題、string:文で解答例を出したりする問題
   explanation?: string
+  pageBreak?: boolean
 }
 
 // PassageQuestion データサンプル 
