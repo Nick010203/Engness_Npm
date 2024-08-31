@@ -99,9 +99,8 @@ model Article {
   categoryId  Int
   published   Boolean         @default(false)
   name        String
+  // 検索タイトル
   title       String
-  // key1, key2 みたなののベタ書きになるからStringでたぶん大丈夫
-  keywordList String?
   description String?
 
   body Json?
