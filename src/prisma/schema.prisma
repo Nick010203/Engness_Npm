@@ -391,8 +391,9 @@ model Passage {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  PassageQuestion PassageQuestion?
-  PassageSentence PassageSentence?
+  PassageQuestion          PassageQuestion?
+  PassageSentence          PassageSentence?
+  PassageUpdateInformation PassageUpdateInformation?
 
   @@index([englishLevelId])
 }
@@ -413,6 +414,20 @@ model PassageQuestion {
 model PassageSentence {
   id           Int  @id @default(autoincrement())
   sentenceList Json
+
+  Passage   Passage @relation(fields: [passageId], references: [id])
+  passageId Int     @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([passageId])
+}
+
+model PassageUpdateInformation {
+  id Int @id @default(autoincrement())
+
+  updateInformation String? @db.VarChar(500)
 
   Passage   Passage @relation(fields: [passageId], references: [id])
   passageId Int     @unique
