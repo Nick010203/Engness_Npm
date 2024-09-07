@@ -1,9 +1,10 @@
-import { Passage, PassageQuestion, PassageSentence, EnglishLevel } from "@prisma/client"
+import { Passage, PassageQuestion, PassageSentence, PassageUpdateInformation } from "@prisma/client"
 import type { OutputData, OutputBlockData } from '@editorjs/editorjs'
 
 export type PassageWithRelatedData = Passage & {
   PassageQuestion: SinglePassageQuestion | null,
   PassageSentence: SinglePassageSentence | null
+  PassageUpdateInformation: PassageUpdateInformation[]
 }
 
 export type SingleSentence = {
