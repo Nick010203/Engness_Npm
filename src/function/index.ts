@@ -1,3 +1,3 @@
 export * from "./sanitizeHtml"
 export * from "./isValidString"
-export * from "./createJapaneseTime"
+export * from "./dateManager"

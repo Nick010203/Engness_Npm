@@ -1,4 +1,11 @@
-import { createJapaneseTime } from "../src/function";
+import { dateManager } from "../src/function/dateManager";
+import dayjs from "dayjs";
 
-const date = "2024-09-07 17:08:09.936"
-console.log(new createJapaneseTime().convertForeignTimeToJapanese(date))
+const format = "YYYY-MM-DD HH:mm:ss"
+
+const convert = () => {
+  const unix = 1725770310
+  console.log(new dateManager().unixToDbDate(unix))
+}
+
+convert()
