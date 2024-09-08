@@ -103,6 +103,9 @@
     "rootDir": "./src",
     "baseUrl": "./"
   },
+  "include": [
+    "./src/**/*.ts"
+  ],
   "exclude": [
     "debug/*.ts",
   ]
