@@ -1,6 +1,6 @@
-import type { PassageUpdateInformation } from "@prisma/client"
+import type { Passage, PassageUpdateInformation } from "@prisma/client"
 
 export type fetchPassageUpdateInformationResponse = {
   accessAble: boolean
-  passageUpdateInformation?: PassageUpdateInformation[]
+  passageAndUpdateInformation?: Passage & { PassageUpdateInformation: PassageUpdateInformation[] }
 }
