@@ -8,8 +8,10 @@
   ],
   "scripts": {
     "prisma:generate": "cp -r ../Engness_Node/src/prisma/schema.prisma ./src/prisma && npx prisma generate --schema ./src/prisma/schema.prisma",
+    "debug": "NODE_ENV=development node_modules/.bin/ts-node ./debug/debug.ts",
     "build": "tsc",
-    "debug": "NODE_ENV=development node_modules/.bin/ts-node ./debug/debug.ts"
+    "// comment": "prepareは消しちゃだめ",
+    "prepare": "npm run build"
   },
   "keywords": [],
   "author": "",

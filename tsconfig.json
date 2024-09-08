@@ -107,6 +107,6 @@
     "./src/**/*.ts"
   ],
   "exclude": [
-    "debug/*.ts",
+    "./debug/*.ts",
   ]
 }
