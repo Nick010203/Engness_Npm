@@ -15,13 +15,22 @@ export class createJapaneseTime {
   }
 
   // dayjsのオブジェクトを返すだけ、どうformatするかは受け手次第
-  // 引数がない場合は現在時刻を返す
+  // 引数がない場合は日本時間の現在時刻を返す
   convertForeignTimeToJapanese(date?: dateType) {
-
     const dayjsDate = dayjs(date ?? this.currentTime)
     // これでやっと日本のタイムゾーンになる
     const japanTime = dayjsDate.tz()
     return japanTime
+  }
+
+  getUtcCurrentTime() {
+    return this.currentTime
+  }
+
+  // UTCの時刻をJSTに変換
+  convertUtcToJst(date?: dateType) {
+    const dayjsDate = dayjs(date ?? this.currentTime)
+    return dayjsDate.add(9, "hour")
   }
 
   // unixのタイムスタンプをDBのDateTime用に変える

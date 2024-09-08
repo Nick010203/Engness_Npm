@@ -9,7 +9,7 @@
   "scripts": {
     "prisma:generate": "cp -r ../Engness_Node/src/prisma/schema.prisma ./src/prisma && npx prisma generate --schema ./src/prisma/schema.prisma",
     "build": "tsc",
-    "prepare": "npm run build"
+    "debug": "NODE_ENV=development node_modules/.bin/ts-node ./debug/debug.ts"
   },
   "keywords": [],
   "author": "",
@@ -17,13 +17,14 @@
   "devDependencies": {
     "@types/sanitize-html": "^2.11.0",
     "prisma": "^5.7.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.5.4"
   },
   "dependencies": {
     "@editorjs/editorjs": "^2.29.1",
     "@prisma/client": "^5.7.1",
     "dayjs": "^1.11.13",
     "sanitize-html": "^2.12.1",
+    "ts-node": "^10.9.2",
     "zod": "^3.22.4"
   }
 }
