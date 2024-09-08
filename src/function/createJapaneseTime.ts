@@ -9,11 +9,15 @@ dayjs.tz.setDefault('Asia/Tokyo')
 type dateType = string | number | Date
 
 export class createJapaneseTime {
-  constructor() { }
+  currentTime: dayjs.Dayjs
+  constructor() {
+    this.currentTime = dayjs()
+  }
 
   // dayjsのオブジェクトを返すだけ、どうformatするかは受け手次第
-  convertForeignTimeToJapanese(date: dateType) {
-    const dayjsDate = dayjs(date)
+  convertForeignTimeToJapanese(date?: dateType) {
+
+    const dayjsDate = dayjs(date ?? this.currentTime)
     // これでやっと日本のタイムゾーンになる
     const japanTime = dayjsDate.tz()
     return japanTime
