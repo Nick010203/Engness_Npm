@@ -18,13 +18,15 @@ export type SinglePassageSentence = Omit<PassageSentence, "sentenceList"> &
   sentenceList: SingleSentence[]
 }
 
+export const answerBoxHeight = ["short", "middle", "long"] as const
 export type SingleQuestion = {
   index: number
+  pageBreak: boolean
   qTitle?: string
   choice?: Array<string | number> // lengthが0のとき自由入力の問題
   answer?: Array<string | number> | string // Array:複数回答の問題、string:文で解答例を出したりする問題
   explanation?: string
-  pageBreak?: boolean
+  answerBoxHeight?: (typeof answerBoxHeight)[number]
 }
 
 // PassageQuestion データサンプル 

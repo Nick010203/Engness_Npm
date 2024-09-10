@@ -1,7 +1,7 @@
 import { z } from "zod"
 import { toZodSchema } from "./common";
 import { Passage } from "@prisma/client";
-import { SingleQuestion } from "../service/passage/passageType"
+import { SingleQuestion, answerBoxHeight } from "../service/passage/passageType"
 
 // createもするのでidはoptional
 type PartialPassage = Pick<Passage, "englishLevelId" | "englishTitle" | "japaneseTitle" | "free" | "accessible"> & { id: number | null }
@@ -24,4 +24,5 @@ export const zodPassageQuestionUpsertSchema = z.object<toZodSchema<PartialPassag
   choice: z.string().optional(),
   answer: z.string().optional(),
   explanation: z.string().optional(),
+  answerBoxHeight: z.enum(answerBoxHeight).optional()
 })
