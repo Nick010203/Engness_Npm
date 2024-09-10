@@ -6,8 +6,6 @@ import { SingleQuestion, answerBoxHeight } from "../service/passage/passageType"
 // createもするのでidはoptional
 type PartialPassage = Pick<Passage, "englishLevelId" | "englishTitle" | "japaneseTitle" | "free" | "accessible"> & { id: number | null }
 
-type PartialPassageQuestion = Omit<SingleQuestion, "index"> & { index: number | null }
-
 export const zodPassageUpsertSchema = z.object<toZodSchema<PartialPassage>>({
   id: z.number().nullable(),
   englishLevelId: z.number(),
@@ -17,7 +15,7 @@ export const zodPassageUpsertSchema = z.object<toZodSchema<PartialPassage>>({
   accessible: z.boolean()
 })
 
-export const zodPassageQuestionUpsertSchema = z.object<toZodSchema<PartialPassageQuestion>>({
+export const zodPassageQuestionUpsertSchema = z.object<toZodSchema<SingleQuestion>>({
   index: z.number(),
   qTitle: z.string(),
   // @ts-expect-error: とりあえず
