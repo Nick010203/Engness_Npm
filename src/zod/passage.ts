@@ -18,11 +18,11 @@ export const zodPassageUpsertSchema = z.object<toZodSchema<PartialPassage>>({
 })
 
 export const zodPassageQuestionUpsertSchema = z.object<toZodSchema<PartialPassageQuestion>>({
-  index: z.number().nullable(),
-  qTitle: z.string().optional(),
+  index: z.number(),
+  qTitle: z.string(),
   // @ts-expect-error: とりあえず
-  choice: z.string().optional(),
-  answer: z.string().optional(),
-  explanation: z.string().optional(),
-  answerBoxHeight: z.enum(answerBoxHeight).optional()
+  choice: z.string(),
+  answer: z.string(),
+  explanation: z.string(),
+  answerBoxHeight: z.enum(answerBoxHeight)
 })
