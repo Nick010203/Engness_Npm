@@ -21,7 +21,7 @@ export const sanitizeArticleBody = (html: string) => {
 }
 
 export const sanitizePassageSentenceToCountWords = (passageSentence: string) => {
-  sanitizeHtml(passageSentence, {
+  return sanitizeHtml(passageSentence, {
     exclusiveFilter: function (frame) {
       return (frame.tag === 'span'); // spanタグを削除
     }
