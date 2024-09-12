@@ -393,7 +393,7 @@ model Passage {
 
   PassageQuestion          PassageQuestion?
   PassageSentence          PassageSentence?
-  PassageUpdateInformation PassageUpdateInformation?
+  PassageUpdateInformation PassageUpdateInformation[]
 
   @@index([englishLevelId])
 }
@@ -412,8 +412,10 @@ model PassageQuestion {
 }
 
 model PassageSentence {
-  id           Int  @id @default(autoincrement())
-  sentenceList Json
+  id            Int   @id @default(autoincrement())
+  sentenceList  Json
+  wordCount     Int   @default(0)
+  referenceList Json?
 
   Passage   Passage @relation(fields: [passageId], references: [id])
   passageId Int     @unique
@@ -430,7 +432,7 @@ model PassageUpdateInformation {
   updateInformation String? @db.VarChar(500)
 
   Passage   Passage @relation(fields: [passageId], references: [id])
-  passageId Int     @unique
+  passageId Int
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
