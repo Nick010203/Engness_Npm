@@ -13,8 +13,9 @@ export type SingleSentence = {
   en?: OutputData | null//editorjsのデータ
 }
 
-export type SinglePassageSentence = Omit<PassageSentence, "sentenceList" | "referenceList"> &
+export type SinglePassageSentence = Omit<PassageSentence, "sentenceList" | "referenceList" | "annotationList"> &
 {
+  annotationList: { id: number, englishMeaning: string, japaneseMeaning: string }
   referenceList: string[]
   sentenceList: SingleSentence[]
 }

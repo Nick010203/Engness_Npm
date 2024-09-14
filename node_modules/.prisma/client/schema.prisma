@@ -412,10 +412,11 @@ model PassageQuestion {
 }
 
 model PassageSentence {
-  id            Int   @id @default(autoincrement())
-  sentenceList  Json
-  wordCount     Int   @default(0)
-  referenceList Json?
+  id             Int   @id @default(autoincrement())
+  sentenceList   Json
+  wordCount      Int   @default(0)
+  referenceList  Json?
+  annotationList Json?
 
   Passage   Passage @relation(fields: [passageId], references: [id])
   passageId Int     @unique
