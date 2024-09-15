@@ -13,7 +13,7 @@ export type SingleSentence = {
   en?: OutputData | null//editorjsのデータ
 }
 
-export type EnglishWordAnnotation = { id: number, englishMeaning: string, japaneseMeaning: string }
+export type EnglishWordAnnotation = { id: number, englishWord: string, japaneseMeaning: string }
 export type SinglePassageSentence = Omit<PassageSentence, "sentenceList" | "referenceList" | "annotationList"> &
 {
   annotationList: EnglishWordAnnotation[]
