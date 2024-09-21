@@ -12,8 +12,6 @@ export type userUpdateParams = {
   updateData: userBasicInfoUpdateParams | userEmailUpdateParams;
 }
 
-export type userUpdateResponse<T extends updateType> = T extends "BASIC" ? null : { newEmail: string, oldEmail: string }
-
 export type userEmailUpdateOneTimePasswordValidationParams = {
   newEmail: string
   oldEmail: string
