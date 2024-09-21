@@ -37,6 +37,12 @@ export class dateManager {
     return dayjsDate.add(9, "hour")
   }
 
+  // DB用の日付形式に変換
+  // dayjsを再び通してtimezoneの再変換が起こったりしては面倒なので引数はdayjsのみ
+  convertTimeToDbDate(date: dayjs.Dayjs) {
+    return date.format('YYYY-MM-DD HH:mm:ss')
+  }
+
   // unixのタイムスタンプをDBのDateTime用(utc)に変える
   unixToDbDate(date: dateType) {
     const timeStamp = (date as number) * 1000
