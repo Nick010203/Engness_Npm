@@ -31,7 +31,7 @@ export type PrismaQueryRequest<T extends keyof ModelMap> = {
 }
 
 // ここに追加していく
-type ModelMap = {
+export type ModelMap = {
   user: Model<p.User, 'User'>
   adminUser: Model<p.User, 'AdminUser'>
 }
