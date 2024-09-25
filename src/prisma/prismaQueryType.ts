@@ -46,10 +46,8 @@ export type PrismaQueryRequest<T extends keyof ModelMap> = {
   }
 }
 
-export const dashboardAccessibleTableList: Partial<Uncapitalize<p.Prisma.ModelName>>[] = ["user", "adminUser"]
-
 // ここに追加していく
 export type ModelMap = {
   user: Model<p.User, 'User'>
-  adminUser: Model<p.AdminUser, 'AdminUser'>
+  // adminUser: Model<p.AdminUser, 'AdminUser'>
 }
