@@ -41,9 +41,10 @@ export type PrismaQueryRequest<T extends keyof ModelMap> = {
   query?: {
     where?: WhereQuery<T>
     select?: SelectQuery<T> // 指定なければ全フィールド
-    limit?: LimitQuery
     include?: includeQuery<T>
-  }
+  },
+  take?: number,
+  skip: number
 }
 
 // ここに追加していく
