@@ -44,7 +44,7 @@ export type PrismaQueryRequest<T extends keyof ModelMap> = {
     include?: includeQuery<T>
   },
   take?: number,
-  skip: number
+  skip?: number
 }
 
 // ここに追加していく
