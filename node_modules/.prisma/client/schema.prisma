@@ -61,8 +61,9 @@ enum subscriptionStatus {
   canceled
 }
 
-enum OneTimeNumberUsage {
+enum OneTimePasswordUsage {
   signIn
+  emailUpdate
 }
 
 enum AdminRole {
@@ -274,7 +275,7 @@ model ProductReview {
 model OneTimePassword {
   id Int @id @default(autoincrement())
 
-  usage OneTimeNumberUsage
+  usage OneTimePasswordUsage
 
   oneTimePassword String
   validated       Boolean @default(false)
@@ -364,6 +365,7 @@ model User {
   city                String
   email               String                @unique
   birthYear           String
+  birthMonth          String?
   activated           Boolean               @default(false)
   // testUser            Boolean               @default(false)
   invited             Boolean               @default(false)
