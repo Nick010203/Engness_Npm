@@ -10,9 +10,9 @@ type EmailLoginParams = Pick<User, UserLoginNecessaryField>
 
 // フロントで使うために定義
 export const zodGender = z.enum(["male", "female", "middle"])
-export const zodBirthYear = z.string()
-export const zodBirthMonth = z.string()
-export const zodCity = z.string()
+export const zodBirthYear = z.string().min(1)
+export const zodBirthMonth = z.string().min(1)
+export const zodCity = z.string().min(1)
 
 export const zodUserCreationSchema = z.object<toZodSchema<UserCreationParams>>({
   userName: zodUserName,
