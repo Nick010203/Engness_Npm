@@ -1,3 +1,4 @@
 # 出来てしまったらnpmのbuildに失敗するので
 tsconfig.tsbuildinfo
 dist
+debug
