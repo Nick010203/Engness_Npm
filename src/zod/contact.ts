@@ -6,5 +6,6 @@ export const zodContactText = z.string().min(1).max(300)
 
 export const zodContactCreateSchema = z.object<toZodSchema<Omit<sendContactParams, "recaptchaToken">>>({
   email: z.string().email(),
+  contactCategory: z.string().min(1),
   contactText: zodContactText
 })
