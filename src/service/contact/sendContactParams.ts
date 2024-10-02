@@ -2,6 +2,6 @@
 export type sendContactParams = {
   recaptchaToken: string
   email: string
-  contactCategory: string
+  contactTitle: string
   contactText: string
 }
