@@ -15,6 +15,6 @@ export const zodProductReviewCreationSchema = z.object<toZodSchema<ProductReview
   reviewer: zodReviewer,
   text: zodReview,
   rating: zodProductRate,
-  serialNumber: z.string(),
+  serialNumber: z.string().min(1),
   email: z.string().email()
 }) 
