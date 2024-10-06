@@ -43,22 +43,28 @@ enum EnglishLevelRange {
   A1
 }
 
-enum checkoutStatus {
+enum CheckoutStatus {
   ordered
   processing
   shipped
   cancel
 }
 
-enum checkoutType {
+enum CheckoutType {
   checkout
   subscription
 }
 
-enum subscriptionStatus {
+enum SubscriptionStatus {
   trialing
   active
   canceled
+}
+
+enum ContactStatus {
+  unTouched
+  inProgress
+  done
 }
 
 enum OneTimePasswordUsage {
@@ -79,6 +85,7 @@ model AdminUser {
   adminEmail      String            @unique
   password        String
   OneTimePassword OneTimePassword[]
+  ContactHistory  ContactHistory[]
 }
 
 model AmazonProduct {
@@ -140,6 +147,22 @@ model ArticleUniversityDepartment {
 
   @@index([articleId])
   @@index([universityId])
+}
+
+model ContactHistory {
+  id             Int           @id @default(autoincrement())
+  contacterEmail String
+  title          String
+  context        String        @db.VarChar(300)
+  status         ContactStatus
+
+  adminUserId String?
+  AdminUser   AdminUser? @relation(fields: [adminUserId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@index([adminUserId])
 }
 
 model EnglishLevel {
@@ -243,7 +266,7 @@ model Product {
   id           Int          @id @default(autoincrement())
   name         String
   price        Int
-  checkoutType checkoutType
+  checkoutType CheckoutType
   image        Json?
   priceId      String
   description  String?      @db.Text
@@ -309,7 +332,7 @@ model StripeCheckout {
   address      String
   serialNumber String
 
-  status  checkoutStatus
+  status  CheckoutStatus
   manager String?
 
   createdAt     DateTime        @default(now())
@@ -320,6 +343,7 @@ model StripeCheckout {
   @@index([productId])
 }
 
+// ログイン中であればユーザーに紐付く、ログインがなければ1決済1レコードのStripeCustomerとして登録される
 model StripeCustomer {
   id Int @id @default(autoincrement())
 
@@ -340,7 +364,7 @@ model StripeSubscription {
   subscriptionId String
 
   plan   String
-  status subscriptionStatus
+  status SubscriptionStatus
 
   periodStart String
   periodEnd   String
