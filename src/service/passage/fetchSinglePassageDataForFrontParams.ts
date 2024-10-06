@@ -8,7 +8,7 @@ export type fetchSinglePassageDataForFrontResponse = {
     jpFirstPassageSentence: OutputData
   },
   question: {
-    firstQuestionTitle: string
+    firstQuestionTitle: Array<string>
     firstQuestionQList: Array<string | number>[]
   }
 }
