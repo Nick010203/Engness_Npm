@@ -9,6 +9,6 @@ export type fetchSinglePassageDataForFrontResponse = {
   },
   question: {
     firstQuestionTitle: string
-    firstQuestionQList: Array<string | number>
+    firstQuestionQList: Array<string | number>[]
   }
 }
