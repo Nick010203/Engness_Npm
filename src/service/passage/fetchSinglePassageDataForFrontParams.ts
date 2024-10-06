@@ -1,5 +1,6 @@
 
 export type fetchSinglePassageDataForFrontParams = {
+  englishLevelRange: string,
   isFree: boolean,
   sentence: {
     enFirstPassageSentence: string,
