@@ -1,5 +1,5 @@
 
-export type fetchSinglePassageDataForFrontParams = {
+export type fetchSinglePassageDataForFrontResponse = {
   englishLevelRange: string,
   isFree: boolean,
   sentence: {
