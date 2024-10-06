@@ -8,6 +8,6 @@ export type fetchSinglePassageDataForFrontParams = {
   },
   question: {
     firstQuestionTitle: string
-    firstQuestionQList: string
+    firstQuestionQList: Array<string | number>
   }
 }
