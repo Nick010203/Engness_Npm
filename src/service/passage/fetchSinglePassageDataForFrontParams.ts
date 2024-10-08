@@ -3,6 +3,7 @@ import { OutputData } from '@editorjs/editorjs'
 export type fetchSinglePassageDataForFrontResponse = {
   englishLevelRange: string,
   isFree: boolean,
+  accessible: boolean, // この問題にアクセスできるか = 無料会員なのに有料問題にアクセスしているどうか
   sentence: {
     enTitle: string
     jpTitle: string
