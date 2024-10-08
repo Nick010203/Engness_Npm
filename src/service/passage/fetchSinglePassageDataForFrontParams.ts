@@ -4,6 +4,8 @@ export type fetchSinglePassageDataForFrontResponse = {
   englishLevelRange: string,
   isFree: boolean,
   sentence: {
+    enTitle: string
+    jpTitle: string
     enFirstPassageSentence: OutputData,
     jpFirstPassageSentence: OutputData
   },
