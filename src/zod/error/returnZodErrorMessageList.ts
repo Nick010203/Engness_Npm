@@ -9,7 +9,7 @@ export const returnZodErrorMessageList = (result: SafeParseReturnType<any, any>,
   if ("error" in result) {
     const errorIssueList = result.error.issues
     return errorIssueList.map((e) => {
-      return zodErrorMessageMap[e.message as zodErrorType]?.[lang] ?? "入力値検証エラー"
+      return zodErrorMessageMap[e.message as zodErrorType]?.[lang] ?? "入力値エラー"
     })
   }
 
