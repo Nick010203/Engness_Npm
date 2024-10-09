@@ -1,5 +1,7 @@
 
-// zodのmessageに入れる e.g. z.string().regex(userNameRegex, { message: "userNameRegex" })
+// messageにzodErrorTypeを入れる
+// e.g. z.string().regex(userNameRegex, { message: "userNameRegex" })
+
 export type zodErrorType = "userNameRegex" | "userNameMax" | "zodEmailError" | "zodPasswordRegex"
 
 const zodErrorMessageMap: { [key in zodErrorType]: { en: string, jp: string } } = {
