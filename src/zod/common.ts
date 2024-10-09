@@ -9,7 +9,7 @@ export type toZodSchema<T extends Record<string, any>> = {
 const userNameRegex = /^[a-zA-Z0-9-]+$/
 const passwordRegex = /^[a-zA-Z0-9-_]+$/
 
-export const zodUserName = z.string().max(7, { message: "userNameMax" }).regex(userNameRegex, { message: "userNameRegex" })
+export const zodUserName = z.string().min(1, { message: "stringRequired" }).max(7, { message: "userNameMax" }).regex(userNameRegex, { message: "userNameRegex" })
 
 export const zodEmail = z.string().email({ message: "zodEmailError" })
 export const zodPassword = z.string().min(8).max(50).regex(passwordRegex, { message: "zodPasswordRegex" })
