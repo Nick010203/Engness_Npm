@@ -1,5 +1,6 @@
 import { OutputData } from '@editorjs/editorjs'
 
+// フロントのpassage/:passageIdのパスへアクセスしたときに得られるデータ
 export type fetchSinglePassageDataForFrontResponse = {
   englishLevelRange: string,
   isFree: boolean,
