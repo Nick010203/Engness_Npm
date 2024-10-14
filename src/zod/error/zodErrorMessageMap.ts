@@ -6,7 +6,7 @@ export type Required = "booleanRequired" | "stringRequired"
 export type Regex = "userNameRegex" | "zodPasswordRegex"
 
 export type User = "userNameMax"
-export type Article = "articleTitle"
+export type Article = "articleTitle" | "articleCategoryId"
 export type Review = "reviewerName" | "reviewText" | "reviewRate"
 
 export type zodErrorType = Required | Regex | Article | User | Review | "zodEmailError" | "contactText"
@@ -55,6 +55,10 @@ const zodErrorMessageMap: { [key in zodErrorType]: { en: string, jp: string } } 
   articleTitle: {
     en: "Article Title is Required",
     jp: "記事タイトルは必須"
+  },
+  articleCategoryId: {
+    en: "Invalid Article Category",
+    jp: "カテゴリーが不正です"
   }
 }
 

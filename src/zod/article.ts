@@ -6,7 +6,7 @@ type ArticleUpsertType = Omit<Article, "id" | "body"> & { id: number | null }
 
 export const zodArticleInfoUpsertSchema = z.object<toZodSchema<ArticleUpsertType>>({
   id: z.number().nullable(),
-  categoryId: z.number(),
+  categoryId: z.number().refine((val) => val !== 0, { message: "articleCategoryId" }),
   published: z.boolean(),
   name: z.string(),
   title: z.string().min(1, { message: "articleTitle" }),
