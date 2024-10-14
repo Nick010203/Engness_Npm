@@ -9,6 +9,6 @@ export const zodArticleInfoUpsertSchema = z.object<toZodSchema<ArticleUpsertType
   categoryId: z.number(),
   published: z.boolean(),
   name: z.string(),
-  title: z.string(),
+  title: z.string().min(1, { message: "articleTitle" }),
   description: z.string().nullable()
 })
