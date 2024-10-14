@@ -1,3 +1,5 @@
 import * as prisma from '@prisma/client'
+import type { ModelMap } from "../../prisma/prismaQueryType"
 
-export const dashboardAccessibleTableList: Partial<Uncapitalize<prisma.Prisma.ModelName>>[] = ["user", "adminUser", "stripeCheckout", "stripeSubscription", "contactHistory"]
+// Partial<Uncapitalize<prisma.Prisma.ModelName>>[]
+export const dashboardAccessibleTableList: Array<keyof ModelMap> = ["user", "adminUser", "stripeCheckout", "stripeSubscription", "contactHistory", "amazonProduct"]

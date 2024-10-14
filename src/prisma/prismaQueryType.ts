@@ -54,4 +54,5 @@ export type ModelMap = {
   stripeCheckout: Model<prisma.StripeCheckout, "StripeCheckout">
   stripeSubscription: Model<prisma.StripeSubscription, "StripeSubscription">
   contactHistory: Model<prisma.ContactHistory, "ContactHistory">
+  amazonProduct: Model<prisma.AmazonProduct, "AmazonProduct">
 }
