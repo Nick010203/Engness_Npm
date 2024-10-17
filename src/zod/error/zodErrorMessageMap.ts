@@ -35,6 +35,7 @@ const zodErrorMessageMap: { [key in zodErrorType]: { en: string, jp: string } } 
     en: "Required",
     jp: "選択が必須"
   },
+  // 0はNG
   numberRequired: {
     en: "Required",
     jp: "入力が必須"
