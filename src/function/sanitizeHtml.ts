@@ -20,6 +20,17 @@ export const sanitizeArticleBody = (html: string) => {
   )
 }
 
+export const sanitizeAmazonProductImageTag = (htmlImgTag: string) => {
+  return sanitizeHtml(htmlImgTag, {
+    allowedTags: ["img"],
+    allowedAttributes: {
+      img: ['alt', 'src', 'data-old-hires'],
+      "*": [...commonAttributes],
+    },
+  }
+  )
+}
+
 export const sanitizePassageSentenceToCountWords = (passageSentence: string) => {
   return sanitizeHtml(passageSentence, {
     exclusiveFilter: function (frame) {
