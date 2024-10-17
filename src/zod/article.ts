@@ -1,6 +1,6 @@
 import { Article } from "@prisma/client"
 import { z } from "zod";
-import { toZodSchema } from "./common";
+import { toZodSchema } from "./common"
 
 type ArticleUpsertType = Omit<Article, "id" | "body"> & { id: number | null }
 
