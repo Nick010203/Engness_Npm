@@ -2,14 +2,13 @@
 // messageにzodErrorTypeを入れる
 // e.g. z.string().regex(userNameRegex, { message: "userNameRegex" })
 
-export type Required = "booleanRequired" | "stringRequired"
+export type Required = "booleanRequired" | "stringRequired" | "numberRequired"
 export type Regex = "userNameRegex" | "zodPasswordRegex"
 
 export type User = "userNameMax"
-export type Article = "articleTitle" | "articleCategoryId"
 export type Review = "reviewerName" | "reviewText" | "reviewRate"
 
-export type zodErrorType = Required | Regex | Article | User | Review | "zodEmailError" | "contactText"
+export type zodErrorType = Required | Regex | User | Review | "zodEmailError" | "contactText"
 
 const zodErrorMessageMap: { [key in zodErrorType]: { en: string, jp: string } } = {
   userNameRegex: {
@@ -36,6 +35,10 @@ const zodErrorMessageMap: { [key in zodErrorType]: { en: string, jp: string } } 
     en: "Required",
     jp: "選択が必須"
   },
+  numberRequired: {
+    en: "Required",
+    jp: "入力が必須"
+  },
   contactText: {
     en: "1 to 300 words",
     jp: "1から300文字"
@@ -52,14 +55,6 @@ const zodErrorMessageMap: { [key in zodErrorType]: { en: string, jp: string } } 
     en: "1 to 5",
     jp: "1 to 5"
   },
-  articleTitle: {
-    en: "Article Title is Required",
-    jp: "記事タイトルは必須"
-  },
-  articleCategoryId: {
-    en: "Invalid Article Category",
-    jp: "カテゴリーが不正です"
-  }
 }
 
 export default zodErrorMessageMap
