@@ -17,9 +17,9 @@ export const zodPassageUpsertSchema = z.object<toZodSchema<PartialPassage>>({
 
 export const zodPassageQuestionUpsertSchema = z.object<toZodSchema<SingleQuestion>>({
   index: z.number(),
+  pageBreak: z.boolean(),
   qTitle: z.string(),
-  // @ts-expect-error: とりあえず
-  choice: z.string(),
+  choice: z.array(z.union([z.string(), z.number()])),
   answer: z.string(),
   explanation: z.string(),
   answerBoxHeight: z.enum(answerBoxHeight)
