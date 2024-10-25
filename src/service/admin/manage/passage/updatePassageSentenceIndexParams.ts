@@ -1,6 +1,6 @@
 
 export type updatePassageSentenceIndexParams = {
   passageId: number
-  oldIndex: number | null
+  oldIndex: number
   newIndex: number
 }
