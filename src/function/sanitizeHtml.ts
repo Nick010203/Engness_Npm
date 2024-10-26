@@ -41,7 +41,8 @@ export const sanitizePassageSentenceToCountWords = (passageSentence: string) => 
   return sanitizeHtml(passageSentence, {
     exclusiveFilter: function (frame) {
       // spanに特定のclassがついていればspanタグをsanitizeするだけ、それ以外のspanタグはspanタグの中身ごとスキップ
-      return !(frame.tag === 'span' && !includedInWordCountClass?.includes(frame.attribs.class))
+      // aaa-bbb-ccc のようなハイフンのclass名はframe.attribs.classが aaa - bbb - ccc になっているので空白を取り除く
+      return frame.tag === 'span' && !includedInWordCountClass?.includes(frame.attribs.class.replace(/\s+/g, ''))
     }
   })
 }
