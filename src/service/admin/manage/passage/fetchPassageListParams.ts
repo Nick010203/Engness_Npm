@@ -1,4 +1,4 @@
 
 import { Passage, EnglishLevel } from "@prisma/client"
 
-export type fetchPassageListResponse = (Omit<Passage, 'englishLevelId'> & { EnglishLevel: EnglishLevel | null })[]
+export type fetchPassageListResponse = (Omit<Passage, 'englishLevelId'> & { EnglishLevel: EnglishLevel | null }) & { wordCount: number }[]
