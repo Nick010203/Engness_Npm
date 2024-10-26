@@ -32,9 +32,16 @@ export const sanitizeAmazonProductImageTag = (htmlImgTag: string) => {
 }
 
 export const sanitizePassageSentenceToCountWords = (passageSentence: string) => {
+  const includedInWordCountClass = ['passage-under-line-1',
+    'passage-under-line-2',
+    'passage-under-line-3',
+    'passage-under-line-4',
+    'passage-under-line-5',
+    'english-word-annotation']
   return sanitizeHtml(passageSentence, {
     exclusiveFilter: function (frame) {
-      return (frame.tag === 'span'); // spanタグを削除
+      // spanに特定のclassがついていればspanタグをsanitizeするだけ、それ以外のspanタグはspanタグの中身ごとスキップ
+      return !(frame.tag === 'span' && !includedInWordCountClass?.includes(frame.attribs.class))
     }
   })
 }
