@@ -47,6 +47,13 @@ export type PrismaQueryRequest<T extends keyof ModelMap> = {
   skip?: number
 }
 
+export type PrismaDashBoardUpsertRequest<T extends keyof ModelMap> = {
+  createOrUpdate: 'create' | 'update'
+  tableName: T
+  data: Partial<T>
+}
+
+
 // ここにダッシュボードに追加したいモデルを追加していく
 export type ModelMap = {
   user: Model<prisma.User, 'User'>
