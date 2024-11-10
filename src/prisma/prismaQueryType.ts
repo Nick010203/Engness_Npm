@@ -50,7 +50,7 @@ export type PrismaQueryRequest<T extends keyof ModelMap> = {
 export type PrismaDashBoardUpsertRequestParams<T extends keyof ModelMap> = {
   createOrUpdate: 'create' | 'update'
   tableName: T
-  data: Partial<T>
+  data: Partial<ModelMap[T]>
 }
 
 
