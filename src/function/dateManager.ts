@@ -5,7 +5,8 @@ import { dateManagerTimeZone } from './dateManagerTimeZone'
 type dateType = string | number | Date | dayjs.Dayjs
 
 export class dateManager {
-  currentTime: dayjs.Dayjs
+  currentTime
+
   constructor(country: UserCountry | null = null) {
     const timeZone = country ? dateManagerTimeZone[country] : null
     this.currentTime = timeZone ? dayjs().tz(timeZone) : dayjs().utc()
