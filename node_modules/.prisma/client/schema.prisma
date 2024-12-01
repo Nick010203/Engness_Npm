@@ -33,7 +33,7 @@ enum Gender {
   middle
 }
 
-// 文化省の英語レベル表より
+// 文化省の英語レベル表より、D以降は表にないので自作
 enum EnglishLevelRange {
   C2
   C1
@@ -41,6 +41,7 @@ enum EnglishLevelRange {
   B1
   A2
   A1
+  D
 }
 
 enum CheckoutStatus {
@@ -385,7 +386,7 @@ model User {
   id                  String                @id @default(uuid())
   userName            String
   gender              Gender
-  country             String
+  country             UserCountry
   city                String
   email               String                @unique
   birthYear           String
@@ -406,13 +407,12 @@ model Passage {
   id Int @id @default(autoincrement())
 
   EnglishLevel   EnglishLevel? @relation(fields: [englishLevelId], references: [id])
-  englishLevelId Int?          @unique
-
-  englishTitle  String?
-  japaneseTitle String?
+  englishLevelId Int?
+  englishTitle   String?
+  japaneseTitle  String?
 
   free       Boolean @default(false)
-  accessible Boolean @default(false)
+  accessible Boolean @default(false) // publicは予約語で使えない
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -465,4 +465,8 @@ model PassageUpdateInformation {
   updatedAt DateTime @updatedAt
 
   @@index([passageId])
+}
+
+enum UserCountry {
+  Japan
 }

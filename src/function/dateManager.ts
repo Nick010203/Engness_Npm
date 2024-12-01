@@ -1,6 +1,8 @@
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
+import { UserCountry } from "@prisma/client"
+import { dateManagerTimeZone } from './dateManagerTimeZone'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -8,16 +10,11 @@ dayjs.extend(timezone)
 type dateType = string | number | Date | dayjs.Dayjs
 
 export class dateManager {
-  private currentTime: dayjs.Dayjs
-  constructor() {
-    this.currentTime = dayjs().utc()
+  currentTime: dayjs.Dayjs
+  constructor(country: UserCountry | null = null) {
+    const timeZone = country ? dateManagerTimeZone[country] : null
+    this.currentTime = timeZone ? dayjs().tz(timeZone) : dayjs().utc()
   }
-
-  // dayjsのオブジェクトを返すだけ、どうformatするかは受け手次第
-  // 引数がない場合は日本時間の現在時刻を返す
-  // setJapaneseTimeZone(date?: dateType) {
-  //   dayjs().tz('Asia/Tokyo')
-  // }
 
   getUtcCurrentTime() {
     return this.currentTime
@@ -31,9 +28,9 @@ export class dateManager {
     return dayjs(date).utc()
   }
 
-  // UTCの時刻をJSTに変換
-  convertUtcToJst(date: dateType) {
-    const dayjsDate = dayjs(date)
+  // UTCの時刻をJSTに変換 (使う側でformat)
+  convertUtcToJst(utcDate: dateType): dayjs.Dayjs {
+    const dayjsDate = dayjs(utcDate)
     return dayjsDate.add(9, "hour")
   }
 
