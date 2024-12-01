@@ -1,15 +1,6 @@
-import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
-import timezone from 'dayjs/plugin/timezone'
-import isSameOrBefore from "dayjs/plugin/isSameOrBefore"
-import isSameOrAfter from "dayjs/plugin/isSameOrAfter"
+import dayjs from "./dayjs/extendedDayjs"
 import { UserCountry } from "@prisma/client"
 import { dateManagerTimeZone } from './dateManagerTimeZone'
-
-dayjs.extend(utc)
-dayjs.extend(timezone)
-dayjs.extend(isSameOrBefore)
-dayjs.extend(isSameOrAfter)
 
 type dateType = string | number | Date | dayjs.Dayjs
 
