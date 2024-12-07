@@ -1,4 +1,4 @@
 
 
-export type availablePlanList = "planE" | "planN"
+export type availablePlanList = "PlanE" | "PlanN"
 
