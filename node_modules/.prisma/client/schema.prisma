@@ -242,6 +242,21 @@ model LikeListening {
   @@index([listeningId])
 }
 
+model LikePassage {
+  id Int @id @default(autoincrement())
+
+  User   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  Passage   Passage @relation(fields: [passageId], references: [id])
+  passageId Int
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([passageId])
+}
+
 model Listening {
   id      Int    @id @default(autoincrement())
   title   String
@@ -274,8 +289,9 @@ model Product {
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
 
-  ProductReview  ProductReview[]
-  StripeCheckout StripeCheckout[]
+  ProductReview      ProductReview[]
+  StripeCheckout     StripeCheckout[]
+  StripeSubscription StripeSubscription[]
 }
 
 model ProductReview {
@@ -364,7 +380,9 @@ model StripeSubscription {
 
   subscriptionId String
 
-  plan   String
+  Product   Product @relation(fields: [productId], references: [id])
+  productId Int
+
   status SubscriptionStatus
 
   periodStart String
@@ -380,6 +398,7 @@ model StripeSubscription {
   updatedAt DateTime @updatedAt
 
   @@index([stripeCustomerId])
+  @@index([productId])
 }
 
 model User {
@@ -394,13 +413,14 @@ model User {
   activated           Boolean               @default(false)
   // testUser            Boolean               @default(false)
   invited             Boolean               @default(false)
-  invitedUntil        DateTime?
+  invitedUntil        String? // YYYY-MM-DD
   createdAt           DateTime              @default(now())
   updatedAt           DateTime              @updatedAt
   StripeCustomer      StripeCustomer[]
   OneTimePassword     OneTimePassword[]
   LikeGrammarQuestion LikeGrammarQuestion[]
   LikeListening       LikeListening[]
+  LikePassage         LikePassage[]
 }
 
 model Passage {
@@ -420,6 +440,7 @@ model Passage {
   PassageQuestion          PassageQuestion?
   PassageSentence          PassageSentence?
   PassageUpdateInformation PassageUpdateInformation[]
+  LikePassage              LikePassage[]
 
   @@index([englishLevelId])
 }
