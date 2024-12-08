@@ -5,7 +5,7 @@ export type fetchPassageListParams = {
 }
 
 // passage.freeのカラムをサブスク有無によってpassage.challengeableに上書く
-export type PassageWithChallengeAbility = Passage & { challengeable: boolean }
+export type PassageWithChallengeAbility = Passage & { LikePassage: { id: number } } & { challengeable: boolean }
 
 // EnglishLevelがkeyになっている
 export type PassageListGroupedByEnglishLevel = { [key: string]: PassageWithChallengeAbility[] }[]
